@@ -1,9 +1,41 @@
-.contents-box .info dl {
+@charset "UTF-8";
+/*
+  display:flex는 block 요소의 레이아웃을 바꿀 쓴다.
+*/
+body {
+  background-color: #cccccc;
+}
+
+.resume {
+  width: 1200px;
+  display: flex;
+  background-color: #ffffff;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.resume .img-box img {
+  width: 250px;
+}
+.resume .contents-box .info dl {
   display: flex;
 }
-.contents-box .info dl dt {
+.resume .contents-box .info dl dt {
   font-weight: bold;
 }
-.contents-box .info dl dd {
+.resume .contents-box .info dl dd {
   color: #999;
-}/*# sourceMappingURL=layout.css.map */
+}
+
+@media all and (max-width: 640px) {
+  .resume {
+    width: 100%;
+    flex-direction: column;
+  }
+  .resume .img-box {
+    padding: 20px;
+  }
+  .resume .img-box img {
+    width: 100%;
+  }
+}

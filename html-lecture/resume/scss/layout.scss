@@ -1,15 +1,50 @@
-.contents-box {
-  .info {
-    dl {
-      display: flex;
-      dt {
-        font-weight: bold;
-      }
-      dd {
-        color: #999;
+// display:flex는 block 요소의 레이아웃을 바꿀 쓴다.
+/*
+  display:flex는 block 요소의 레이아웃을 바꿀 쓴다.
+*/
+body {
+  //16진수 0~9abcdef  0~9 8진수 0~7  10  2진수 0~1 10
+  background-color: #cccccc;
+}
+.resume {
+  width: 1200px;
+  display: flex;
+  background-color: #ffffff;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  .img-box {
+    img {
+      width: 250px;
+    }
+  }
+  .contents-box {
+    .info {
+      dl {
+        display: flex;
+        dt {
+          font-weight: bold;
+        }
+        dd {
+          color: #999;
+        }
       }
     }
   }
 }
-// 잘 안되면 질문하기...
-// 손들기 연습할거임...
+
+// 만약 내가 보는 미디어의 사이즈가 640px보다 작으면 위에 있는 css를 적용하지말고
+// 여기껄 적용해라...
+
+@media all and (max-width: 640px) {
+  .resume {
+    width: 100%;
+    flex-direction: column;
+    .img-box {
+      padding: 20px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
