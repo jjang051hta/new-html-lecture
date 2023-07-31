@@ -1,0 +1,29 @@
+{
+  "workbench.iconTheme": "vscode-icons",
+  "editor.fontSize": 28,
+  "editor.mouseWheelZoom": true,
+  "window.zoomLevel": -1,
+  "explorer.confirmDelete": false,
+  "editor.wordWrap": "on",
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.colorTheme": "Solarized Light",
+  "prettier.printWidth": 150,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "editor.formatOnSave": true,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css",
+      "savePathReplacementPairs": null
+    },
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css",
+      "savePathReplacementPairs": null
+    }
+  ]
+}
