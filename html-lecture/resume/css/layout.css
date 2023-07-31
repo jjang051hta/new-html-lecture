@@ -59,11 +59,23 @@ body {
 .resume .contents-box .contents .skill-list ul li {
   margin-left: 10px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.resume .contents-box .contents .skill-list ul li:before {
+  content: "";
+  display: block;
+  margin-right: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 10px;
+  background-color: #067392;
 }
 
 @media all and (max-width: 640px) {
   .resume {
     width: 100%;
+    padding: 0;
     flex-direction: column;
   }
   .resume .img-box {
@@ -71,5 +83,8 @@ body {
   }
   .resume .img-box img {
     width: 100%;
+  }
+  .resume .contents-box {
+    padding: 20px;
   }
 }
