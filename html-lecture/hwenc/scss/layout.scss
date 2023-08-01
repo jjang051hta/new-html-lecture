@@ -1,0 +1,76 @@
+$main-color: #f60;
+
+body {
+  font-family: "Roboto", "Noto Sans KR", "돋움", sans-serif;
+  color: #111;
+  font-size: 16px;
+  min-height: 3000px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.hidden {
+  display: none;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 105;
+  color: #fff;
+  .logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .gnb {
+    > ul {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      //flex-direction: row;
+      li {
+        // a, span, em, strong, input 등등은 inline 태그이다. 넓이 높이는 없다.
+        .depth01 {
+          font-size: 20px;
+          display: flex;
+          height: 100px;
+          padding-left: 30px;
+          padding-right: 30px;
+          //padding:0 30px 0 30px;
+          //padding:0 30px 0;
+          padding: 0 30px;
+          //padding:30px;
+          //width: 150px;
+          align-items: center;
+          //background-color: #000;
+          &:hover {
+            color: $main-color;
+          }
+        }
+
+        .depth02 {
+          li {
+            a {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.popup {
+  position: fixed;
+  left: 50px;
+  top: 100px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  z-index: 100;
+  .contents {
+    width: 400px;
+    height: 400px;
+    background-color: #ccc;
+  }
+}

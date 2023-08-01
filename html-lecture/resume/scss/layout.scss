@@ -98,6 +98,8 @@ body {
       padding: 20px;
       img {
         width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 500px;
       }
     }
     .contents-box {
@@ -105,3 +107,4 @@ body {
     }
   }
 }
+// html / css / js  웬만하면 수업에 빠지지 마세요

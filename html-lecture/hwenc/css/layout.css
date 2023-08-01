@@ -1,0 +1,63 @@
+@charset "UTF-8";
+body {
+  font-family: "Roboto", "Noto Sans KR", "돋움", sans-serif;
+  color: #111;
+  font-size: 16px;
+  min-height: 3000px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 105;
+  color: #fff;
+}
+.header .logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header .gnb > ul {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.header .gnb > ul li .depth01 {
+  font-size: 20px;
+  display: flex;
+  height: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding: 0 30px;
+  align-items: center;
+}
+.header .gnb > ul li .depth01:hover {
+  color: #f60;
+}
+.header .gnb > ul li .depth02 li a {
+  font-size: 14px;
+}
+
+.popup {
+  position: fixed;
+  left: 50px;
+  top: 100px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+.popup .contents {
+  width: 400px;
+  height: 400px;
+  background-color: #ccc;
+}
