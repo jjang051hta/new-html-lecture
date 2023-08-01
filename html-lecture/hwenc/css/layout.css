@@ -31,6 +31,12 @@ a {
   justify-content: center;
   text-align: center;
 }
+.header .gnb > ul li:hover .depth01 {
+  color: #f60;
+}
+.header .gnb > ul li:hover .depth01:after {
+  transform: scaleX(1);
+}
 .header .gnb > ul li .depth01 {
   font-size: 20px;
   display: flex;
@@ -39,12 +45,37 @@ a {
   padding-right: 30px;
   padding: 0 30px;
   align-items: center;
+  position: relative;
 }
-.header .gnb > ul li .depth01:hover {
-  color: #f60;
+.header .gnb > ul li .depth01:after {
+  content: "";
+  display: block;
+  transform: scaleX(0);
+  height: 3px;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  background-color: #f60;
+  transition: all 0.25s ease;
+}
+.header .gnb > ul li .depth02 {
+  padding-top: 30px;
 }
 .header .gnb > ul li .depth02 li a {
   font-size: 14px;
+  display: block;
+  padding: 10px 0;
+}
+.header .gnb > ul li .depth02 li a:hover {
+  color: #f60;
+}
+.header .gnb a {
+  transition: all 0.25s ease;
+}
+
+.main-visual video {
+  width: 100%;
 }
 
 .popup {

@@ -31,6 +31,14 @@ a {
       //flex-direction: row;
       li {
         // a, span, em, strong, input 등등은 inline 태그이다. 넓이 높이는 없다.
+        &:hover {
+          .depth01 {
+            color: $main-color;
+            &:after {
+              transform: scaleX(1);
+            }
+          }
+        }
         .depth01 {
           font-size: 20px;
           display: flex;
@@ -44,22 +52,54 @@ a {
           //width: 150px;
           align-items: center;
           //background-color: #000;
-          &:hover {
-            color: $main-color;
+          //   &:hover {
+          //     color: $main-color;
+          //   }
+          //position: relative;
+          position: relative;
+          &:after {
+            content: "";
+            display: block;
+            //width: 100%;
+            transform: scaleX(0);
+            height: 3px;
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            bottom: 0;
+            background-color: $main-color;
+            transition: all 0.25s ease;
           }
         }
 
         .depth02 {
+          padding-top: 30px;
           li {
             a {
               font-size: 14px;
+              display: block;
+              padding: 10px 0;
+              //background-color: #000;
+              &:hover {
+                color: $main-color;
+              }
             }
           }
         }
       }
     }
+    a {
+      transition: all 0.25s ease;
+    }
   }
 }
+
+.main-visual {
+  video {
+    width: 100%;
+  }
+}
+
 .popup {
   position: fixed;
   left: 50px;
