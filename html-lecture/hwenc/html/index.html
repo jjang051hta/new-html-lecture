@@ -13,12 +13,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/layout.css" />
+    <script src="../js/ui.js" defer></script>
   </head>
   <body>
     <header class="header">
       <h1 class="logo">
         <a href="">
-          <img src="../images/common/logo_off.png" alt="" />
+          <img src="../images/common/logo_off.png" class="white" alt="" />
+          <img src="../images/common/logo_on.png" class="black" alt="" />
         </a>
       </h1>
       <nav class="gnb">
@@ -139,9 +141,12 @@
     <div class="popup">
       <div class="contents">여기에 내용 들어감</div>
       <div class="btns">
-        <button>닫기</button>
+        <button class="close">닫기</button>
         <button>오늘 하루 이창을 열지 않기</button>
       </div>
     </div>
+    <script>
+      console.log("aaa");
+    </script>
   </body>
 </html>

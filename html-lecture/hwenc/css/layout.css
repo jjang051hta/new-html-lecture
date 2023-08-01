@@ -20,11 +20,41 @@ a {
   width: 100%;
   z-index: 105;
   color: #fff;
+  height: 100px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+.header.open {
+  height: 350px;
+  background-color: #fff;
+  color: #111;
+}
+.header.open .logo .white {
+  opacity: 0;
+}
+.header.open .logo .black {
+  opacity: 1;
 }
 .header .logo {
   position: absolute;
   left: 0;
   top: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+.header .logo img {
+  transition: all 0.25s ease;
+}
+.header .logo .white {
+  position: absolute;
+}
+.header .logo .black {
+  opacity: 0;
+}
+.header .gnb {
+  display: flex;
+  justify-content: center;
 }
 .header .gnb > ul {
   display: flex;

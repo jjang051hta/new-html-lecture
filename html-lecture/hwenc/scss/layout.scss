@@ -18,12 +18,42 @@ a {
   width: 100%;
   z-index: 105;
   color: #fff;
+  height: 100px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  &.open {
+    height: 350px;
+    background-color: #fff;
+    color: #111;
+    .logo {
+      .white {
+        opacity: 0;
+      }
+      .black {
+        opacity: 1;
+      }
+    }
+  }
   .logo {
     position: absolute;
     left: 0;
     top: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    img {
+      transition: all 0.25s ease;
+    }
+    .white {
+      position: absolute;
+    }
+    .black {
+      opacity: 0;
+    }
   }
   .gnb {
+    display: flex;
+    justify-content: center;
     > ul {
       display: flex;
       justify-content: center;
