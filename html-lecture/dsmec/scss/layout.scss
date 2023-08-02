@@ -12,6 +12,29 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  color: #fff;
+  height: 80px;
+  overflow: hidden;
+  //border-bottom: 1px solid #111;
+  &:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    pointer-events: none;
+  }
+  &.open {
+    height: 400px;
+    background-color: #fff;
+    color: #111;
+  }
   .logo {
     a {
       img {
@@ -29,6 +52,13 @@ a {
     > ul {
       display: flex;
       text-align: center;
+      > li {
+        &:hover {
+          .depth02 {
+            background-color: #ccc;
+          }
+        }
+      }
       .depth01 {
         font-size: 20px;
         font-weight: 500;
@@ -40,6 +70,8 @@ a {
       }
       .depth02 {
         font-size: 18px;
+        height: 350px;
+        padding-top: 30px;
         a {
           padding: 5px 0;
           display: block;

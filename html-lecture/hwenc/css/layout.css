@@ -123,3 +123,6 @@ a {
   height: 400px;
   background-color: #ccc;
 }
+.popup button {
+  pointer-events: none;
+}
