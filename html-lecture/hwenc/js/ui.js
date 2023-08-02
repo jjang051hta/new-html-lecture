@@ -5,7 +5,7 @@
 const gnb = document.querySelector(".gnb > ul");
 const header = document.querySelector(".header");
 const btnClose = document.querySelector(".popup .btns .close");
-
+console.log("🚀 ~ file: ui.js:8 ~ btnClose:", btnClose);
 const popup = document.querySelector(".popup");
 
 gnb.addEventListener("mouseenter", function () {
