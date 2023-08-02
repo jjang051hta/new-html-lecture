@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        font-size: 50px;
+        height: 800px;
+        /* width: 480px; */
+        border: 1px solid #000;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        /* flex-flow: row wrap; */
+        /* flex-direction: row;
+        justify-content: center;
+        align-items: center; */
+      }
+      .son {
+        box-sizing: border-box;
+        /* width: 100px; */
+        height: 100px;
+        border: 1px solid #f00;
+        /* flex-grow: 1; */
+      }
+      .son:nth-child(1) {
+        order: 3;
+      }
+      .son:nth-child(2) {
+        order: 1;
+      }
+      .son:nth-child(3) {
+        order: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="son">000001</div>
+      <div class="son">000000002</div>
+      <div class="son">003</div>
+      <div class="son">00004</div>
+      <div class="son">00000000000005</div>
+    </div>
+  </body>
+</html>
