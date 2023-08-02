@@ -1,0 +1,24 @@
+.main-visual {
+  .visual-wrap {
+    .visual {
+      height: 100vh; //vh는 디자이스의 높이를 100으로 본다.
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .visual01 {
+      background-image: url("../images/main/visual01.jpg");
+    }
+    .visual02 {
+      background-image: url("../images/main/visual02.jpg");
+    }
+    .visual03 {
+      background-image: url("../images/main/visual03.jpg");
+    }
+    .visual04 {
+      background-image: url("../images/main/visual04.jpg");
+    }
+    .visual05 {
+      background-image: url("../images/main/visual05.jpg");
+    }
+  }
+}
