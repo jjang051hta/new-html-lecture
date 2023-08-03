@@ -5,6 +5,44 @@
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.main-visual .visual-wrap .visual .txt-box {
+  color: #fff;
+}
+.main-visual .visual-wrap .visual .txt-box h2 {
+  font-size: 80px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.main-visual .visual-wrap .visual .txt-box p:nth-of-type(1) {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  width: 300px;
+  display: -webkit-box;
+  line-height: 1.25;
+  height: 3.75em;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.main-visual .visual-wrap .visual .txt-box p:nth-of-type(2) span {
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #0599e8;
+  color: #111;
+  border-radius: 100px;
+  padding: 15px 30px;
+  display: inline-block;
+  color: #fff;
+  text-shadow: 1px 1px 0px #0478b6,2px 2px 0px #0478b6,3px 3px 0px #0478b6,4px 4px 0px #0478b6,5px 5px 0px #0478b6,6px 6px 0px #0478b6,7px 7px 0px #0478b6,8px 8px 0px #0478b6,9px 9px 0px #0478b6,10px 10px 0px #0478b6,11px 11px 0px #0478b6,12px 12px 0px #0478b6,13px 13px 0px #0478b6,14px 14px 0px #0478b6,15px 15px 0px #0478b6,16px 16px 0px #0478b6,17px 17px 0px #0478b6,18px 18px 0px #0478b6,19px 19px 0px #0478b6,20px 20px 0px #0478b6,21px 21px 0px #0478b6,22px 22px 0px #0478b6,23px 23px 0px #0478b6,24px 24px 0px #0478b6,25px 25px 0px #0478b6,26px 26px 0px #0478b6,27px 27px 0px #0478b6,28px 28px 0px #0478b6,29px 29px 0px #0478b6,30px 30px 0px #0478b6;;
+  overflow: hidden;
 }
 .main-visual .visual-wrap .visual01 {
   background-image: url("../images/main/visual01.jpg");
@@ -26,14 +64,19 @@
   left: 0;
   bottom: 100px;
   z-index: 2;
+  display: flex;
+  justify-content: center;
 }
 .main-visual .pagination .swiper-pagination-bullet {
-  width: 80px;
-  height: 10px;
-  border-radius: 0;
-  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 200px;
+  background-color: transparent;
+  border: 4px solid #fff;
   opacity: 1;
+  transition: all 0.25s ease;
 }
 .main-visual .pagination .swiper-pagination-bullet-active {
-  background-color: #f00;
+  background-color: #fff;
+  width: 100px;
 }
