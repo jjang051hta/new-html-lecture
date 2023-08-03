@@ -86,4 +86,25 @@ a {
       }
     }
   }
+  .util {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    li {
+      display: flex;
+      //align-self: start;
+      &:last-child:after {
+        display: none;
+      }
+      &:after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 14px;
+        background-color: #fff;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
 }

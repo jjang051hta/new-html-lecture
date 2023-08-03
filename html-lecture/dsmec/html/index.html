@@ -11,10 +11,14 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="../css/swiper-bundle.css" />
+    <link rel="stylesheet" href="../css/splitting.css" />
     <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/main.css" />
+    <script src="../js/splitting.min.js"></script>
     <script src="../js/swiper-bundle.min.js"></script>
+    <script src="../js/gsap.min.js"></script>
     <script src="../js/visual.js" defer></script>
     <script src="../js/ui.js" defer></script>
   </head>
@@ -113,41 +117,48 @@
         <!-- Slides -->
         <div class="swiper-slide visual01 visual">
           <div class="txt-box">
-            <h2>대우해양조선건설(주)</h2>
-            <p>고객을 위한 서비스로 최고의 가치를 실현합니다. 구라입니다. 우리의 이익이 최우선입니다. 철근은 다쓰지 않습니다.</p>
+            <h2 data-splitting>대우해양조선건설(주)</h2>
+            <p data-splitting>고객을 위한 서비스로 최고의 가치를 실현합니다.</p>
             <p><span>평택 뉴비젼 엘크루</span></p>
           </div>
         </div>
         <div class="swiper-slide visual02 visual">
           <div class="txt-box">
-            <h2>대우해양조선건설(주)</h2>
-            <p>고객을 위한 서비스로 최고의 가치를 실현합니다. 구라입니다. 우리의 이익이 최우선입니다. 철근은 다쓰지 않습니다.</p>
+            <h2 data-splitting>대우해양조선건설(주)</h2>
+            <p data-splitting>고객을 위한 서비스로 최고의 가치를 실현합니다.</p>
             <p><span>평택 뉴비젼 엘크루02</span></p>
           </div>
         </div>
         <div class="swiper-slide visual03 visual">
           <div class="txt-box">
-            <h2>대우해양조선건설(주)</h2>
-            <p>고객을 위한 서비스로 최고의 가치를 실현합니다. 구라입니다. 우리의 이익이 최우선입니다. 철근은 다쓰지 않습니다.</p>
+            <h2 data-splitting>대우해양조선건설(주)</h2>
+            <p data-splitting>고객을 위한 서비스로 최고의 가치를 실현합니다.</p>
             <p><span>거제 엘크루 랜드마크</span></p>
           </div>
         </div>
         <div class="swiper-slide visual04 visual">
           <div class="txt-box">
-            <h2>대우해양조선건설(주)</h2>
-            <p>고객을 위한 서비스로 최고의 가치를 실현합니다. 구라입니다. 우리의 이익이 최우선입니다. 철근은 다쓰지 않습니다.</p>
+            <h2 data-splitting>대우해양조선건설(주)</h2>
+            <p data-splitting>고객을 위한 서비스로 최고의 가치를 실현합니다.</p>
             <p><span>구리 포천 고속도로</span></p>
           </div>
         </div>
         <div class="swiper-slide visual05 visual">
           <div class="txt-box">
-            <h2>대우해양조선건설(주)</h2>
-            <p>고객을 위한 서비스로 최고의 가치를 실현합니다. 구라입니다. 우리의 이익이 최우선입니다. 철근은 다쓰지 않습니다.</p>
+            <h2 data-splitting>대우해양조선건설(주)</h2>
+            <p data-splitting>고객을 위한 서비스로 최고의 가치를 실현합니다.</p>
             <p><span>군포 전력구</span></p>
           </div>
         </div>
       </div>
       <div class="pagination"></div>
+
+      <button class="btn-prev btn">
+        <span class="material-icons"> arrow_back_ios </span>
+      </button>
+      <button class="btn-next btn">
+        <span class="material-icons"> arrow_forward_ios </span>
+      </button>
     </div>
   </body>
 </html>
