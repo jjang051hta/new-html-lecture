@@ -1,0 +1,66 @@
+.business ul {
+  display: flex;
+}
+.business ul li {
+  width: 25%;
+  position: relative;
+}
+.business ul li:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: #111;
+  position: absolute;
+  top: 0;
+}
+.business ul li a {
+  position: relative;
+}
+.business ul li a .icon {
+  padding-top: 130px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: left 50% top 30px;
+}
+.business ul li a .cover {
+  color: #fff;
+  position: absolute;
+  opacity: 0;
+  top: 100px;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+.business ul li a .cover .txt {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.business ul li a .cover .txt h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.business ul li a .cover img {
+  width: 100%;
+}
+.business ul li a:hover .cover {
+  pointer-events: auto;
+  top: -30px;
+  opacity: 1;
+}
+.business ul li:nth-child(1) a .icon {
+  background-image: url("../images/main/main_business_icon01.png");
+}
+.business ul li:nth-child(2) a .icon {
+  background-image: url("../images/main/main_business_icon02.png");
+}
+.business ul li:nth-child(3) a .icon {
+  background-image: url("../images/main/main_business_icon03.png");
+}
+.business ul li:nth-child(4) a .icon {
+  background-image: url("../images/main/main_business_icon04.png");
+}

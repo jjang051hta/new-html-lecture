@@ -1,5 +1,4 @@
-$main-color: #f60;
-
+@import "vars";
 body {
   font-family: "Roboto", "Noto Sans KR", "돋움", sans-serif;
   color: #111;
@@ -10,9 +9,29 @@ a {
   color: inherit;
   text-decoration: none;
 }
+p {
+  line-height: 1.5;
+}
 .hidden {
   display: none;
 }
+
+.container {
+  width: 1200px;
+  // margin-left: auto;
+  // margin-right: auto;
+  margin: 0 auto;
+  //border: 1px solid #f00;
+}
+.contents-box {
+  padding: 80px 0;
+}
+.h2-title {
+  font-size: $h2;
+  font-weight: 700;
+  margin-bottom: 70px;
+}
+
 .header {
   position: fixed;
   width: 100%;
@@ -132,6 +151,7 @@ a {
 }
 
 .popup {
+  display: none;
   position: fixed;
   left: 50px;
   top: 100px;
@@ -145,6 +165,6 @@ a {
     background-color: #ccc;
   }
   button {
-    pointer-events: none;
+    //pointer-events: none;
   }
 }

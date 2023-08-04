@@ -11,8 +11,27 @@ a {
   text-decoration: none;
 }
 
+p {
+  line-height: 1.5;
+}
+
 .hidden {
   display: none;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.contents-box {
+  padding: 80px 0;
+}
+
+.h2-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 70px;
 }
 
 .header {
@@ -62,7 +81,7 @@ a {
   text-align: center;
 }
 .header .gnb > ul li:hover .depth01 {
-  color: #f60;
+  color: #ff6600;
 }
 .header .gnb > ul li:hover .depth01:after {
   transform: scaleX(1);
@@ -86,7 +105,7 @@ a {
   left: 20px;
   right: 20px;
   bottom: 0;
-  background-color: #f60;
+  background-color: #ff6600;
   transition: all 0.25s ease;
 }
 .header .gnb > ul li .depth02 {
@@ -98,7 +117,7 @@ a {
   padding: 10px 0;
 }
 .header .gnb > ul li .depth02 li a:hover {
-  color: #f60;
+  color: #ff6600;
 }
 .header .gnb a {
   transition: all 0.25s ease;
@@ -110,6 +129,7 @@ a {
 }
 
 .popup {
+  display: none;
   position: fixed;
   left: 50px;
   top: 100px;
@@ -122,7 +142,4 @@ a {
   width: 400px;
   height: 400px;
   background-color: #ccc;
-}
-.popup button {
-  pointer-events: none;
 }
