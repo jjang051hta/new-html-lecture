@@ -20,3 +20,23 @@ btnClose.addEventListener("click", function () {
   //console.log("click");
   popup.classList.add("hidden");
 });
+
+// function aa() {
+//   console.log("때때때때");
+// }
+//aa();
+window.addEventListener("scroll", function (e) {
+  //console.log(window.scrollY);
+  if (window.scrollY > 0) {
+    header.classList.add("scroll");
+    // if() {
+
+    // } else {
+
+    // }
+  } else {
+    header.classList.remove("scroll");
+  }
+});
+
+new Swiper(".social .banner", {});

@@ -43,6 +43,20 @@ p {
   overflow: hidden;
   transition: all 0.5s ease;
 }
+.header.scroll {
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  color: #111;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.header.scroll .logo .white {
+  opacity: 0;
+}
+.header.scroll .logo .black {
+  opacity: 1;
+}
 .header.open {
   height: 350px;
   background-color: #fff;
