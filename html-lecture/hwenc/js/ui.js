@@ -25,23 +25,33 @@ btnClose.addEventListener("click", function () {
 //   console.log("때때때때");
 // }
 
+let oldY = window.scrollY;
 window.addEventListener("scroll", function (e) {
   //console.log(window.scrollY);
   if (window.scrollY > 0) {
     header.classList.add("scroll");
-    // if() {
-
-    // } else {
-
-    // }
+    if (window.scrollY - oldY > 0) {
+      header.classList.add("down");
+    } else {
+      header.classList.remove("down");
+    }
   } else {
     header.classList.remove("scroll");
   }
+  oldY = window.scrollY;
 });
 
 new Swiper(".social .banner", {
   slidesPerView: 5,
   spaceBetween: 10,
   loop: true,
+  navigation: {
+    prevEl: ".social .btn-prev",
+    nextEl: ".social .btn-next",
+  },
+  pagination: {
+    el: ".social .pagination",
+    type: "progressbar",
+  },
   //centeredSlides: true,
 });

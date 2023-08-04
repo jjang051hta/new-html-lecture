@@ -115,6 +115,26 @@
 .social {
   overflow: hidden;
 }
+.social .container {
+  position: relative;
+}
+.social .control-box {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+}
+.social .control-box .pagination {
+  position: relative;
+  bottom: 0;
+  top: auto;
+  width: auto;
+  flex-grow: 1;
+}
+.social .control-box .pagination .swiper-pagination-progressbar-fill {
+  background-color: #ff6600;
+}
 .social ul li {
   width: 200px;
   opacity: 0.5;
