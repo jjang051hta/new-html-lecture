@@ -24,7 +24,7 @@ btnClose.addEventListener("click", function () {
 // function aa() {
 //   console.log("때때때때");
 // }
-//aa();
+
 window.addEventListener("scroll", function (e) {
   //console.log(window.scrollY);
   if (window.scrollY > 0) {
@@ -39,4 +39,9 @@ window.addEventListener("scroll", function (e) {
   }
 });
 
-new Swiper(".social .banner", {});
+new Swiper(".social .banner", {
+  slidesPerView: 5,
+  spaceBetween: 10,
+  loop: true,
+  //centeredSlides: true,
+});

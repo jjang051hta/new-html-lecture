@@ -111,3 +111,43 @@
   font-size: 14px;
   color: #999;
 }
+
+.social {
+  overflow: hidden;
+}
+.social ul li {
+  width: 200px;
+  opacity: 0.5;
+  transition: all 0.25s ease;
+}
+.social ul li.swiper-slide-active {
+  opacity: 1;
+}
+.social ul li.swiper-slide-active + li {
+  opacity: 1;
+}
+.social ul li.swiper-slide-active + li + li {
+  opacity: 1;
+}
+.social ul li.swiper-slide-active + li + li + li {
+  opacity: 1;
+}
+.social ul li.swiper-slide-active + li + li + li + li {
+  opacity: 1;
+}
+.social ul li .img img {
+  width: 100%;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.social ul li .txt .h3-title {
+  margin-top: 20px;
+  display: -webkit-box;
+  line-height: 1.5;
+  height: 3em;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
