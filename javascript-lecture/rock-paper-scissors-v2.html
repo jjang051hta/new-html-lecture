@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="computer">
+      <li><img src="images/rock.svg" alt="" /></li>
+      <li><img src="images/paper.svg" alt="" /></li>
+      <li><img src="images/scissors.svg" alt="" /></li>
+    </ul>
+    <ul class="human">
+      <li><img src="images/rock.svg" alt="" /></li>
+      <li><img src="images/paper.svg" alt="" /></li>
+      <li><img src="images/scissors.svg" alt="" /></li>
+    </ul>
+    <div class="result"></div>
+    <script>
+      const computerList = document.querySelectorAll(".computer li");
+      const result = document.querySelector(".result");
+      //result.textContent = "결과";
+      //console.log(computerList[2]);
+      computerList[0].style.display = "none";
+      computerList[1].style.display = "none";
+      computerList[2].style.display = "none";
+      //randomChoice();
+
+      function makeRandom(min, max) {
+        //0 + min < Math.floor(Math.random() * (max - min + 1)) + min < 1 * max + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      for (let i = 0; i < 6; i++) {
+        const lotto = makeRandom(1, 46);
+        console.log(lotto);
+      }
+      // makeRandom(1, 46);
+      // makeRandom(1, 46);
+      // makeRandom(1, 46);
+      // makeRandom(1, 46);
+      // makeRandom(1, 46);
+
+      let random;
+      function computerRandomChoice() {
+        computerList[0].style.display = "none";
+        computerList[1].style.display = "none";
+        computerList[2].style.display = "none";
+        random = Math.floor(Math.random() * 3);
+        //console.log("random====" + random);
+        computerList[random].style.display = "block";
+      }
+      const idx = setInterval(computerRandomChoice, 20);
+
+      //computerList[].style.display = "block";
+      //console.log(Math.random() * 3); //0*3 < Math.random()*3 < 1*3
+
+      // Math.round() 반올림  0.1 => 0, 0.9 => 1
+      // Math.floor() 버림   0.1 =>  0, 0.9 => 0
+      // Math.ceil()  올림   0.1 =>  1, 0.9 => 1
+
+      const humanList = document.querySelectorAll(".human li");
+      for (let i = 0; i < 3; i++) {
+        humanList[i].addEventListener("click", function () {
+          const humanChoice = i;
+          const selectedNum = random;
+          console.log(selectedNum);
+          // computerList[selectedNum].style.display = "block";
+          clearInterval(idx);
+          if (humanChoice === selectedNum) {
+            console.log("비겼음");
+            result.textContent = "draw";
+          } else if (humanChoice === 0 && selectedNum === 1) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else if (humanChoice === 1 && selectedNum === 2) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else if (humanChoice === 2 && selectedNum === 0) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else {
+            console.log("이겼음");
+            result.textContent = "win";
+          }
+        });
+      }
+      //humanList[0].addEventListener();
+      //humanList[1].addEventListener();
+      //humanList[2].addEventListener();
+    </script>
+  </body>
+</html>
