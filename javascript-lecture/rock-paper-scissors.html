@@ -16,8 +16,11 @@
       <li>보</li>
       <li>가위</li>
     </ul>
+    <div class="result"></div>
     <script>
       const computerList = document.querySelectorAll(".computer li");
+      const result = document.querySelector(".result");
+      //result.textContent = "결과";
       //console.log(computerList[2]);
       computerList[0].style.display = "none";
       computerList[1].style.display = "none";
@@ -33,13 +36,36 @@
       for (let i = 0; i < 3; i++) {
         humanList[i].addEventListener("click", function () {
           const humanChoice = i;
+          //   let selectedNum;
+          //   if (humanChoice === 0) {
+          //     if (Math.random() < 0.1) {
+          //       selectedNum = 1;
+          //     }
+          //   } else if (humanChoice === 1) {
+          //     selectedNum = 2;
+          //   } else {
+          //     selectedNum = 0;
+          //   }
           const random = Math.random() * 3;
           const selectedNum = Math.floor(random);
           console.log(selectedNum);
           computerList[selectedNum].style.display = "block";
-          //  0,1,2
-          // 머리를 써야 한다.
-          //
+          if (humanChoice === selectedNum) {
+            console.log("비겼음");
+            result.textContent = "draw";
+          } else if (humanChoice === 0 && selectedNum === 1) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else if (humanChoice === 1 && selectedNum === 2) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else if (humanChoice === 2 && selectedNum === 0) {
+            console.log("졌음");
+            result.textContent = "lose";
+          } else {
+            console.log("이겼음");
+            result.textContent = "win";
+          }
         });
       }
       //humanList[0].addEventListener();

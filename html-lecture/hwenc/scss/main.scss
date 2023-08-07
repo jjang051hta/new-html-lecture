@@ -148,11 +148,15 @@
       }
     }
   }
+
   ul {
     li {
       width: 200px;
       opacity: 0.5;
       transition: all 0.25s ease;
+      &:nth-child(2n + 1) {
+        margin-top: -100px;
+      }
       &.swiper-slide-active {
         opacity: 1;
       }
