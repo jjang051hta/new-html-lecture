@@ -35,3 +35,21 @@ if (yoil === 1) {
 } else if (yoil === 0) {
   console.log("일요일");
 }
+
+//  배열 복사
+let animals = ["cat", "puppy", "bear", "lion"];
+let copyAnimals = [...animals, "chicken"]; // 얕은 복사
+
+//copyAnimals.push("chicken");
+console.log(animals[0]);
+console.log(animals[1]);
+console.log(animals[2]);
+console.log(animals[3]);
+for (let i = 0; i < copyAnimals.length; i++) {
+  console.log(copyAnimals[i]);
+}
+animals.forEach(function (item, index) {
+  console.log(index, ":", item);
+});
+console.log(...animals); // spread operator
+// 배열 메스드에 반복문 있다.  ()

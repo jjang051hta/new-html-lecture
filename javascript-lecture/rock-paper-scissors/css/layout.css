@@ -32,7 +32,9 @@ img {
   display: flex;
 }
 .wrap #com ul li {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .wrap #player ul {
   display: flex;
@@ -44,7 +46,9 @@ img {
   margin: 0 10px;
   border: 5px solid transparent;
   border-radius: 100%;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .wrap #player ul li.on {
   border-color: #000;
