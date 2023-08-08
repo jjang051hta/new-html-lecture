@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 0*45+1<Math.floor(Math.random()*45)+1<1*45+1 -->
+    <script>
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //   console.log(Math.floor(Math.random() * 45) + 1);
+      //1. 순서대로 나열한 다음에 아무렇게 6장 뽑기
+      //2. 미리 섞어놓고 앞에서 6장 뽑기
+
+      //1. 배열에 담아야 한다.
+      const animals = ["cat", "puppy", "lion", "tiger"];
+      for (let i = 0; i < 3; i++) {
+        const select = animals.splice(Math.floor(Math.random() * animals.length), 1);
+        console.log(select);
+        console.log(animals);
+      }
+
+      const nums = [];
+      for (let i = 1; i <= 45; i++) {
+        nums.push(i);
+      }
+      console.log(nums.length);
+      for (let i = 0; i < 6; i++) {
+        //console.log(Math.floor(Math.random() * 45) + 1);
+        const random = Math.floor(Math.random() * nums.length);
+        console.log(nums.splice(random, 1)[0]);
+      }
+
+      let a = 10;
+      let b = 20;
+      let temp = a;
+      a = b;
+      b = temp;
+      console.log(a, "==", b);
+
+      const fruits = ["apple", "tomato", "cherry", "plum"];
+      fruits[0] = "apple";
+      fruits[1] = "tomato";
+      fruits[2] = "cherry";
+      fruits[3] = "plum";
+      // 반복문
+      for (let i = 0; i < 100; i++) {
+        let random = Math.floor(Math.random() * fruits.length);
+        let temp = fruits[i % fruits.length];
+        fruits[i % fruits.length] = fruits[random];
+        fruits[random] = temp;
+      }
+      console.log(fruits);
+      //["apple","plum","cherry","tomato"];
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        padding: 20px;
+        border: 1px solid #000;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+      <div class="div2">aaaaaa</div>
+    </div>
+
+    <script>
+      let d1 = document.querySelector(".div1");
+      d1.innerHTML += `<div class="div4"></div>`;
+      d1.innerHTML += `<button>클릭</button>`;
+      let d2 = d1.querySelector(".div2");
+
+      d2.innerHTML += `<div>bbb</div>`;
+      console.log(d1);
+      console.log(d2);
+
+      let btn = document.querySelector("button");
+
+      btn.addEventListener("click", () => {
+        d2.removeChild(d2.querySelector(".div3"));
+        console.log("aaa");
+      });
+    </script>
+  </body>
+</html>
