@@ -58,17 +58,20 @@
       }
 
       function appendItem(txt, className) {
-        const li = document.createElement("li");
-        li.classList.add(className);
-        li.textContent = txt;
-        ul.appendChild(li);
+        // const li = document.createElement("li");
+        // li.classList.add(className);
+        // li.textContent = txt;
+        // ul.appendChild(li);
+        ul.innerHTML += `<li class="${className}">${txt}</li>`;
       }
+      // 삼세판만 할 수 있게 해보기...
+
       // appendItem("D","draw");
       // appendItem("W","win");
       // appendItem("L","lose");
 
       let idx = setInterval(computerRandomChoice, 20);
-
+      let count = 0;
       const humanList = document.querySelectorAll(".human li");
       humanList.forEach(function (item, index) {
         item.addEventListener("click", function () {
@@ -77,10 +80,16 @@
           clearInterval(idx);
           //console.log(item.parentNode);
           item.parentNode.classList.add("prevent");
-          setTimeout(function () {
+
+          count++;
+          console.log(count);
+          const idx02 = setTimeout(function () {
             idx = setInterval(computerRandomChoice, 20);
             item.parentNode.classList.remove("prevent");
           }, 1000);
+          if (count >= 3) {
+            clearTimeout(idx02);
+          }
           if (humanChoice === selectedNum) {
             //result.textContent += " draw";
             appendItem("D", "draw");
