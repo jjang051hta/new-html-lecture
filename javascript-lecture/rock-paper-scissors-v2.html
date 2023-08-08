@@ -17,15 +17,23 @@
       <li><img src="images/paper.svg" alt="" /></li>
       <li><img src="images/scissors.svg" alt="" /></li>
     </ul>
-    <div class="result"></div>
+    <div class="result">
+      <!-- <ul>
+        <li class="win">W</li>
+        <li class="draw">D</li>
+        <li class="lose">L</li>
+      </ul> -->
+    </div>
     <script>
       // 배열  순서없는 것들 순서 부여하기...
+
       let a = [0, 1, 2];
 
       const computerList = document.querySelectorAll(".computer li");
       const result = document.querySelector(".result");
-      //result.textContent = "결과";
-      //console.log(computerList[2]);
+      document.createElement("ul");
+      result.appendChild(document.createElement("ul"));
+      const ul = result.querySelector("ul");
 
       computerList.forEach(function (item) {
         item.style.display = "none";
@@ -48,6 +56,17 @@
         random = Math.floor(Math.random() * 3);
         computerList[random].style.display = "block";
       }
+
+      function appendItem(txt, className) {
+        const li = document.createElement("li");
+        li.classList.add(className);
+        li.textContent = txt;
+        ul.appendChild(li);
+      }
+      // appendItem("D","draw");
+      // appendItem("W","win");
+      // appendItem("L","lose");
+
       let idx = setInterval(computerRandomChoice, 20);
 
       const humanList = document.querySelectorAll(".human li");
@@ -56,23 +75,31 @@
           const humanChoice = index;
           const selectedNum = random;
           clearInterval(idx);
-
+          //console.log(item.parentNode);
+          item.parentNode.classList.add("prevent");
           setTimeout(function () {
             idx = setInterval(computerRandomChoice, 20);
+            item.parentNode.classList.remove("prevent");
           }, 1000);
           if (humanChoice === selectedNum) {
-            result.textContent += " draw";
+            //result.textContent += " draw";
+            appendItem("D", "draw");
           } else if (humanChoice === 0 && selectedNum === 1) {
-            result.textContent += " lose";
+            //result.textContent += " lose";
+            appendItem("L", "lose");
           } else if (humanChoice === 1 && selectedNum === 2) {
-            result.textContent += " lose";
+            //result.textContent += " lose";
+            appendItem("L", "lose");
           } else if (humanChoice === 2 && selectedNum === 0) {
-            result.textContent += " lose";
+            //result.textContent += " lose";
+            appendItem("L", "lose");
           } else {
-            result.textContent += " win";
+            //result.textContent += " win";
+            appendItem("W", "win");
           }
         });
       });
+      /*
       for (let i = 0; i < 3; i++) {
         humanList[i].addEventListener("click", function () {
           const humanChoice = i;
@@ -98,9 +125,7 @@
           }
         });
       }
-      //humanList[0].addEventListener();
-      //humanList[1].addEventListener();
-      //humanList[2].addEventListener();
+      */
     </script>
   </body>
 </html>

@@ -18,6 +18,9 @@ li {
   justify-content: center;
   gap: 20px;
 }
+.human.prevent {
+  pointer-events: none;
+}
 .human img {
   width: 100px;
 }
@@ -25,5 +28,27 @@ li {
 .result {
   display: flex;
   justify-content: center;
-  font-size: 24px;
+  font-size: 20px;
+}
+.result ul {
+  display: flex;
+  gap: 10px;
+}
+.result ul li {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 100px;
+}
+.result ul li.win {
+  background-color: rgb(1, 135, 208);
+}
+.result ul li.draw {
+  background-color: rgb(211, 211, 211);
+}
+.result ul li.lose {
+  background-color: rgb(253, 26, 26);
 }
