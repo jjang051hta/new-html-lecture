@@ -66,6 +66,7 @@
       const loadingBar = document.querySelector(".lds-default");
       const coronaList = document.querySelector(".coronaList");
       loadingBar.style.display = "none";
+      let chart = null;
       function loadCorona(pickedDate) {
         loadingBar.style.display = "block";
         const result = fetch(
@@ -94,7 +95,10 @@
               cities.push(item.gubun);
               datas.push(item.incDec);
             });
-            new Chart(ctx, {
+            if (chart !== null) {
+              chart.destroy();
+            }
+            chart = new Chart(ctx, {
               type: "bar",
               data: {
                 labels: cities,
@@ -114,6 +118,7 @@
                 },
               },
             });
+
             /*
             myResult.forEach(function (item) {
               console.log(item.gubun + ":" + item.incDec);
