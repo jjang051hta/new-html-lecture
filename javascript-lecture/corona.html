@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/loading.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
   </head>
   <body>
     <div class="lds-default">
@@ -21,25 +22,51 @@
       <div></div>
       <div></div>
     </div>
+    <input type="text" id="datepicker" class="datepicker" />
     <ul class="coronaList"></ul>
     <script>
+      const picker = new easepick.create({
+        element: document.querySelector(".datepicker"),
+        css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
+        format: "YYYY-MM-DD",
+        setup(picker) {
+          picker.on("select", function () {
+            console.log("선택되었다.");
+          });
+        },
+      });
+
       const loadingBar = document.querySelector(".lds-default");
       const coronaList = document.querySelector(".coronaList");
-      const result = fetch(
-        "https://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D&pageNo=1&numOfRows=500&apiType=JSON&std_day=2023-08-07"
-      )
-        .then(function (response) {
-          //console.log(response);
-          return response.json();
-        })
-        .then(function (result) {
-          console.log(result.items[0].incDec);
-          loadingBar.style.display = "none";
-          result.items.forEach(function (item) {
-            console.log(item.gubun + ":" + item.incDec);
-            coronaList.innerHTML += `<li><p>${item.gubun}</p><p>${item.incDec}</p></li>`;
+      loadingBar.style.display = "none";
+      function loadCorona(pickedDate) {
+        loadingBar.style.display = "block";
+        const result = fetch(
+          `https://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D&pageNo=1&numOfRows=500&apiType=JSON&std_day=${pickedDate}`
+        )
+          .then(function (response) {
+            //console.log(response);
+            return response.json();
+          })
+          .then(function (result) {
+            //console.log(result.items[0].incDec);
+            //loadingBar.style.display = "none";
+            result.items.forEach(function (item) {
+              console.log(item.gubun + ":" + item.incDec);
+              coronaList.innerHTML += `<li><p>${item.gubun}</p><p>${item.incDec}</p></li>`;
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+            alert("서버 오류입니다.");
+            //loadingBar.style.display = "none";
+          })
+          .finally(function () {
+            loadingBar.style.display = "none";
+            console.log("나는 무조건 실행");
           });
-        });
+      }
+      //loadCorona("2021-08-09");
     </script>
   </body>
 </html>
