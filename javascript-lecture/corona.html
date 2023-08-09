@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/loading.css" />
     <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="lds-default">
@@ -23,8 +24,11 @@
       <div></div>
     </div>
     <input type="text" id="datepicker" class="datepicker" />
+    <canvas id="myChart"></canvas>
     <ul class="coronaList"></ul>
-
+    <script>
+      const ctx = document.querySelector("#myChart");
+    </script>
     <script>
       // 싸늘하다 비수가 가슴에 와 꽂힌다. 하지만 쫄지마라 코딩은
       // 머리로 생각하는 것보다 한번 써보는게 빠르다.
@@ -84,10 +88,38 @@
                 return 0;
               }
             });
+            const cities = [];
+            const datas = [];
+            myResult.forEach(function (item) {
+              cities.push(item.gubun);
+              datas.push(item.incDec);
+            });
+            new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: cities,
+                datasets: [
+                  {
+                    label: "corona",
+                    data: datas,
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+            /*
             myResult.forEach(function (item) {
               console.log(item.gubun + ":" + item.incDec);
               coronaList.innerHTML += `<li><p>${item.gubun}</p><p>${item.incDec}</p></li>`;
             });
+            */
           })
           .catch(function (error) {
             console.log(error);
