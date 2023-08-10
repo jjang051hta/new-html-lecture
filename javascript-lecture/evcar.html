@@ -6,7 +6,7 @@
     <title>Document</title>
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=96f5f09f793542ede892e15790deb32d&libraries=services,clusterer"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36889ed873faba484ed37afdbcc670cc&libraries=services,clusterer"
     ></script>
     <style>
       .wrap {
@@ -21,7 +21,6 @@
         font-size: 12px;
         font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
         line-height: 1.5;
-        z-index: 99;
       }
       .wrap * {
         padding: 0;
@@ -66,8 +65,8 @@
       }
       .info .desc {
         position: relative;
-        /* margin: 13px 0 0 90px; */
-        margin: 20px;
+        text-align: center;
+        margin: 0;
         height: 75px;
       }
       .desc .ellipsis {
@@ -106,41 +105,43 @@
     </style>
   </head>
   <body>
+    <input type="text" class="search" />
     <div class="map" style="width: 100%; height: 800px"></div>
-    <!-- <div class="close">close</div> -->
+
     <script>
-      //const close = document.querySelector(".close");
+      const search = document.querySelector(".search");
       document.body.addEventListener("click", function (e) {
-        //console.log(e.currentTarget);
-        //console.log(e.target);
+        // console.log(e.currentTarget); //찍은 바로 그자리
+        // console.log(e.target); //찍은놈
         if (e.target.classList.contains("close")) {
           overlay.setMap(null);
         }
       });
+      // const search = document.querySelector(".search");
+
       const container = document.querySelector(".map"); //지도를 담을 영역의 DOM 레퍼런스
       const options = {
         //지도를 생성할 때 필요한 기본 옵션
-        center: new kakao.maps.LatLng(37.4652145691216, 127.044669250318), //지도의 중심좌표.
+        center: new kakao.maps.LatLng(36.2683, 127.6358), //지도의 중심좌표.
         level: 13, //지도의 레벨(확대, 축소 정도)
       };
 
-      const map = new kakao.maps.Map(container, options); //
-
+      const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
       const content = `<div class="wrap">
-                        <div class="info">
-                            <div class="title">
-                                카카오 스페이스닷원
-                                <div class="close" title="닫기"></div>
-                            </div>
-                            <div class="body">
-                                <div class="desc">
-                                    <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>
-                                    <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>
-                                    <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>
-                                </div>
-                            </div>
-                        </div>   
-                    </div>`;
+           <div class="info">
+                  <div class="title">
+                   카카오 스페이스닷원
+                  <div class="close" title="닫기"></div>
+                </div>
+                <div class="body">
+                    <div class="desc">
+                        <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>
+                        <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>
+                        <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
       // 마커 위에 커스텀오버레이를 표시합니다
       // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -151,57 +152,73 @@
         zIndex: 3,
       });
 
-      // 마커 클러스터러를 생성합니다
-      var clusterer = new kakao.maps.MarkerClusterer({
+      const clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
         minLevel: 10, // 클러스터 할 최소 지도 레벨
       });
 
-      fetch(
-        "https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=300&cond[addr::LIKE]=파주&returnType=JSON&serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D"
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (result) {
-          console.log(result);
-          const stationList = [...result.data];
-          const markers = [];
-          stationList.forEach(function (item) {
-            // 마커를 생성합니다
-            const marker = new kakao.maps.Marker({
-              map: map, // 마커를 표시할 지도
-              position: new kakao.maps.LatLng(item.lat, item.longi), // 마커를 표시할 위치
-              title: item.csNm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      // kakao.maps.event.addListener(marker, "click", function () {
+      //   overlay.setMap(map);
+      // });
+
+      search.addEventListener("keydown", function (e) {
+        //console.log(e.isComposing);
+        if (e.keyCode === 13) {
+          aa(search.value);
+          console.log("엔터클릭");
+        }
+      });
+      function aa(search) {
+        clusterer.clear();
+
+        fetch(
+          `https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=300&cond[addr::LIKE]=${search}&serviceKey=MQ%2BNrEFKK%2Bmy29iCwQcYBM%2FNndpl3iB8sbmEjasB8zxWUya3B0OcDb4q7ur9B%2BLhWKNG9SAnVWshDHTEDrcrpQ%3D%3D`
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (result) {
+            console.log(result);
+            const stationList = [...result.data];
+            const markers = [];
+            stationList.forEach(function (item) {
+              const marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: new kakao.maps.LatLng(item.lat, item.longi), // 마커를 표시할 위치
+                title: item.csNm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                // image: markerImage, // 마커 이미지
+              });
+              markers.push(marker);
+
+              kakao.maps.event.addListener(marker, "click", function () {
+                overlay.setMap(map);
+                overlay.setPosition(marker.getPosition());
+                overlay.setContent(
+                  `<div class="wrap">
+                  <div class="info">
+                    <div class="title">
+                      ${item.csNm}
+                     <div class="close" title="닫기"></div>
+                    </div>
+                    <div class="body">
+                     <div class="desc">
+                        <div class="ellipsis">${item.addr}</div>
+                        <div class="jibun ellipsis">${item.cpNm}</div>
+                     </div>
+                    </div>
+                  </div>
+                </div>`
+                );
+              });
             });
-            markers.push(marker);
-            // 여기서 마커가 여러개 생성되니 이벤트를 여기다가 작성하면 된다.
-            kakao.maps.event.addListener(marker, "click", function () {
-              //alert("marker click!");
-              overlay.setMap(map);
-              overlay.setPosition(marker.getPosition());
-              overlay.setContent(`<div class="wrap">
-                        <div class="info">
-                            <div class="title">
-                                ${item.csNm}
-                                <div class="close" title="닫기"></div>
-                            </div>
-                            <div class="body">
-                                <div class="desc">
-                                    <div class="ellipsis">${item.addr}</div>
-                                    <div class="ellipsis">충전타입 : ${item.cpNm}</div>
-                                </div>
-                            </div>
-                        </div>   
-                    </div>`);
-            });
+            clusterer.addMarkers(markers);
+          })
+          .catch(function (err) {
+            console.log(err);
           });
-          clusterer.addMarkers(markers);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      }
     </script>
   </body>
 </html>
