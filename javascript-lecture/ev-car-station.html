@@ -107,8 +107,11 @@
     <script>
       //const close = document.querySelector(".close");
       document.body.addEventListener("click", function (e) {
-        console.log(e.currentTarget);
-        console.log(e.target);
+        //console.log(e.currentTarget);
+        //console.log(e.target);
+        if (e.target.classList.contains("close")) {
+          overlay.setMap(null);
+        }
       });
       const container = document.querySelector(".map"); //지도를 담을 영역의 DOM 레퍼런스
       const options = {
@@ -123,7 +126,7 @@
                         <div class="info">
                             <div class="title">
                                 카카오 스페이스닷원
-                                <div class="close" onclick="closeOverlay()" title="닫기"></div>
+                                <div class="close" title="닫기"></div>
                             </div>
                             <div class="body">
                                 <div class="desc">
@@ -163,6 +166,7 @@
             // 여기서 마커가 여러개 생성되니 이벤트를 여기다가 작성하면 된다.
             kakao.maps.event.addListener(marker, "click", function () {
               //alert("marker click!");
+              overlay.setMap(map);
               overlay.setPosition(marker.getPosition());
               overlay.setContent(`<div class="wrap">
                         <div class="info">

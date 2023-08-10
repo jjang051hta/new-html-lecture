@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        padding: 30px;
+        margin: 30px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="grandParent">
+      grand parent
+      <div class="parent">
+        parent
+        <div class="me">me</div>
+      </div>
+    </div> -->
+    <script>
+      document.body.addEventListener("click", function (e) {
+        //console.log(e.currentTarget);
+        console.log(e.target);
+      });
+      document.body.innerHTML = `<div class="grandParent">
+      grand parent
+      <div class="parent">
+        parent
+        <div class="me">me</div>
+      </div>
+    </div>`;
+    </script>
+  </body>
+</html>
