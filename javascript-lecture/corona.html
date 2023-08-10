@@ -70,7 +70,7 @@
       function loadCorona(pickedDate) {
         loadingBar.style.display = "block";
         const result = fetch(
-          `https://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D&pageNo=1&numOfRows=500&apiType=JSON&std_day=${pickedDate}`
+          `https://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=Wnus4QpirWGI56CfvzMWDIDHMRL%2FmEF%2FqTl9gwVNbRggLYTGPFIdwBy0L51B%2B27d5QRbLanNmIAxPwNvl7dKPA%3D%3D&pageNo=1&numOfRows=30&apiType=JSON&std_day=${pickedDate}`
         )
           .then(function (response) {
             //console.log(response);

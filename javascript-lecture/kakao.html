@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  </head>
+  <body>
+    <input type="text" placeholder="검색할 이미지를 입력하세요." class="image-search" />
+    <button class="btn-search">search</button>
+    <ul class="thumb-list"></ul>
+    <script>
+      const thumbList = document.querySelector(".thumb-list");
+      const imageSearch = document.querySelector(".image-search");
+      const btnSearch = document.querySelector(".btn-search");
+      //kakaoSearch("전지현");
+      // 호이스팅... hoist
+      btnSearch.addEventListener("click", function () {
+        kakaoSearch(imageSearch.value);
+      });
+      imageSearch.addEventListener("keyup", function (e) {
+        //console.log(e);
+        if (e.keyCode === 13) {
+          kakaoSearch(imageSearch.value);
+        }
+      });
+
+      function kakaoSearch(search) {
+        thumbList.innerHTML = "";
+        fetch(`https://dapi.kakao.com/v2/search/vclip?query=${search}`, {
+          headers: {
+            Authorization: "KakaoAK 8a0584e2ec2cc7627ecb66e8d623dd86",
+          },
+        })
+          .then(function (response) {
+            return response.json(); // promise
+          })
+          .then(function (result) {
+            console.log(result);
+            const imageList = [...result.documents];
+            imageList.forEach(function (item, index) {
+              thumbList.innerHTML += `<li><a href="${item.url}" data-fancybox="gallery" data-caption="${item.title}"><img src="${item.thumbnail}" alt="" /></a></li>`;
+            });
+          });
+      }
+      Fancybox.bind("[data-fancybox]", {
+        // Your custom options
+      });
+    </script>
+  </body>
+</html>
