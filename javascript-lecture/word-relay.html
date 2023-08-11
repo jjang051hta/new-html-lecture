@@ -12,6 +12,15 @@
     <div class="last-word">기러기</div>
     <input type="text" class="word" />
     <script>
+      //   const animals = ["cat", "dog", "lion", "tiger"];
+      //   const test = "cat";
+      //   animals.forEach(function (item) {
+      //     if (item === test) console.log(true);
+      //     if (item !== test) console.log(false);
+      //   });
+      //   console.log(animals.includes(test));
+      // 반복문 돌려서 있는지 없는지 따져보기...
+      // 카톡으로 코드 보내주세요...
       //   const txt = "기러기";
       //   console.log(txt.length);
       //   console.log(txt.charAt(2));
@@ -20,18 +29,46 @@
       //   console.log(txt.substring(0, 3) + "...");
       const word = document.querySelector(".word");
       const lastWord = document.querySelector(".last-word");
+      const wordList = ["기러기"];
+
+      //   async function isDict(search) {
+      //     const response = await fetch(`https://opendict.korean.go.kr/api/search?key=9A816277AA70D1F8EC1ADC87D52CA5E2&q=${search}&req_type=json`);
+      //     const result = await response.json();
+      //     return result;
+      //   }
+      //   const isResult = isDict("소나기");
+      //   console.log(isResult);
       word.addEventListener("keyup", function (e) {
         if (e.keyCode === 13) {
           //console.log(word.value);
           const inputWord = word.value;
-          if (lastWord.textContent.charAt(2) === inputWord.charAt(0)) {
-            console.log("딩동댕");
-            lastWord.textContent = inputWord;
+          // 3글자만 입력
+          if (inputWord.length !== 3) {
             word.value = "";
-          } else {
-            console.log("땡");
+            return;
           }
-          console.log(inputWord);
+          if (wordList.includes(word.value)) {
+            word.value = "";
+            return;
+          }
+
+          if (lastWord.textContent.charAt(2) === inputWord.charAt(0)) {
+            fetch(`https://opendict.korean.go.kr/api/search?key=9A816277AA70D1F8EC1ADC87D52CA5E2&q=${inputWord}&req_type=json`)
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (result) {
+                if (result.channel.total > 0) {
+                  lastWord.textContent = inputWord;
+                  wordList.push(inputWord);
+                  console.log(wordList);
+                  word.value = "";
+                } else {
+                  console.log("땡");
+                  word.value = "";
+                }
+              });
+          }
         }
       });
     </script>
