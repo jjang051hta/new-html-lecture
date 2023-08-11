@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <ul>
+      <li>기러기</li>
+    </ul> -->
+    <div class="last-word">기러기</div>
+    <input type="text" class="word" />
+    <script>
+      //   const txt = "기러기";
+      //   console.log(txt.length);
+      //   console.log(txt.charAt(2));
+      //   console.log(txt.charCodeAt(0));
+      //   console.log(txt.concat("가 우대 받는 사회"));
+      //   console.log(txt.substring(0, 3) + "...");
+      const word = document.querySelector(".word");
+      const lastWord = document.querySelector(".last-word");
+      word.addEventListener("keyup", function (e) {
+        if (e.keyCode === 13) {
+          //console.log(word.value);
+          const inputWord = word.value;
+          if (lastWord.textContent.charAt(2) === inputWord.charAt(0)) {
+            console.log("딩동댕");
+            lastWord.textContent = inputWord;
+            word.value = "";
+          } else {
+            console.log("땡");
+          }
+          console.log(inputWord);
+        }
+      });
+    </script>
+  </body>
+</html>
