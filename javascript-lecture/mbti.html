@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      I(내향)E(외향)
+      N(상상)S(현실)
+      F(감정)T(이성)
+      J(계획)P(즉흥)
+      */
+      fetch("mbti.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (result) {
+          console.log(result.nickName[0]);
+        });
+    </script>
+  </body>
+</html>
