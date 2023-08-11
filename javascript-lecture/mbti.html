@@ -6,6 +6,15 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="question-box">
+      <div class="title">문제의 타이틀 뿌리는 곳</div>
+      <div class="btns">
+        <button class="btn01">첫번째 선택</button>
+        <button class="btn02">두번째 선택</button>
+      </div>
+    </div>
+    <div class="result-box"></div>
+
     <script>
       /*
       I(내향)E(외향)
@@ -13,13 +22,35 @@
       F(감정)T(이성)
       J(계획)P(즉흥)
       */
+      const btn01 = document.querySelector(".btn01");
+      const btn02 = document.querySelector(".btn02");
+      const title = document.querySelector(".title");
+      let count = 0;
+      let question = [];
       fetch("mbti.json")
         .then(function (response) {
           return response.json();
         })
         .then(function (result) {
-          console.log(result.nickName[0]);
+          //console.log(result.question);
+          question = [...result.question];
+
+          title.textContent = question[count].title;
+          btn01.textContent = question[count].answera;
+          btn02.textContent = question[count].answerb;
+          btn01.addEventListener("click", function () {
+            clickProcess();
+          });
+          btn02.addEventListener("click", function () {
+            clickProcess();
+          });
         });
+      function clickProcess() {
+        count++;
+        title.textContent = question[count].title;
+        btn01.textContent = question[count].answera;
+        btn02.textContent = question[count].answerb;
+      }
     </script>
   </body>
 </html>
