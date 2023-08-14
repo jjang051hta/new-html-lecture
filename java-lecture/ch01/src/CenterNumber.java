@@ -16,5 +16,7 @@ public class CenterNumber {
             center = c;
         }
         System.out.println("가운데 숫자는 " + center + "입니다.");
+
+        System.out.println(3 > 2 || 3 > 6);
     }
 }
