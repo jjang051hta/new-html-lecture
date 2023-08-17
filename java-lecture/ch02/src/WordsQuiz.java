@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class WordsQuiz {
     public static void main(String[] args) {
-
         String words[][] = { { "apple", "사과" }, { "plum", "자두" }, { "grape", "포도" } };
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < words.length; i++) {
@@ -12,6 +11,8 @@ public class WordsQuiz {
                 System.out.println("딩동댕");
             } else {
                 System.out.printf("떙 정답은 %s 입니다.", words[i][1]);
+                i--;
+                System.out.println(i);
             }
 
         }
