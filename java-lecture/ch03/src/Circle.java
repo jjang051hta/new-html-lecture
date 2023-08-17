@@ -1,3 +1,5 @@
+
+
 public class Circle {
     int radius;
     String name;
@@ -51,7 +53,7 @@ public class Circle {
         for (int i = 0; i < 5; i++) {
             circles[i] = new Circle((i + 1) * 10);
         }
-        
+
         System.out.println(circles[0].radius);
         System.out.println(circles[1].radius);
 
