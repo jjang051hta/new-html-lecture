@@ -62,7 +62,23 @@ public class StringTest {
 
         String str07 = "쥐를 잡자 개를 잡자 쥐도 잡자 양도 잡자 돼지도 잡자 먹고 죽자 찍찍찍";
         // System.out.println(str07.replace("쥐", "개"));
-        System.out.println(str07.replaceAll("쥐", "소"));
-
+        System.out.println(str07.replaceAll("[쥐,개,양,돼지]", "소"));
+        String str08 = "java,c#,spring,python,javascript";
+        String array[] = str08.split(",");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+        }
+        // 문자열을 배열로 split, 배열을 문자열로 바꿀 수 있다
+        // String.join("",배열)
+        String arrayTxt = String.join("/", array);
+        System.out.println(arrayTxt);
+        String str09 = "안녕하세요. 점심 맛있게 먹었나요?";
+        System.out.println(str09.substring(0, 2));
+        System.out.println(str09.substring(0, 15));
+        // 글자 자르기...
+        System.out.println(str09); // immutable
+        // String 은 immutable 불변객체이다. 메서드를 쓰더라도 새로운 String이 리턴된다.
+        String aa = new String("나는 불변객체");
+        String bb = "나는 불변객체";
     }
 }
