@@ -31,5 +31,38 @@ public class StringTest {
         System.out.println(f.equals(g));
         System.out.println(f.equalsIgnoreCase(g));
 
+        String str01 = "Hi~~ hoW are you fine thank you and you";
+        String str02 = "hOW"; // 대소문자 무시하고 포함되어 있는지 따져보기...
+        // 메서드 체이닝..
+        boolean result = str01.toLowerCase().contains(str02.toLowerCase());
+        System.out.println(result);
+        String str03 = "점";
+        String concatStr = str03.concat("심").concat("먹").concat("고 합시다");
+
+        String str04 = str03 + "심" + "먹" + "고 합시다." + 12 + null + '가';
+        System.out.println(str04);
+
+        String str05 = new StringBuilder("a")
+                .append("b")
+                .append("c")
+                .append('A')
+                .toString();
+        System.out.println(str05);
+        String str06 = "꿍짝";
+        String str06Repeat = str06.concat("꿍짝")
+                .concat("꿍짝")
+                .concat("꿍짝");
+        System.out.println(str06Repeat);
+        String str06Repeat02 = str06.repeat(4);
+        System.out.println(str06Repeat02); // 쿵짝 쿵짝 쿵짝 쿵짝
+        System.out.println(str06.concat(" ").repeat(4).trim());
+
+        String story = "아주 아주 먼 옛날 인어공주가 바다속에서 광어를 회쳐 먹고 살았습니다";
+        System.out.println(story.endsWith("살았습니다"));
+
+        String str07 = "쥐를 잡자 개를 잡자 쥐도 잡자 양도 잡자 돼지도 잡자 먹고 죽자 찍찍찍";
+        // System.out.println(str07.replace("쥐", "개"));
+        System.out.println(str07.replaceAll("쥐", "소"));
+
     }
 }
