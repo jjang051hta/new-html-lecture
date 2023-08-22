@@ -14,6 +14,7 @@ public class AlphabetCount {
             if (ch >= 'a' && ch <= 'z') {
                 alphabets[ch - 'a']++;
             }
+
         }
         System.out.print(Arrays.toString(alphabets));
         for (int i = 0; i < alphabets.length; i++) {
