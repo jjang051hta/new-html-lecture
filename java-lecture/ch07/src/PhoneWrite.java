@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class PhoneWrite {
     public static void main(String[] args) {
+
         File file = new File("c:\\temp\\phone.txt");
         FileWriter fileWriter = null;
         try {
@@ -22,7 +23,6 @@ public class PhoneWrite {
                 // fileWriter.write(line, 0, line.length());
                 // fileWriter.write("\r\n", 0, 2);
                 fileWriter.write(line + "\r\n");
-
             }
             fileWriter.close();
         } catch (IOException e) {
