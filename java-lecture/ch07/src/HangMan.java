@@ -49,7 +49,7 @@ public class HangMan {
         String randomWord = words.getRandomWord();
         Random random = new Random();
         int idx = random.nextInt(randomWord.length());
-        System.out.println(randomWord + "/" + idx + "/" + randomWord.charAt(idx));
+        // System.out.println(randomWord + "/" + idx + "/" + randomWord.charAt(idx));
         char ch = randomWord.charAt(idx);
         StringBuffer hiddenWord = new StringBuffer(randomWord);
 
@@ -59,8 +59,23 @@ public class HangMan {
             }
         }
         // 반복문 돌려서 맞는지 틀린지 판단...
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             // 맞는지 틀렸는지 따져보기...
+            // scanner에서 입력받은 글자중에 제일 첫번째 글자 찾아서
+            // 글자 갯수만큼 반복문 돌려서
+            System.out.println(hiddenWord);
+            String str = scanner.next();
+            if (str.equals("그만"))
+                break;
+            char ch02 = str.charAt(0);
+            // hor-e
+            for (int i = 0; i < randomWord.length(); i++) {
+                if (hiddenWord.charAt(i) == '-' && randomWord.charAt(i) == ch02) {
+                    System.out.println("맞음");
+                    System.out.println(randomWord);
+                }
+            }
         }
         // System.out.println(hiddenWord.toString());
     }
