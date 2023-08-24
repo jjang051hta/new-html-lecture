@@ -37,27 +37,29 @@ class Words {
 
 public class HangMan {
 
-    // words.txt 읽어와서
-    // list에 넣기
-    // 랜덤 단어 출력
-    // horse
-    // h-rse char하나 빼서 -로 대체하기...
-    // 숨긴 char랑 내가 쓴 char가 맞으면 다음게임 진행
-    // 그만
-    public static void main(String[] args) {
+    public String randomWord;
+
+    public void run() {
+        System.out.println("행맨 게임을 시작합니다.");
         Words words = new Words("c:\\temp\\words.txt");
-        String randomWord = words.getRandomWord();
+        randomWord = words.getRandomWord();
+    }
+
+    // 답을 맞추고 나서 다신 실행해야하는 메서드
+    public void makeHiddenWord() {
         Random random = new Random();
         int idx = random.nextInt(randomWord.length());
-        // System.out.println(randomWord + "/" + idx + "/" + randomWord.charAt(idx));
         char ch = randomWord.charAt(idx);
         StringBuffer hiddenWord = new StringBuffer(randomWord);
-
         for (int i = 0; i < randomWord.length(); i++) {
             if (hiddenWord.charAt(i) == ch) {
                 hiddenWord.setCharAt(i, '-');
             }
         }
+    }
+
+    public static void main(String[] args) {
+
         // 반복문 돌려서 맞는지 틀린지 판단...
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -73,7 +75,7 @@ public class HangMan {
             for (int i = 0; i < randomWord.length(); i++) {
                 if (hiddenWord.charAt(i) == '-' && randomWord.charAt(i) == ch02) {
                     System.out.println("맞음");
-                    System.out.println(randomWord);
+                    // System.out.println(randomWord);
                 }
             }
         }
