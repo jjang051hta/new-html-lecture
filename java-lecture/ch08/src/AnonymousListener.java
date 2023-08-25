@@ -18,7 +18,6 @@ public class AnonymousListener extends JFrame {
         // btn.setText("I AM BUTTON");
         contenPane.add(btn);
         // 익명클래스
-        //
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
