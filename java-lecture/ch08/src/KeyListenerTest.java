@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.Container;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -9,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class KeyListenerTest extends JFrame {
-    private JLabel label = new JLabel("hello");
+    private JLabel label = new JLabel("비행기");
 
     KeyListenerTest() {
         setTitle("MouseListener");
@@ -25,6 +26,31 @@ public class KeyListenerTest extends JFrame {
         setVisible(true);
         // 이거 있어야 키 이벤트 잡을 수 있음....
         contenPane.setFocusable(true);
+        contenPane.requestFocus();
+    }
+
+    class MyKeyAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            // label.setText("" + e.getKeyCode());
+            // System.out.println(e.getKeyCode());
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    label.setLocation(label.getX() - 10, label.getY());
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    label.setLocation(label.getX() + 10, label.getY());
+                    break;
+                case KeyEvent.VK_UP:
+                    label.setLocation(label.getX(), label.getY() - 10);
+                    break;
+                case KeyEvent.VK_DOWN:
+                    label.setLocation(label.getX(), label.getY() + 10);
+                    break;
+
+            }
+        }
     }
 
     class MyKeyListener implements KeyListener {
