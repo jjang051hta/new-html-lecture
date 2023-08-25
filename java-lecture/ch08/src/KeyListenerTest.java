@@ -2,6 +2,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,14 +15,37 @@ public class KeyListenerTest extends JFrame {
         setTitle("MouseListener");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container contenPane = getContentPane();
-        // contenPane.addMouseListener(new MyMouseListener());
-        contenPane.addMouseListener(new MyMouseAdapter());
+        // contenPane.addKeyListener(new MyKeyListener());
+        contenPane.addKeyListener(new MyKeyAdapter());
         contenPane.setLayout(null);
         contenPane.add(label);
         label.setSize(50, 20);
         label.setLocation(100, 100);
         setSize(500, 500);
         setVisible(true);
+        // 이거 있어야 키 이벤트 잡을 수 있음....
+        contenPane.setFocusable(true);
+    }
+
+    class MyKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            label.setText(Integer.toString(e.getKeyCode()));
+            System.out.println("pressed");
+            // label.setText("" + e.getKeyCode());
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+
     }
 
     // adapter 는 Listener를 내부적으로 다 구현해 놓고 있다.
@@ -65,6 +90,6 @@ public class KeyListenerTest extends JFrame {
     }
 
     public static void main(String[] args) {
-        new MouseListenerTest();
+        new KeyListenerTest();
     }
 }
