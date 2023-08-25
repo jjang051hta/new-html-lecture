@@ -12,8 +12,9 @@ public class MyFrame extends JFrame {
         // contentPane이 JFrame이 기본으로 가지고 있는 Container JPanel
 
         contentPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-
-        contentPane.add(new JButton("OK"));
+        JButton btn = new JButton("OK");
+        btn.addActionListener(new MyActionListener());
+        contentPane.add(btn);
         contentPane.add(new JButton("Cancel"));
 
         setSize(300, 300);
