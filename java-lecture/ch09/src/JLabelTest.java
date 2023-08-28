@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class JLabelTest extends JFrame {
 
@@ -15,10 +16,12 @@ public class JLabelTest extends JFrame {
 
         JLabel label01 = new JLabel("gloomy monday");
         JLabel label02 = new JLabel(imageIcon);
+        JLabel label03 = new JLabel("apple label", imageIcon, SwingConstants.RIGHT);
         Container contentPane = this.getContentPane();
         contentPane.setLayout(new FlowLayout());
         contentPane.add(label01);
         contentPane.add(label02);
+        contentPane.add(label03);
         this.setSize(300, 300);
         this.setVisible(true);
     }
