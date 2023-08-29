@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,6 +13,7 @@ public class MoneyChange extends JFrame {
     private int units[] = { 50000, 10000, 5000, 1000, 500, 100, 50, 10 };
     private String txtUnits[] = { "오만원", "만원", "오천원", "천원", "오백원", "백원", "오십원", "십원" };
     private JTextField moneyTfList[] = new JTextField[8];
+    private JCheckBox checkList[] = new JCheckBox[8];
 
     MoneyChange() {
         this.setTitle("돈바꾸기");
@@ -42,7 +44,12 @@ public class MoneyChange extends JFrame {
 
             moneyTfList[i] = new JTextField(30);
             moneyTfList[i].setBounds(170, 100 + 35 * i, 150, 30);
+
+            checkList[i] = new JCheckBox();
+            checkList[i].setBounds(330, 100 + 35 * i, 30, 30);
+
             contentPane.add(moneyTfList[i]);
+            contentPane.add(checkList[i]);
 
         }
         btn.addActionListener(new ActionListener() {
