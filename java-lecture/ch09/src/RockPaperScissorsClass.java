@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.util.Random;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,17 +48,20 @@ public class RockPaperScissorsClass extends JFrame {
                 add(itemList[i]);
                 int meSelect = i;
                 itemList[i].addMouseListener(new MouseAdapter() {
+
                     public void mouseClicked(MouseEvent e) {
+                        String resultTxt = "";
                         Random random = new Random();
                         int computerSelect = random.nextInt(3);
                         if (computerSelect == meSelect) {
-                            resultPanel.judge("draw");
+                            resultTxt = "DRAW";
                         } else if ((meSelect == 0 && computerSelect == 1) || (meSelect == 1 && computerSelect == 2)
                                 || (meSelect == 2 && computerSelect == 0)) {
-                            resultPanel.judge("lose");
+                            resultTxt = "LOSE";
                         } else {
-                            resultPanel.judge("win");
+                            resultTxt = "WIN";
                         }
+                        resultPanel.judge(iconList[meSelect], iconList[computerSelect], resultTxt);
                     }
                 });
             }
@@ -84,8 +88,10 @@ public class RockPaperScissorsClass extends JFrame {
             // judge("win");
         }
 
-        public void judge(String resultTxt) {
+        public void judge(Icon meIcon, Icon computerIcon, String resultTxt) {
             System.out.println(resultTxt);
+            meLabel.setIcon(meIcon);
+            computerLabel.setIcon(computerIcon);
             resultLabel.setText(resultTxt);
         }
     }
