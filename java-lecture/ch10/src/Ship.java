@@ -69,12 +69,12 @@ public class Ship extends JPanel implements Runnable {
     public void run() {
         while (true) {
             try {
+                move();
+                repaint();
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            repaint();
-            move();
         }
     }
 }
