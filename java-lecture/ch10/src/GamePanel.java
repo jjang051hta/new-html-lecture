@@ -6,14 +6,20 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Ship extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable {
     private Image ship = new ImageIcon("images/spaceship.png").getImage();
+    private Image alien = new ImageIcon("images/monster.png").getImage();
+
     private int posX = 400;
     private int posY = 400;
-    private boolean isLeft, isRight;
+
+    private int alienPosX = 500;
+    private int alienPosY = 500;
+
+    private boolean isLeft, isRight, isUp, isDown;
     private Thread th;
 
-    Ship() {
+    GamePanel() {
         this.setPreferredSize(new Dimension(800, 600));
         th = new Thread(this);
         th.start();
@@ -28,13 +34,12 @@ public class Ship extends JPanel implements Runnable {
                 System.out.println("눌러지나?");
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     isLeft = true;
-                    // posX -= 10;
-                    // repaint();
-
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     isRight = true;
-                    // posX += 10;
-                    // repaint();
+                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    isUp = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    isDown = true;
                 }
             }
 
@@ -44,6 +49,10 @@ public class Ship extends JPanel implements Runnable {
                     isLeft = false;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     isRight = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    isUp = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    isDown = false;
                 }
             }
         });
@@ -51,17 +60,34 @@ public class Ship extends JPanel implements Runnable {
         this.requestFocus();
     }
 
+    public void check() {
+        double distX = posX - alienPosX;
+        double distY = posY - alienPosY;
+        double dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+        // System.out.println(dist);
+        if (dist < 50) {
+            System.out.println("충돌");
+            alienPosX = (int) (Math.random() * 800);
+            alienPosY = (int) (Math.random() * 600);
+        }
+    }
+
     public void move() {
         if (isLeft) {
-            posX -= 10;
+            posX -= 5;
         } else if (isRight) {
-            posX += 10;
+            posX += 5;
+        } else if (isUp) {
+            posY -= 5;
+        } else if (isDown) {
+            posY += 5;
         }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ship, posX, posY, null);
+        g.drawImage(alien, alienPosX, alienPosY, null);
 
     }
 
@@ -70,6 +96,7 @@ public class Ship extends JPanel implements Runnable {
         while (true) {
             try {
                 move();
+                check();
                 repaint();
                 Thread.sleep(10);
             } catch (InterruptedException e) {
