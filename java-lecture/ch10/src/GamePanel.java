@@ -17,7 +17,8 @@ public class GamePanel extends JPanel implements Runnable {
     private int posX = 400;
     private int posY = 400;
     private List<Monster> monsterList = new ArrayList<>();
-    Bullet bullet = new Bullet("images/bullet.png", 100, 100, 0);
+    private List<Bullet> bulletList = new ArrayList<>();
+
     // private int alienPosX = 500;
     // private int alienPosY = 500;
 
@@ -36,7 +37,6 @@ public class GamePanel extends JPanel implements Runnable {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("눌러지나?");
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     isLeft = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -58,6 +58,15 @@ public class GamePanel extends JPanel implements Runnable {
                     isUp = false;
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     isDown = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    Bullet bullet01 = new Bullet("images/bullet.png", posX + 32 - 8, posY - 10, 10);
+                    Bullet bullet02 = new Bullet("images/bullet.png", posX - 8, posY - 10, 10);
+                    Bullet bullet03 = new Bullet("images/bullet.png", posX + 64 - 8, posY - 10, 10);
+
+                    bulletList.add(bullet01);
+                    bulletList.add(bullet02);
+                    bulletList.add(bullet03);
                 }
             }
         });
@@ -99,10 +108,11 @@ public class GamePanel extends JPanel implements Runnable {
             Monster monster = monsterList.get(i);
             monster.draw(g);
         }
-        bullet.draw(g);
-
+        for (int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = bulletList.get(i);
+            bullet.draw(g);
+        }
         // g.drawImage(alien, alienPosX, alienPosY, null);
-
     }
 
     void makeMonster() {
@@ -123,6 +133,13 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    void bulletMove() {
+        for (int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = (Bullet) bulletList.get(i);
+            bullet.moveY();
+        }
+    }
+
     void removeMonster() {
         for (int i = 0; i < monsterList.size(); i++) {
             Monster monster = (Monster) monsterList.get(i);
@@ -140,6 +157,7 @@ public class GamePanel extends JPanel implements Runnable {
                 makeMonster();
                 monsterMove();
                 removeMonster();
+                bulletMove();
                 check();
                 repaint();
                 Thread.sleep(10);
