@@ -84,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
         // alienPosX = (int) (Math.random() * 800);
         // alienPosY = (int) (Math.random() * 600);
         // }
+        // 로직 짜보기....
     }
 
     public void move() {
@@ -149,6 +150,15 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    void removeBullet() {
+        for (int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = (Bullet) bulletList.get(i);
+            if (bullet.end) {
+                bulletList.remove(i);
+            }
+        }
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -158,6 +168,7 @@ public class GamePanel extends JPanel implements Runnable {
                 monsterMove();
                 removeMonster();
                 bulletMove();
+                removeBullet();
                 check();
                 repaint();
                 Thread.sleep(10);
