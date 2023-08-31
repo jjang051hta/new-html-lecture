@@ -14,12 +14,16 @@ class Snow {
     private int posY;
     private int speedY;
     private int width;
+    private int loadX;
+    private double t = 0;
+    private int radius;
 
-    Snow(int posX, int posY, int speedY, int width) {
-        this.posX = posX;
+    Snow(int loadX, int posY, int speedY, int width) {
+        this.loadX = loadX;
         this.posY = posY;
         this.speedY = speedY;
         this.width = width;
+        radius = (int) (Math.random() * 30 + 5);
     }
 
     public void draw(Graphics g) {
@@ -29,6 +33,8 @@ class Snow {
 
     public void moveY() {
         posY += speedY;
+        posX = (int) (Math.cos(t) * radius) + loadX;
+        t += 0.02;
         if (posY > 700) {
             posY = -20;
             speedY = (int) (Math.random() * 5 + 1);
