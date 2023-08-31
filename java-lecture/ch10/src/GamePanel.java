@@ -75,11 +75,14 @@ public class GamePanel extends JPanel implements Runnable {
     public void move() {
         if (isLeft) {
             posX -= 5;
-        } else if (isRight) {
+        }
+        if (isRight) {
             posX += 5;
-        } else if (isUp) {
+        }
+        if (isUp) {
             posY -= 5;
-        } else if (isDown) {
+        }
+        if (isDown) {
             posY += 5;
         }
     }
