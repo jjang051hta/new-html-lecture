@@ -3,18 +3,22 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
     private Image ship = new ImageIcon("images/spaceship.png").getImage();
-    private Image alien = new ImageIcon("images/monster.png").getImage();
+    // private Image alien = new ImageIcon("images/monster.png").getImage();
 
     private int posX = 400;
     private int posY = 400;
-
-    private int alienPosX = 500;
-    private int alienPosY = 500;
+    private List<Monster> monsterList = new ArrayList<>();
+    // Monster monster = new Monster("images/monster.png", 300, 10);
+    // private int alienPosX = 500;
+    // private int alienPosY = 500;
 
     private boolean isLeft, isRight, isUp, isDown;
     private Thread th;
@@ -61,15 +65,15 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void check() {
-        double distX = posX - alienPosX;
-        double distY = posY - alienPosY;
-        double dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+        // double distX = posX - alienPosX;
+        // double distY = posY - alienPosY;
+        // double dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
         // System.out.println(dist);
-        if (dist < 50) {
-            System.out.println("충돌");
-            alienPosX = (int) (Math.random() * 800);
-            alienPosY = (int) (Math.random() * 600);
-        }
+        // if (dist < 50) {
+        // System.out.println("충돌");
+        // alienPosX = (int) (Math.random() * 800);
+        // alienPosY = (int) (Math.random() * 600);
+        // }
     }
 
     public void move() {
@@ -90,8 +94,40 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(ship, posX, posY, null);
-        g.drawImage(alien, alienPosX, alienPosY, null);
+        for (int i = 0; i < monsterList.size(); i++) {
+            Monster monster = monsterList.get(i);
+            monster.draw(g);
+        }
 
+        // g.drawImage(alien, alienPosX, alienPosY, null);
+
+    }
+
+    void makeMonster() {
+        if (Math.random() < 0.1) {
+            Monster monster = new Monster(
+                    "images/monster.png",
+                    (int) (Math.random() * 800),
+                    -50,
+                    (int) (Math.random() * 10 + 2));
+            monsterList.add(monster);
+        }
+    }
+
+    void monsterMove() {
+        for (int i = 0; i < monsterList.size(); i++) {
+            Monster monster = (Monster) monsterList.get(i);
+            monster.moveY();
+        }
+    }
+
+    void removeMonster() {
+        for (int i = 0; i < monsterList.size(); i++) {
+            Monster monster = (Monster) monsterList.get(i);
+            if (monster.end) {
+                monsterList.remove(i);
+            }
+        }
     }
 
     @Override
@@ -99,6 +135,9 @@ public class GamePanel extends JPanel implements Runnable {
         while (true) {
             try {
                 move();
+                makeMonster();
+                monsterMove();
+                removeMonster();
                 check();
                 repaint();
                 Thread.sleep(10);
