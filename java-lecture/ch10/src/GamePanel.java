@@ -11,12 +11,13 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
     private Image ship = new ImageIcon("images/spaceship.png").getImage();
+
     // private Image alien = new ImageIcon("images/monster.png").getImage();
 
     private int posX = 400;
     private int posY = 400;
     private List<Monster> monsterList = new ArrayList<>();
-    // Monster monster = new Monster("images/monster.png", 300, 10);
+    Bullet bullet = new Bullet("images/bullet.png", 100, 100, 0);
     // private int alienPosX = 500;
     // private int alienPosY = 500;
 
@@ -98,13 +99,14 @@ public class GamePanel extends JPanel implements Runnable {
             Monster monster = monsterList.get(i);
             monster.draw(g);
         }
+        bullet.draw(g);
 
         // g.drawImage(alien, alienPosX, alienPosY, null);
 
     }
 
     void makeMonster() {
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.05) {
             Monster monster = new Monster(
                     "images/monster.png",
                     (int) (Math.random() * 800),
