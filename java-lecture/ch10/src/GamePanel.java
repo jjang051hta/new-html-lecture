@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -61,12 +62,13 @@ public class GamePanel extends JPanel implements Runnable {
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     Bullet bullet01 = new Bullet("images/bullet.png", posX + 32 - 8, posY - 10, 10);
-                    Bullet bullet02 = new Bullet("images/bullet.png", posX - 8, posY - 10, 10);
-                    Bullet bullet03 = new Bullet("images/bullet.png", posX + 64 - 8, posY - 10, 10);
+                    // Bullet bullet02 = new Bullet("images/bullet.png", posX - 8, posY - 10, 10);
+                    // Bullet bullet03 = new Bullet("images/bullet.png", posX + 64 - 8, posY - 10,
+                    // 10);
 
                     bulletList.add(bullet01);
-                    bulletList.add(bullet02);
-                    bulletList.add(bullet03);
+                    // bulletList.add(bullet02);
+                    // bulletList.add(bullet03);
                 }
             }
         });
@@ -85,6 +87,28 @@ public class GamePanel extends JPanel implements Runnable {
         // alienPosY = (int) (Math.random() * 600);
         // }
         // 로직 짜보기....
+        // code 주세요.... 젭알...
+        // 1. 거리...
+        // Rectangle rect = new Rectangle(100, 100, 100, 100);
+        // Rectangle rect02 = new Rectangle(200, 200, 100, 100);
+        // System.out.println(rect.intersects(rect02));
+        for (int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = bulletList.get(i);
+            for (int j = 0; j < monsterList.size(); j++) {
+                Monster monster = monsterList.get(j);
+                Rectangle bulletRect = new Rectangle(bullet.getLoadX() + 4, bullet.getPosY(), 4, 4);
+                Rectangle monsterRect = new Rectangle(monster.getLoadX(), monster.getPosY(), 32, 32);
+
+                if (hitTest(bulletRect, monsterRect)) {
+                    bulletList.remove(bullet);
+                    monsterList.remove(monster);
+                }
+            }
+        }
+    }
+
+    public boolean hitTest(Rectangle rect01, Rectangle rect02) {
+        return rect01.intersects(rect02);
     }
 
     public void move() {
@@ -122,7 +146,7 @@ public class GamePanel extends JPanel implements Runnable {
                     "images/monster.png",
                     (int) (Math.random() * 800),
                     -50,
-                    (int) (Math.random() * 10 + 2));
+                    (int) (Math.random() * 2 + 1));
             monsterList.add(monster);
         }
     }

@@ -28,4 +28,21 @@ public class Bullet {
         }
         // System.out.println("내려가자");
     }
+
+    public int getLoadX() {
+        return loadX;
+    }
+
+    public void setLoadX(int loadX) {
+        this.loadX = loadX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
 }
