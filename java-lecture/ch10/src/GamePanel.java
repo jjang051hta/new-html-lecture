@@ -13,12 +13,17 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable {
     private Image ship = new ImageIcon("images/spaceship.png").getImage();
 
-    // private Image alien = new ImageIcon("images/monster.png").getImage();
+    private Image boom = new ImageIcon("images/boom.png").getImage();
 
     private int posX = 400;
     private int posY = 400;
+
+    private int boomX = 400;
+    private int boomY = 400;
+
     private List<Monster> monsterList = new ArrayList<>();
     private List<Bullet> bulletList = new ArrayList<>();
+    private List<Boom> boomList = new ArrayList<>();
 
     // private int alienPosX = 500;
     // private int alienPosY = 500;
@@ -96,12 +101,15 @@ public class GamePanel extends JPanel implements Runnable {
             Bullet bullet = bulletList.get(i);
             for (int j = 0; j < monsterList.size(); j++) {
                 Monster monster = monsterList.get(j);
-                Rectangle bulletRect = new Rectangle(bullet.getLoadX() + 4, bullet.getPosY(), 4, 4);
+                Rectangle bulletRect = new Rectangle(bullet.getLoadX(), bullet.getPosY(), 16, 16);
                 Rectangle monsterRect = new Rectangle(monster.getLoadX(), monster.getPosY(), 32, 32);
 
                 if (hitTest(bulletRect, monsterRect)) {
+                    // 그려보기.....
                     bulletList.remove(bullet);
                     monsterList.remove(monster);
+                    Boom boom = new Boom("images/boom.png", monster.getLoadX(), monster.getPosY());
+                    boomList.add(boom);
                 }
             }
         }
@@ -137,7 +145,12 @@ public class GamePanel extends JPanel implements Runnable {
             Bullet bullet = bulletList.get(i);
             bullet.draw(g);
         }
-        // g.drawImage(alien, alienPosX, alienPosY, null);
+        for (int i = 0; i < boomList.size(); i++) {
+            Boom boom = boomList.get(i);
+            boom.draw(g);
+        }
+
+        // g.drawImage(boom, boomX, boomY, null);
     }
 
     void makeMonster() {
@@ -174,11 +187,27 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    void boomDisappear() {
+        for (int i = 0; i < boomList.size(); i++) {
+            Boom boom = (Boom) boomList.get(i);
+            boom.disappear();
+        }
+    }
+
     void removeBullet() {
         for (int i = 0; i < bulletList.size(); i++) {
             Bullet bullet = (Bullet) bulletList.get(i);
             if (bullet.end) {
                 bulletList.remove(i);
+            }
+        }
+    }
+
+    void removeBoom() {
+        for (int i = 0; i < boomList.size(); i++) {
+            Boom boom = (Boom) boomList.get(i);
+            if (boom.end) {
+                boomList.remove(i);
             }
         }
     }
@@ -193,6 +222,8 @@ public class GamePanel extends JPanel implements Runnable {
                 removeMonster();
                 bulletMove();
                 removeBullet();
+                boomDisappear();
+                removeBoom();
                 check();
                 repaint();
                 Thread.sleep(10);

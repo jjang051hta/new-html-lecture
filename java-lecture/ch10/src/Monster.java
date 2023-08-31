@@ -24,7 +24,7 @@ public class Monster {
 
     public void moveY() {
         posY += speedY;
-        if (posY > 200) {
+        if (posY > 800) {
             end = true;
         }
         // System.out.println("내려가자");
