@@ -38,7 +38,6 @@ public class ChatClient extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // System.out.println("enter눌렀음");
                 String msg = sender.getText();
                 try {
                     bufferedWriter.write(msg + "\n");
@@ -48,9 +47,7 @@ public class ChatClient extends JFrame {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
             }
-
         });
 
         try {
@@ -62,7 +59,7 @@ public class ChatClient extends JFrame {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            // System.exit(1);
+            System.exit(1);
         }
 
         this.setSize(400, 500);
