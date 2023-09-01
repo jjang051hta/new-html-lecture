@@ -27,6 +27,8 @@ public class CalculatorServerFrame extends JFrame {
 
         this.setSize(400, 200);
         this.setVisible(true);
+        ServerThread serverThread = new ServerThread();
+        serverThread.start();
     }
 
     class ServerThread extends Thread {
@@ -40,6 +42,8 @@ public class CalculatorServerFrame extends JFrame {
                 while (true) {
                     socket = serverSocket.accept();
                     logArea.append("클라이언트 연결 됨 \n");
+                    CalcThread calcThread = new CalcThread(socket);
+                    calcThread.start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -75,7 +79,31 @@ public class CalculatorServerFrame extends JFrame {
 
         @Override
         public void run() {
+            while (true) {
+                try {
+                    String first = bufferedReader.readLine();
+                    String operator = bufferedReader.readLine();
+                    String second = bufferedReader.readLine();
+                    int firstInt = Integer.parseInt(first);
+                    int secondInt = Integer.parseInt(second);
+                    int result = 0;
+                    if (operator.equals("+")) {
+                        result = firstInt + secondInt;
+                    } else if (operator.equals("-")) {
+                        result = firstInt - secondInt;
+                    } else if (operator.equals("*")) {
+                        result = firstInt * secondInt;
+                    } else if (operator.equals("/")) {
+                        result = firstInt / secondInt;
+                    }
+                    bufferedWriter.write(Integer.toString(result) + "\n");
+                    bufferedWriter.flush();
+                    logArea.append(first + operator + second + "=" + result + "\n");
 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }

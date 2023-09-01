@@ -55,7 +55,21 @@ public class CalculatorClientFrame extends JFrame {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("계산");
+                // System.out.println("계산");
+                String first = firstTextField.getText().trim();
+                String operator = operatorTextField.getText().trim();
+                String second = secondTextField.getText().trim();
+
+                try {
+                    bufferedWriter.write(first + "\n");
+                    bufferedWriter.write(operator + "\n");
+                    bufferedWriter.write(second + "\n");
+                    bufferedWriter.flush();
+                    String result = bufferedReader.readLine();
+                    resultTextField.setText(result);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
