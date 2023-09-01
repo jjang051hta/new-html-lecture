@@ -43,9 +43,9 @@ public class ChatServer extends JFrame {
                 // System.out.println("enter눌렀음");
                 String msg = sender.getText();
                 try {
-                    bufferedWriter.write(msg);
+                    bufferedWriter.write(msg + "\n");
                     bufferedWriter.flush();
-                    receiver.append("client : " + msg);
+                    receiver.append("\n server : " + msg);
                     sender.setText("");
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -86,7 +86,10 @@ public class ChatServer extends JFrame {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                this.append("client : " + msg);
+                this.append("\n client : " + msg);
+                // 스크롤 이동
+                int scrollPosition = this.getText().length();
+                this.setCaretPosition(scrollPosition);
             }
         }
     }
