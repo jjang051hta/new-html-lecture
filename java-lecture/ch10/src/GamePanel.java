@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -31,8 +33,13 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean isLeft, isRight, isUp, isDown;
     private Thread th;
 
+    private boolean isPressed;
+    private int bulletCount = 0;
+
+    private int point = 0;
+
     GamePanel() {
-        this.setPreferredSize(new Dimension(800, 600));
+        this.setPreferredSize(new Dimension(1280, 800));
         th = new Thread(this);
         th.start();
         this.addKeyListener(new KeyListener() {
@@ -52,6 +59,9 @@ public class GamePanel extends JPanel implements Runnable {
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     isDown = true;
                 }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    isPressed = true;
+                }
             }
 
             @Override
@@ -66,19 +76,24 @@ public class GamePanel extends JPanel implements Runnable {
                     isDown = false;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Bullet bullet01 = new Bullet("images/bullet.png", posX + 32 - 8, posY - 10, 10);
-                    // Bullet bullet02 = new Bullet("images/bullet.png", posX - 8, posY - 10, 10);
-                    // Bullet bullet03 = new Bullet("images/bullet.png", posX + 64 - 8, posY - 10,
-                    // 10);
-
-                    bulletList.add(bullet01);
-                    // bulletList.add(bullet02);
-                    // bulletList.add(bullet03);
+                    isPressed = false;
                 }
             }
         });
         this.setFocusable(true);
         this.requestFocus();
+    }
+
+    public void makeBullet() {
+        if (isPressed) {
+            if (bulletCount > 3) {
+                Bullet bullet01 = new Bullet("images/bullet.png", posX + 32 - 8, posY - 10, 10);
+                bulletList.add(bullet01);
+                bulletCount = 0;
+            } else {
+                bulletCount++;
+            }
+        }
     }
 
     public void check() {
@@ -110,6 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
                     monsterList.remove(monster);
                     Boom boom = new Boom("images/boom.png", monster.getLoadX(), monster.getPosY());
                     boomList.add(boom);
+                    point++;
                 }
             }
         }
@@ -136,7 +152,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // 배경 그리기...
+        g.drawImage(new ImageIcon("images/space.jpg").getImage(), 0, 0, null);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+
+        g.drawString("point : " + point, 1000, 50);
         g.drawImage(ship, posX, posY, null);
+        // 비행기 그리기
         for (int i = 0; i < monsterList.size(); i++) {
             Monster monster = monsterList.get(i);
             monster.draw(g);
@@ -157,7 +180,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (Math.random() < 0.05) {
             Monster monster = new Monster(
                     "images/monster.png",
-                    (int) (Math.random() * 800),
+                    (int) (Math.random() * 1200),
                     -50,
                     (int) (Math.random() * 2 + 1));
             monsterList.add(monster);
@@ -217,6 +240,7 @@ public class GamePanel extends JPanel implements Runnable {
         while (true) {
             try {
                 move();
+                makeBullet();
                 makeMonster();
                 monsterMove();
                 removeMonster();
