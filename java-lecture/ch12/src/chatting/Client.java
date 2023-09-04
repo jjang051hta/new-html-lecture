@@ -5,6 +5,13 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,14 +25,19 @@ import javax.swing.border.Border;
 
 // 다중 채팅...
 // 이름을 입력받아서 window열리면서 
-public class Client extends JFrame {
-    private String chattingName = null;
+public class Client extends JFrame implements Runnable {
+    String chattingName = null;
     JLabel nickLabel = new JLabel();
     JTextArea textArea = null;
     JTextField textField = null;
     JButton btn = null;
+    Socket socket = null;
+    private BufferedReader bufferedReader = null;
+    private BufferedWriter bufferedWriter = null;
 
     Client() {
+        // Thread 만들어서...
+        // 서버에서 받아보기...
         chattingName = JOptionPane.showInputDialog(this, "닉네임을 쓰세요.", "닉네임", JOptionPane.YES_NO_OPTION);
         // System.out.println(chattingName);
         if (chattingName.length() == 0 || chattingName == null) {
@@ -50,20 +62,55 @@ public class Client extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.append(chattingName + " : " + textField.getText() + "\n");
-                textField.setText("");
-            }
+                // textArea.append(chattingName + " : " + textField.getText() + "\n");
+                // 누가 글을 썻는지 와 내용
+                try {
+                    bufferedWriter.write(chattingName + "#" + textField.getText() +
+                            "\n");
+                    bufferedWriter.flush();
+                    // 이걸 서버에서 받는다.
+                    // 받아서 접속된 클라이언트에 싹다 뿌려준다.
+                    textField.setText("");
 
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
         });
         this.setTitle("멀티 채팅");
         this.pack();
         this.setResizable(false);
-        // this.setSize(400, 300);
         this.setVisible(true);
 
+        try {
+            socket = new Socket("localhost", 9995);
+            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            Thread thread = new Thread(this);
+            thread.start();
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
         new Client();
+    }
+
+    @Override
+    public void run() {
+        String message = null;
+        while (true) {
+            try {
+                message = bufferedReader.readLine();
+                System.out.println("서버에서 클라이언트 전부에게 뿌린 메세지 ==" + message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
