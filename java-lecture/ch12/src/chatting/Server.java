@@ -60,16 +60,24 @@ public class Server extends JFrame {
 
         @Override
         public void run() {
+            boolean isStop = false;
+            String splitMsg[] = null;
             try {
                 bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                while (true) {
+                while (!isStop) {
                     message = bufferedReader.readLine();
                     // System.out.println("client에서 넘어온 message = " + message);
+                    splitMsg = message.split("#");
+                    if (splitMsg[1].equals("exit") || splitMsg[1].equals("그만")) {
+                        isStop = true;
+                    }
                     broadCasting(message);
                 }
+                clientSocketList.remove(this);
+                log.append(splitMsg[0] + "님이 빠져 나갔습니다.");
+                userLabel.setText("남은 사람은 : " + clientSocketList.size());
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

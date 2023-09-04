@@ -58,6 +58,21 @@ public class Client extends JFrame implements Runnable {
         btn = new JButton("나가기");
         inputPanel.add(btn, BorderLayout.EAST);
         contentPane.add(inputPanel, BorderLayout.SOUTH);
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 뭘 보내야지 잘했다고 소문이 날까요?
+                // bufferedWriter.write();
+                try {
+                    bufferedWriter.write(chattingName + "#exit\n");
+                    bufferedWriter.flush();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+        });
         textField.addActionListener(new ActionListener() {
 
             @Override
@@ -105,7 +120,8 @@ public class Client extends JFrame implements Runnable {
     public void run() {
         String message = null;
         String receiveMsg[] = null;
-        while (true) {
+        boolean isStop = false;
+        while (!isStop) {
             try {
                 message = bufferedReader.readLine();
                 System.out.println("서버에서 클라이언트 전부에게 뿌린 메세지 ==" + message);
@@ -113,8 +129,14 @@ public class Client extends JFrame implements Runnable {
                 System.out.println(receiveMsg[0]);
                 System.out.println(receiveMsg[1]);
                 textArea.append(receiveMsg[0] + " : " + receiveMsg[1] + "\n");
-            } catch (IOException e) {
+                if (receiveMsg[1].equals("exit") || receiveMsg[1].equals("그만")) {
+                    if (receiveMsg[0].equals(chattingName)) {
+                        System.exit(0);
+                    }
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
+                isStop = true;
             }
         }
     }
