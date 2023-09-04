@@ -104,10 +104,15 @@ public class Client extends JFrame implements Runnable {
     @Override
     public void run() {
         String message = null;
+        String receiveMsg[] = null;
         while (true) {
             try {
                 message = bufferedReader.readLine();
                 System.out.println("서버에서 클라이언트 전부에게 뿌린 메세지 ==" + message);
+                receiveMsg = message.split("#");
+                System.out.println(receiveMsg[0]);
+                System.out.println(receiveMsg[1]);
+                textArea.append(receiveMsg[0] + " : " + receiveMsg[1] + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
