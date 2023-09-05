@@ -189,11 +189,58 @@ INTERSECT
 SELECT empno,ename,sal,deptno FROM EMP WHERE DEPTNO = 10;
 
 
+SELECT * FROM emp;
 
 
+--------퀴즈--------
+--1. emp테이블을 이용해서 사원이름이 S로 끝나는 사원 데이터를 모두 출력하라.
+--2. emp테이블을 이용해서 부서코드 30번에서 근무하는 사원 중, 
+     --직책이 SALESMAN인 사원의 사원번호, 이름, 직책, 급여, 부서번호를 출력하라.
+--3. emp테이블을 이용해서 20,30번 부서에 근무하는 사원 중 급여가 2000초과하는 
+     --사원을 다음 두가지 방식으로 접근하여 사원번호, 이름, 급여, 부서번호를 출력하라.
+--3-1. 집합 연산자를 사용하지 말 것. 
+--3-2. 집합 연산자를 사용 할것.
+--4. NOT BETWEEN A AND B 연산자를 사용하지 않고 급여 범위 2000~3000을 제외한 데이터를 출력하라.
+--5. 사원 이름에 'E'가 포함된 30번 부서 소속 사원 중, 급여가 1000~2000 사이가 아닌 사원의 이름, 사원번호, 급여, 부서번호를 출력하라.
+--6. 추가 수당이 존재하지 않고 상급자가 있고 직책이 MANAGER,CLERK인 사원 중에서 사원 이름의 두번째 글자가 'L'이 아닌 사원의 정보를 출력하라.
+
+--정답
+--1
+SELECT * FROM EMP e WHERE ENAME LIKE '%S';
+
+--2
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE DEPTNO = 30 AND job='SALESMAN';
+
+--3-1
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE DEPTNO IN (20,30) AND SAL > 2000;
+
+--3-2
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE DEPTNO = 20 AND SAL > 2000
+UNION 
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE DEPTNO = 30 AND SAL > 2000;
 
 
+--4
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE SAL < 2000 OR  sal > 3000;
 
+
+--5
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE ENAME LIKE '%E%' AND 
+	  DEPTNO = 30 AND 
+      SAL NOT BETWEEN 1000 AND 2000;
+
+--6
+SELECT empno,ename,job,sal,deptno FROM EMP e 
+WHERE COMM IS NULL AND 
+MGR IS NOT NULL AND 
+JOB IN ('MANAGER','CLERK') AND 
+ENAME NOT LIKE '_L%';
 
 
 
