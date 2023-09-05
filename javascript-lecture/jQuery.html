@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <button class="btn">클릭</button>
+    <ul class="list">
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+      <li>d</li>
+    </ul>
+    <script>
+      $(".btn").on("click", function () {
+        console.log("btn");
+      });
+      $(".list li").on("click", function () {
+        console.log($(this).index());
+        $(this).toggleClass("on");
+        //$(this).slideUp();
+      });
+    </script>
+  </body>
+</html>

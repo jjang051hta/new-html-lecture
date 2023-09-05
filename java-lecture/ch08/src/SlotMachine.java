@@ -25,7 +25,7 @@ public class SlotMachine extends JFrame {
         contentPane.setLayout(null);
         JLabel resultLabel = new JLabel();
         resultLabel.setSize(300, 50);
-        resultLabel.setLocation(0, 250);
+        resultLabel.setLocation(0, 150);
         resultLabel.setText("경기를 시작합니다.");
         contentPane.add(resultLabel);
         for (int i = 0; i < 3; i++) {
@@ -56,7 +56,7 @@ public class SlotMachine extends JFrame {
                     Set<Integer> set = new HashSet<>();
                     // Set은 중복을 허용하지 않음...
                     for (int i = 0; i < labelList.size(); i++) {
-                        int ran = random.nextInt(2);
+                        int ran = random.nextInt(10);
                         labelList.get(i).setText("" + ran);
                         // nums[i] = ran;
                         set.add(ran);

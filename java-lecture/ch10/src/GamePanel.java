@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
     private List<Monster> monsterList = new ArrayList<>();
     private List<Bullet> bulletList = new ArrayList<>();
     private List<Boom> boomList = new ArrayList<>();
+    private String monsterImgList[] = { "monster01.png", "monster02.png", "monster03.png" };
 
     // private int alienPosX = 500;
     // private int alienPosY = 500;
@@ -178,8 +180,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     void makeMonster() {
         if (Math.random() < 0.05) {
+            String img = monsterImgList[new Random().nextInt(3)];
             Monster monster = new Monster(
-                    "images/monster.png",
+                    "images/" + img,
                     (int) (Math.random() * 1200),
                     -50,
                     (int) (Math.random() * 2 + 1));

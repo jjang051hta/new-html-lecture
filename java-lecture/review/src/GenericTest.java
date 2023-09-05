@@ -92,8 +92,8 @@ public class GenericTest {
         studentMap.put("김승환", 10);
         // System.out.println(studentMap.get("김승환"));
         for (String name : studentMap.keySet()) {
-
             System.out.println(name + "===" + studentMap.get(name));
         }
     }
 }
+// create read update delete select update delete insert

@@ -224,9 +224,10 @@ const cat = document.querySelector(".result .cat");
 const desc = document.querySelector(".result .desc");
 const btnKakao = document.querySelector(".result .btn-kakao");
 
-Kakao.init("5d738bd87720c302b72dc8d2b8fc03d4");
+//여기에다
+Kakao.init("96f5f09f793542ede892e15790deb32d");
 
-const url = "https://polite-syrniki-e15a44.netlify.app";
+const url = "https://jjang051-mbti.netlify.app";
 
 btnStart.addEventListener("click", function () {
   start.classList.remove("on");
