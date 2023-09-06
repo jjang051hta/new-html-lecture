@@ -253,3 +253,37 @@ SELECT NVL2(comm,'O','X') FROM emp;
 
 SELECT ename, comm, NVL2(comm,sal*12+comm,sal*12) AS 연봉 
 FROM emp;
+
+
+
+--1. emp에서
+--   사원번호의 첫 두글자만 출력하고 나머지는
+--   *로 채워 출력하고
+--   사원이름의 첫글자만 출력하고
+--   나머지는 *로 채우시오.
+--
+SELECT empno, 
+	   RPAD(SUBSTR(EMPNO ,1,2),4,'*') 
+	   	AS masking_empno,
+	   RPAD(SUBSTR(ENAME ,1,1),LENGTH(ENAME),'*') 
+	   	AS masking_ename
+FROM emp;
+
+--2. 한달 근무일수를 21.5로 하고
+--   하루 평균 8시간 근무한다고 했을때
+--   사원들의 일당과 시급을 구하시오.
+--   일당은 소수점 세째자리는 버리고
+--   시급은 소수점 둘째자리 반올림 하시오.
+SELECT ename, sal, 
+	   trunc(sal/21.5,2) AS 일당 ,
+	   round(sal/21.5/8,1) AS 시급 
+FROM emp;
+--
+--3. 사원들의 입사일을 기준으로
+--   3개월이 지난후 첫번째 월요일에
+--   정직원으로 전환되는데 전환되는 
+--   날짜를 YYYY-MM-DD로   출력하시오.
+SELECT ename, hiredate, 
+	TO_CHAR(NEXT_DAY(ADD_MONTHS(HIREDATE,3),'월'),'YYYY-MM-DD') 
+FROM emp;
+
