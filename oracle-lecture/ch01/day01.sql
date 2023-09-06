@@ -119,6 +119,7 @@ SELECT * FROM emp ORDER BY sal DESC, DEPTNO asc;
 
 
 
+
 ------quiz------
 --1. deptno=30인 사원 전부 찾기
 --2. deptno=30 이면서 job이 salesman 인 사람 찾기
