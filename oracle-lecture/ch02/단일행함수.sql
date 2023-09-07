@@ -287,3 +287,108 @@ SELECT ename, hiredate,
 	TO_CHAR(NEXT_DAY(ADD_MONTHS(HIREDATE,3),'월'),'YYYY-MM-DD') 
 FROM emp;
 
+
+ 
+SELECT mod(10,3) FROM dual;
+SELECT floor(10/3) FROM dual;
+-- SELECT TRUNC(10/3) FROM dual;  trunc 오라클 전용
+ 
+
+-- decode
+WITH temp AS (
+	SELECT 'M' gender FROM dual UNION ALL
+	SELECT 'F' gender FROM dual UNION ALL
+	SELECT 'X' gender FROM dual
+)
+
+SELECT gender, DECODE(gender,'M','남자','F','여자', 'X','기타') gender02 FROM temp;
+SELECT * FROM emp;
+SELECT job, DECODE(job,'CLERK','사원','ANALYST','분석가',
+'SALESMAN','영업사원','MANAGER','관리자','PRESIDENT','회장') AS kor FROM emp;
+
+
+-- salesman 10%, manager 5% ANALYST 0% 나머지는 3% 
+-- 오라클 전용함수 trunc, decode
+SELECT ename, job, sal, DECODE(job,
+								'SALESMAN',sal*1.1,
+								'MANAGER',sal*1.05,
+								'ANALYST',sal*1,
+								sal*1.03) AS "인상된 월급" FROM emp; 
+
+-- case when
+SELECT ename, job, sal, 
+		CASE job
+			WHEN 'SALESMAN' THEN sal*1.1
+			WHEN 'MANAGER'  THEN sal*1.05
+			WHEN 'ANALYST'  THEN sal*1
+			ELSE sal*1.03
+		END AS "인상된 월급" FROM emp;
+		
+SELECT * FROM emp;
+-- 10번이면 location 부산  20번이면 분당 30번이면 서울
+SELECT ename,deptno,
+		CASE deptno
+			WHEN 10 THEN '부산'
+			WHEN 20 THEN '분당'
+			WHEN 30 THEN '서울'
+		END AS "근무지" FROM emp;
+
+-- 2900 다이아   2700 에메랄드   2000 골드
+SELECT ename,sal,
+		CASE 
+			WHEN sal >= 2900 THEN '다이아몬드'
+			WHEN sal >= 2700 THEN '에메랄드'
+			WHEN sal >= 2000 THEN '골드'
+			ELSE '실버'
+		END AS "등급" FROM emp;
+			
+-- 커미션없는 사람은 해당사항 없음 
+SELECT ename, comm, 
+		CASE 
+				WHEN comm IS NULL THEN '해당없음'
+				WHEN comm = 0  THEN	   '커미션 없음'
+				WHEN comm > 0  THEN	   '커미션 : ' || comm
+		END AS comm_kor
+FROM emp;
+
+		
+			
+			
+			
+						
+							
+							
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
