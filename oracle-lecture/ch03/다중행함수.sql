@@ -140,8 +140,18 @@ FROM emp
 GROUP BY NVL2(comm,'O','X');
 
 --5. 각 부서의 년도별 입사인원과 최고 월급, 월급의 합, 월급의 평균을 소계별로 출력하시오.
+SELECT deptno,
+       TO_CHAR(hiredate,'YYYY')  AS "hire year",
+       count(*) AS "count",
+       max(sal) AS "최고 월급",
+       sum(sal) AS "월급합친거",
+       avg(sal) AS "평균월급"
+FROM emp
+GROUP BY ROLLUP (DEPTNO ,TO_CHAR(hiredate,'YYYY'))
+ORDER BY DEPTNO ;
+       
+       
 
-SELECT * FROM emp;
 
 
 
