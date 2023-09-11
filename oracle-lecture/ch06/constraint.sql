@@ -174,7 +174,8 @@ SELECT  * FROM EMP_CONST ;
 SELECT * FROM user_constraints;
 
         
-
+-- view  table  vip 메일을
+-- customer 1년에 백화점와서 2억 vip 이름, 메일
 
 
 
