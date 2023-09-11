@@ -70,9 +70,8 @@ DELETE FROM emp02
 WHERE empno IN (SELECT empno FROM emp02 e,salgrade s
 	WHERE e.sal BETWEEN s.LOSAL AND s.hisal AND s.GRADE = 5);
 SELECT * FROM emp02;
-
-
 --  dml
+
 
 
 
