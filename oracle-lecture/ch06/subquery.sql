@@ -92,6 +92,14 @@ FROM emp e, dept d
 WHERE e.DEPTNO = d.DEPTNO 
 	AND job = (SELECT job FROM emp WHERE ENAME ='ALLEN');
 
+
+-- ansi
+SELECT e.job, e.EMPNO , e.sal, e.DEPTNO , d.dname  
+FROM emp e
+JOIN DEPT d
+on e.DEPTNO = d.DEPTNO 
+WHERE job = (SELECT job FROM emp WHERE ENAME ='ALLEN');
+
 -- 2. 전체 사원의 평균 급여보다 높은 급여를 받는 사원들의 사원정보, 부서 정보를 출력하시오.
 SELECT e.ENAME , e.EMPNO ,e.job,  e.sal, d.dname, s.GRADE 
 FROM emp e, dept d, SALGRADE s
@@ -100,6 +108,16 @@ WHERE
 	AND sal BETWEEN s.LOSAL AND s.HISAL 
 	AND sal > (SELECT avg(sal) FROM emp)
 	ORDER BY e.sal;
+
+
+--ansi
+SELECT e.ENAME , e.EMPNO ,e.job,  e.sal, d.dname, s.GRADE 
+FROM emp e
+LEFT OUTER JOIN dept d ON e.DEPTNO = d.DEPTNO
+LEFT OUTER JOIN SALGRADE s ON e.sal BETWEEN s.LOSAL AND s.HISAL 
+WHERE sal > (SELECT avg(sal) FROM emp)
+ORDER BY e.sal;
+
 -- 3. 10번 부서에 근무하는 사원 중 30번 부서에는 존재하지 않는 직책을 가진 사원들의 사원정보, 
       --부서정보를 출력하시오.
 SELECT e.ENAME , e.EMPNO ,e.job, e.DEPTNO , e.sal, d.dname 
@@ -107,13 +125,25 @@ FROM emp e, dept d
 WHERE e.DEPTNO = d.DEPTNO 
 AND e.DEPTNO = 10
 AND job NOT IN (SELECT DISTINCT job FROM emp WHERE DEPTNO = 30);
---SELECT DISTINCT job FROM emp WHERE DEPTNO = 30;
+
+--ansi
+SELECT e.ENAME , e.EMPNO ,e.job, e.DEPTNO , e.sal, d.dname 
+FROM emp e
+JOIN dept d ON e.DEPTNO = d.DEPTNO
+WHERE e.DEPTNO = 10 AND job NOT IN (SELECT DISTINCT job FROM emp WHERE DEPTNO = 30);
+
 -- 4. 직책이 salesman인 사람들의 최고 급여보다 높은 급여를 받는 사원들의 사원정보, 
       -- 급여 등급 정보를 출력하시오.
 SELECT e.ENAME , e.EMPNO ,e.job, e.DEPTNO , e.sal, s.grade 
 FROM emp e, salgrade s
 WHERE e.SAL BETWEEN s.LOSAL AND s.HISAL
 AND sal > (SELECT max(sal) FROM emp WHERE JOB = 'SALESMAN');
+
+SELECT e.ENAME , e.EMPNO ,e.job, e.DEPTNO , e.sal, s.grade 
+FROM emp e
+JOIN salgrade s ON e.sal BETWEEN s.LOSAL AND s.HISAL
+WHERE sal > (SELECT max(sal) FROM emp WHERE JOB = 'SALESMAN');
+
 --SELECT max(sal) FROM emp WHERE JOB = 'SALESMAN';
 
 
