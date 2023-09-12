@@ -139,6 +139,7 @@ FROM emp e, salgrade s
 WHERE e.SAL BETWEEN s.LOSAL AND s.HISAL
 AND sal > (SELECT max(sal) FROM emp WHERE JOB = 'SALESMAN');
 
+--ansi
 SELECT e.ENAME , e.EMPNO ,e.job, e.DEPTNO , e.sal, s.grade 
 FROM emp e
 JOIN salgrade s ON e.sal BETWEEN s.LOSAL AND s.HISAL
