@@ -8,7 +8,8 @@
 </head>
 <body>
 	<%
-		String userName = (String)session.getAttribute("userName");
+		String userName = 
+		(String)session.getAttribute("userName");
 	%>
 	<h1><%= userName %>님 안녕하세요.</h1>
 </body>
