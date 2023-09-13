@@ -47,8 +47,7 @@ public class GugudanForm extends HttpServlet {
 					<button>전송</button>
 				</form>
 				""");
-//		out.append("<form action=\"gugudan-result\" method=\"get\">")
-//		   .append("<form action=\"gugudan-result\" method=\"get\">");
+
 	}
 }
 

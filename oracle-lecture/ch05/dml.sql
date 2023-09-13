@@ -1,5 +1,4 @@
 -- dml   
-
 -- create는 auto commit;
 CREATE TABLE emp02 AS SELECT * FROM emp;
 SELECT * FROM emp02;

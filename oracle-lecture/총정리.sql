@@ -192,12 +192,100 @@ FROM emp e1 LEFT OUTER JOIN emp e2
 on e1.mgr = e2.EMPNO;
 
 
+--  insert update delete
+
+CREATE TABLE emp02 AS 
+	SELECT * FROM emp
+	WHERE 1 <> 1;
+
+DROP TABLE emp02;
+
+SELECT * FROM emp02;
+
+INSERT INTO emp02 (empno, ename,job, mgr,HIREDATE,sal, comm,deptno)
+ VALUES (1111,'장성호','clerk',null,sysdate,3000,NULL, 30);
+
+INSERT INTO emp02 
+ VALUES (1111,'장동건','clerk',null,sysdate,1000,NULL, 30);
+
+INSERT INTO emp02 
+ VALUES (1113,'유재석','clerk',null,sysdate,1000,NULL, 30);
+
+UPDATE emp02 SET empno = 1112 WHERE ename='장동건';
+
+SELECT * FROM emp02;
+
+DELETE FROM emp02 WHERE empno = 1113;
+
+COMMIT;
+rollback;
+
+
+-- 테이블 잘 만들기.. 제약조건
+CREATE TABLE emp03 (
+	NO      number(4)      CONSTRAINT emp03_no_pk     PRIMARY KEY,
+	name    varchar2(100)  CONSTRAINT emp03_name_nn   NOT NULL,
+	jumin   varchar2(13)   CONSTRAINT emp03_jumin_nn  NOT NULL 
+						   CONSTRAINT emp03_jumin_uq  UNIQUE,
+	salary  number(10)     CONSTRAINT emp03_salary_ck CHECK(salary > 1000),
+	deptno  number(2,0)    CONSTRAINT emp03_deptno_fk REFERENCES dept (deptno) 
+);
+
+ALTER TABLE emp03 ADD joindate DATE DEFAULT sysdate;
+ALTER TABLE emp03 ADD email varchar2(100) DEFAULT 'null@null.com' NOT NULL;
+ALTER TABLE emp03 MODIFY email varchar2(150);
+ALTER TABLE emp03 DROP column email;
+-- email 추가 100글자 not null
+
+-- 오라클 자동증가 sequence
+CREATE SEQUENCE emp03_seq
+       INCREMENT BY 1
+       START WITH   1
+       MINVALUE     1
+       MAXVALUE     999999
+       NOCYCLE
+       NOCACHE;
+
+INSERT INTO emp03 VALUES (emp03_seq.nextval,'NELL',1111113333333,1200, 30);
+       
+SELECT * FROM emp03;
+       
+       
+
+--  member 테이블 만들기
+--    id (pk), password(nn),name(nn),gender(nn), 
+--    birthday, email(nn, uq),tel(nn, uq), address , regdate DEFAULT sysdate 
+
+-- 3명 입력해보기...
+
+    
+    CREATE TABLE MEMBER (
+    	id            varchar2(30) PRIMARY KEY,
+    	password      varchar2(30) NOT NULL,
+    	name          varchar2(30) NOT NULL,
+    	gender        varchar2(10) NOT NULL,
+    	birthday      date ,
+    	email         varchar2(100) NOT NULL UNIQUE,
+    	tel           varchar2(13)  NOT NULL UNIQUE,
+    	address       varchar2(13) ,
+    	regdate       DATE          DEFAULT sysdate 
+);
+-- 복호화  salt (소인수 분해) 양자 경우의 수 줄이기... 초전도체 
+INSERT INTO MEMBER values('jjang051','1234','장성호','male','1999-11-11',
+'jjang@hanmail.net','010-1111-2222',NULL,sysdate);
+SELECT * FROM MEMBER;
+-- no
+ALTER TABLE MEMBER ADD  NO number(10);
+
+ALTER TABLE MEMBER MODIFY id visible;
 
 
 
 
 
-       	
+
+
+
 
 
 

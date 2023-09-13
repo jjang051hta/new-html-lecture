@@ -54,3 +54,14 @@ GRANT SELECT , INSERT , UPDATE, DELETE ON scott.emp TO abcd;
 REVOKE SELECT ON scott.emp FROM abcd;
 
 
+
+-- 
+CREATE USER jjang051 IDENTIFIED BY 1234;
+
+GRANT CONNECT, resource, CREATE VIEW TO jjang051;
+
+
+
+DROP USER jjang051 cascade;
+
+
