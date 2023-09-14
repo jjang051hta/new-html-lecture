@@ -42,8 +42,11 @@
 	</aside>
 	<% } %>
 <script>
+	// query String, form(post), ajax
 	$("#closeBtn").on("click",function(){
-		$("#popup").hide();
+		//$("#popup").hide();
+		$("#popup").fadeOut(1000); 
+		//$("#popup").slideUp(1000);
 		//console.log($("#todayCheck:checked").val()); // return value / undefined
 		//console.log($("#todayCheck").is(":checked")); // return true / false
 		const isChecked = $("#todayCheck").is(":checked");
