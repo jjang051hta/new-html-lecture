@@ -1,6 +1,8 @@
+<%@page import="util.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	/*
 	Cookie cookies[] = request.getCookies();
 	String loginID = "";
 	String isCheck = "";
@@ -12,6 +14,13 @@
 			}
 		}
 	}
+	*/
+	String loginID = CookieManager.readCookie(request, "loginID");
+	//String isCheck = loginID.equals("") ? "" : "checked";
+	String isCheck = "";
+	if(!loginID.equals("")) {
+		isCheck="checked";
+	} 
 %>
 <!DOCTYPE html>
 <html>
