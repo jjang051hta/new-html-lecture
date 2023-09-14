@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<%
 		String name = "장성호";
 		int age = 15;
@@ -18,3 +17,4 @@
 	<a href="hi.jsp?name=장동건&age=30">hi</a>
 </body>
 </html>
+
