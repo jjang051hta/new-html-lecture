@@ -1,15 +1,8 @@
+<%@page import="util.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String popupMode = "on";
-	Cookie cookies[] = request.getCookies();
-	if(cookies!=null) {
-		for(Cookie c : cookies) {
-			if(c.getName().equals("popupClose")) {
-				popupMode = c.getValue();
-			}
-		}
-	}
+	String popupMode = CookieManager.readCookie(request, "popupClose");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +24,7 @@
 <script src="js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-	<% if(popupMode.equals("on")){ %>
+	<% if(popupMode.equals("")){ %>
 	<aside id="popup">
 		<h2>지하철 태업!!! 집에 갑시다.</h2>
 		<label>

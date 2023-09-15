@@ -36,7 +36,8 @@
 		}
 		out.println("<script>alert('로그인 성공'); location.href='login-main.jsp';</script>");
 	} else {
-		out.println("<script>alert('로그인 실패'); history.back();</script>");
+		CookieManager.deleteCookie(response, "loginID");
+		out.println("<script>alert('로그인 실패'); location.href='login-main.jsp';</script>");
 	}
 %>
 
