@@ -20,7 +20,7 @@
 	// 2. 결과값 받아오기  select 를 제외하고 나머지는 정수
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String sql = "select * from test";
+	String sql = "select * from test order by regdate desc";
 	pstmt = conn.prepareStatement(sql);
 	rs = pstmt.executeQuery();
 	/*
@@ -50,8 +50,11 @@
 	<table border="1">
 		<thead>
 			<tr>
+				<th>no</th>
 				<th>id</th>
 				<th>password</th>
+				<th>age</th>
+				<th>regdate</th>
 				
 			</tr>
 		</thead>
@@ -59,8 +62,11 @@
 		<%
 			while(rs.next()) {
 				out.println("<tr>");
-				out.println("<td>"+rs.getString("id")+"</td>");
+				out.println("<td>"+rs.getInt("no")+"</td>");
+				out.println("<td><a href='info.jsp'>"+rs.getString("id")+"</a></td>");
 				out.println("<td>"+rs.getString("password")+"</td>");
+				out.println("<td>"+rs.getInt("age")+"</td>");
+				out.println("<td>"+rs.getString("regdate")+"</td>");
 				out.println("</tr>");
 			}
 		%>

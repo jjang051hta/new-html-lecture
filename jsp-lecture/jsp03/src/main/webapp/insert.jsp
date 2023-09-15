@@ -20,6 +20,13 @@
 				<input type="password" name="userPW">
 			</label>
 		</div>
+		<div>
+			<label>
+				<span>age</span>
+				<input type="text" name="userAge">
+			</label>
+		</div>
+		
 		<button>회원가입</button>
 	</form>
 </body>
