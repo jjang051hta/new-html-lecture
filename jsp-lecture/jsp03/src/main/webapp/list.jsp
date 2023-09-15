@@ -52,7 +52,7 @@
 			<tr>
 				<th>no</th>
 				<th>id</th>
-				<th>password</th>
+				<!-- <th>password</th>-->
 				<th>age</th>
 				<th>regdate</th>
 				
@@ -63,8 +63,8 @@
 			while(rs.next()) {
 				out.println("<tr>");
 				out.println("<td>"+rs.getInt("no")+"</td>");
-				out.println("<td><a href='info.jsp'>"+rs.getString("id")+"</a></td>");
-				out.println("<td>"+rs.getString("password")+"</td>");
+				out.println("<td><a href='info.jsp?id="+rs.getString("id")+"'>"+rs.getString("id")+"</a></td>");
+				//out.println("<td>"+rs.getString("password")+"</td>");
 				out.println("<td>"+rs.getInt("age")+"</td>");
 				out.println("<td>"+rs.getString("regdate")+"</td>");
 				out.println("</tr>");
