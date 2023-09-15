@@ -67,5 +67,9 @@
 		%>
 		</tbody>
 	</table>
+	<a href="delete.jsp?id=<%=userID%>">회원탈퇴</a>
 </body>
 </html>
+
+
+

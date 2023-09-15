@@ -26,7 +26,15 @@
 				<input type="text" name="userAge">
 			</label>
 		</div>
-		
+		<div>
+			<label>출생년도</label>
+			<!-- 1900~2023 -->
+			<select name="birthYear">
+				<% for( int i=1900;i<=2023;i++) { %>
+					<option value="<%= i %>"><%= i %></option>
+				<%} %>
+			</select>
+		</div>
 		<button>회원가입</button>
 	</form>
 </body>
