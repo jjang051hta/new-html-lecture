@@ -6,6 +6,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	/*
+	JDBCConnect jdbcConn = new JDBCConnect();
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select * from test order by regdate desc";
+	pstmt = jdbcConn.conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+	*/
+	
+	/* String driver = application.getInitParameter("OracleDriver");
+	String url = application.getInitParameter("OracleURL");
+	String id = application.getInitParameter("OracleId");
+	String pw = application.getInitParameter("OraclePw");
+	
+	JDBCConnect jdbcConn = new JDBCConnect(driver,url,id,pw); */
 	JDBCConnect jdbcConn = new JDBCConnect();
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
