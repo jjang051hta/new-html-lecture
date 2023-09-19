@@ -25,6 +25,7 @@
 	if(rs.next()){
 		result = rs.getInt("count");
 	}
+	
 	Map<String,Integer> map = 
 			new HashMap<>();
 	map.put("count",result);

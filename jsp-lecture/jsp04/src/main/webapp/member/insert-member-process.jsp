@@ -1,3 +1,4 @@
+<%@page import="util.ScriptWriter"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="common.JDBCConnect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -39,8 +40,12 @@
 	int result = pstmt.executeUpdate();
 	if(result>0) {
 		System.out.println("입력 되었음");
+		//response.sendRedirect("../index/index.jsp");
+		ScriptWriter.alertAndNext(response, "회원가입 되었습니다.", "../index/index.jsp");
 	} else  {
-		System.out.println("입력 어류");
+		System.out.println("입력 오류");
+		ScriptWriter.alertAndBack(response, "서버 오류입니다. 잠시 후 다시 시도해 주세요");
+		//response.sendRedirect("../member/insert.jsp");
 	}
 	
 	//db접속

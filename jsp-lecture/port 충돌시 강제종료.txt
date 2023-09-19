@@ -1,0 +1,5 @@
+윈도우 검색창에 cmd열어서
+
+netstat -a -o
+
+taskkill /f /pid 해당하는pid번호
