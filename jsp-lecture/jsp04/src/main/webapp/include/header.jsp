@@ -41,7 +41,7 @@
 				<li class="nav-item"><a href="../index/index.jsp" class="nav-link active"
 					aria-current="page">MyHome</a></li>
 				<li class="nav-item"><a href="../member/logout.jsp" class="nav-link">로그아웃</a></li>
-				<li class="nav-item"><a href="../member/info.jsp?userID=<%=loggedID %>" class="nav-link">장성호</a></li>
+				<li class="nav-item"><a href="../member/info.jsp?userID=<%=loggedID %>" class="nav-link"><%=loggedName %></a></li>
 				<li class="nav-item"><a href="../board/list.jsp" class="nav-link">게시판</a></li>
 			</ul>
 			<% } %>

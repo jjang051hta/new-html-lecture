@@ -10,7 +10,7 @@
 %>
 <%@ include file="../include/header.jsp"%>
 <div class="container">
-	<form action="insert-member-process.jsp" method="post" class=""
+	<form action="modify-member-process.jsp" method="post" class=""
 		name="member">
 		<div class="row d-flex justify-content-center mt-5">
 			<div class="col-6">
@@ -65,7 +65,7 @@
 		</div>
 		<div class="mt-5 mb-5 d-flex justify-content-center">
 			<div class="">
-				<button type="submit" class="btn btn-primary" id="btnSubmit">회원가입</button>
+				<button type="submit" class="btn btn-primary" id="btnSubmit">회원정보 수정</button>
 				<button type="reset" class="btn btn-secondary">취소</button>
 			</div>
 		</div>
