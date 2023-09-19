@@ -61,7 +61,7 @@ jdbcConn.close();
 	
 	<div class="d-flex justify-content-center">
 		<a href="../member/delete.jsp" class="btn btn-primary">회원탈퇴</a>
-		<a href="" class="btn btn-secondary mx-1">정보수정</a>
+		<a href="../member/modify.jsp" class="btn btn-secondary mx-1">정보수정</a>
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
