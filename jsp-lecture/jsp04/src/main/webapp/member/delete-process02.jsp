@@ -9,18 +9,13 @@
     <%
     	response.setContentType("application/json; charset=utf-8");
 		JDBCConnect jdbcConn = new JDBCConnect();
-		String userPW = request.getParameter("userPW");
-		String userID = request.getParameter("userID");
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		String sql = "delete from member where id = ? and password = ?";
+		String sql = "delete from member where no = ?";
 		PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
-		pstmt.setString(1,userID);
-		pstmt.setString(2,userPW);
+		pstmt.setInt(1,userNo);
 		int result = pstmt.executeUpdate();
-		System.out.println(userPW);
-		
 		Map<String,String> map = new HashMap<>();
-		
 		if(result>0) {
 			map.put("isDelete","success");		
 		} else {

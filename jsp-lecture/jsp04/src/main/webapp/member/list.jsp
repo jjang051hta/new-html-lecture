@@ -40,7 +40,7 @@ ResultSet rs = pstmt.executeQuery();
 					<td><%= rs.getString("address") %></td>
 					<td><%= rs.getString("addressdetail") %></td>
 					<td><%= rs.getString("regdate") %></td>
-					<td><button class="btn btn-danger btnDelete">삭제</button></td>
+					<td><button class="btn btn-danger btnDelete" data-no="<%= rs.getInt("no") %>">삭제</button></td>
 					<td scope="col"><input type="checkbox" name="check" class="check" value="<%= rs.getInt("no")%>"></td>
 				</tr>		
 			<%}%>
@@ -57,20 +57,25 @@ ResultSet rs = pstmt.executeQuery();
 			$(".check").prop("checked",false);
 		}
 	})	
-	
 	$(".btnDelete").on("click",function(){
 		console.log("나는 마지막 줄에  return false가 있어서 form 태그의 액션에 있는 주소로 가지 않습니다");
+		console.log($(this).data("no"));
+		console.log($(this));
+		const $parent = $(this).parent().parent();
 		$.ajax({
 			url:"../member/delete-process02.jsp",
 			data:{
-				userID:"bbb",
-				userPW:"1234"
+				userNo:$(this).data("no"),
 			},
 			success:function(response) {
 				console.log(response);
 				if(response.isDelete==="success") {
-					alert("삭제 되었습니다.");
-					location.reload();
+					//alert("삭제 되었습니다.");
+					//location.reload();
+					console.log($(this));
+					$parent.remove();
+				} else {
+					alert("서버 오류입니다.");
 				}
 			},
 			fail:function() {
