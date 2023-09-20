@@ -1,3 +1,4 @@
+<%@page import="util.ScriptWriter"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="common.JDBCConnect"%>
@@ -22,9 +23,11 @@
 		System.out.println(result.length);
 		System.out.println(Arrays.toString(result));
 		jdbcConn.conn.commit();		
+		ScriptWriter.alertAndNext(response, "삭제가 되었습니다.","../member/list.jsp");
 	} catch (Exception e) {
 		jdbcConn.conn.rollback();
 		e.printStackTrace();
+		ScriptWriter.alertAndBack(response, "서버 오류 입니다. 잠시 후 다시 시도해 주세요.");
 	} finally {
 		jdbcConn.conn.setAutoCommit(true);
 	}

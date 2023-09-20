@@ -26,7 +26,8 @@ ResultSet rs = pstmt.executeQuery();
 				<th scope="col">address</th>
 				<th scope="col">detail address</th>
 				<th scope="col">regdate</th>
-				<th scope="col"><input type="checkbox"></th>
+				<th scope="col">삭제</th>
+				<th scope="col"><input type="checkbox" id="checkAll"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,13 +40,53 @@ ResultSet rs = pstmt.executeQuery();
 					<td><%= rs.getString("address") %></td>
 					<td><%= rs.getString("addressdetail") %></td>
 					<td><%= rs.getString("regdate") %></td>
-					<td><%= rs.getString("regdate") %></td>
-					<td scope="col"><input type="checkbox" name="check" value="<%= rs.getInt("no")%>"></td>
+					<td><button class="btn btn-danger btnDelete">삭제</button></td>
+					<td scope="col"><input type="checkbox" name="check" class="check" value="<%= rs.getInt("no")%>"></td>
 				</tr>		
 			<%}%>
 		</tbody>
 	</table>
-	<button class="btn btn-danger">삭제</button>
+	<button class="btn btn-danger" id="btnAll">삭제</button>
 	</form>
 </div>
+<script>
+	$("#checkAll").on("click",function(){
+		if($("#checkAll").is(":checked")) {
+			$(".check").prop("checked",true);
+		} else {
+			$(".check").prop("checked",false);
+		}
+	})	
+	
+	$(".btnDelete").on("click",function(){
+		console.log("나는 마지막 줄에  return false가 있어서 form 태그의 액션에 있는 주소로 가지 않습니다");
+		$.ajax({
+			url:"../member/delete-process02.jsp",
+			data:{
+				userID:"bbb",
+				userPW:"1234"
+			},
+			success:function(response) {
+				console.log(response);
+				if(response.isDelete==="success") {
+					alert("삭제 되었습니다.");
+					location.reload();
+				}
+			},
+			fail:function() {
+				
+			}
+			
+		})
+		return false;
+	});
+	
+	
+</script>
+
 <%@ include file="../include/footer.jsp"%>
+
+
+
+
+

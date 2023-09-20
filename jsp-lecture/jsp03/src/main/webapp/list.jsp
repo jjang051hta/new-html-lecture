@@ -60,6 +60,7 @@
 				<th>birth</th>
 				
 				<th>regdate</th>
+				<th>삭제</th>
 				<th><input type="checkbox" name="allCheck" id="allCheck"></th>
 				
 				
