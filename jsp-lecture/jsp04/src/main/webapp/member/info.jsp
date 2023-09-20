@@ -8,19 +8,29 @@
 String userID = request.getParameter("userID");
 JDBCConnect jdbcConn = new JDBCConnect();
 String sql = "select * from member where id = ?";
+/*
+String sql = "select "+
+			    "rpad(substr(id,1,3),length(id),'*') AS id,"+
+			    "password,"+
+			    "substr(name,1,1) || lpad('*',length(name)-2,'*') || substr(name, length(name), 1) AS name,"+
+				"rpad(substr(postcode,1,2),5,'*') AS postCode,"+
+				"rpad(substr(address,1,4),length(address),'*') AS address,"+
+				"regdate "+
+"from member where id = ?";
+*/
 PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 pstmt.setString(1, userID);
 ResultSet rs = pstmt.executeQuery();
 String userPW = null;
 String userName = null;
-int postCode = 0;
+String postCode = null;
 String address = null;
 String regDate = null;
 
 if (rs.next()) {
 	userPW = rs.getString("password");
 	userName = rs.getString("name");
-	postCode = rs.getInt("postCode");
+	postCode = rs.getString("postCode");
 	address = rs.getString("address");
 	regDate = rs.getString("regDate");
 } else {

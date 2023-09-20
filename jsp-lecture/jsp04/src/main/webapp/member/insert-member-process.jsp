@@ -1,3 +1,4 @@
+<%@page import="org.mindrot.jbcrypt.BCrypt"%>
 <%@page import="util.ScriptWriter"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="common.JDBCConnect"%>
@@ -32,11 +33,27 @@
 			"insert into member values(seq_member.nextval,?,?,?,?,?,?,sysdate)";
 	PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 	pstmt.setString(1,userID);
-	pstmt.setString(2,userPW);
+	pstmt.setString(2,BCrypt.hashpw(userPW,BCrypt.gensalt()));
 	pstmt.setString(3,userName);
 	pstmt.setInt(4,postCode);
 	pstmt.setString(5,address);
 	pstmt.setString(6,detailAddress);
+	
+		
+	
+	/* public static String encryptPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public static boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
+    } */
+	//System.out.println(BCrypt.hashpw(userPW,BCrypt.gensalt()));
+    //System.out.println(BCrypt.checkpw("1234","$2a$10$G3zNvykN0Ihz.dWsYwph.eFOrjzAOGhUdhhLi0stZmpcIaeicvDWO"));
+    
+    //BCrypt.checkpw(password, hashedPassword)
+	
+	
 	int result = pstmt.executeUpdate();
 	if(result>0) {
 		System.out.println("입력 되었음");
