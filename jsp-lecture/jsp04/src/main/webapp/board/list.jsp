@@ -13,7 +13,7 @@
 <div class="container">
 	<div class="row  d-flex justify-content-center">
 		<div class="col-10">
-			<h2>글 목록</h2>
+			<h2 class="mb-5 mt-5">글 목록</h2>
 			<table class="table">
 				<thead>
 					<tr>

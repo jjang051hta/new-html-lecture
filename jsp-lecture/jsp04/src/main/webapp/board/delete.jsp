@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<% String strNo = request.getParameter("no");%>
 <div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="col-8">
 				<h2>게시판</h2>
 				<form action="../board/board-delete-process.jsp" method="post">
-					
+					<input type="hidden" name="no" value="<%=strNo%>">
 					<div class="mb-3">
 						<label for="password" class="form-label">password</label> 
 						<input type="password" class="form-control"	id="password" name="password" placeholder="비밀번호">
