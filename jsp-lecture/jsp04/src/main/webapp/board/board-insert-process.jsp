@@ -4,16 +4,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
+	//String loggedId = (String)session.getAttribute("loggedID");
+	//String loggedName = (String)session.getAttribute("loggedName");
+
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String password = request.getParameter("password");
+	String loggedID = request.getParameter("loggedID");
+	String loggedName = request.getParameter("loggedName");
+	
 	
 	String sql = "insert into board values(seq_board.nextval,?,?,?,?,?,sysdate,0)";
 	JDBCConnect jdbcConn = new JDBCConnect();
 	PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
-	pstmt.setString(1,"jjang051");
+	pstmt.setString(1,loggedID);
 	pstmt.setString(2,password);
-	pstmt.setString(3,"장성호");
+	pstmt.setString(3,loggedName);
 	pstmt.setString(4,title);
 	pstmt.setString(5,content);
 	

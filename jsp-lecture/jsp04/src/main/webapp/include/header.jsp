@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+
 	String loggedID =   (String)session.getAttribute("loggedID");
 	String loggedName = (String)session.getAttribute("loggedName");
 
@@ -34,7 +35,7 @@
 					aria-current="page">MyHome</a></li>
 				<li class="nav-item"><a href="../member/insert.jsp" class="nav-link">회원가입</a></li>
 				<li class="nav-item"><a href="../member/login.jsp" class="nav-link">로그인</a></li>
-				<li class="nav-item"><a href="../board/list.jsp" class="nav-link">게시판</a></li>
+				<!-- <li class="nav-item"><a href="../board/list.jsp" class="nav-link">게시판</a></li> -->
 			</ul>
 			<% } else { %>
 			<ul class="nav nav-pills">
