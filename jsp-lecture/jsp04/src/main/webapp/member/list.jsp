@@ -26,6 +26,7 @@ ResultSet rs = pstmt.executeQuery();
 				<th scope="col">address</th>
 				<th scope="col">detail address</th>
 				<th scope="col">regdate</th>
+				<th scope="col">profile</th>
 				<th scope="col">삭제</th>
 				<th scope="col"><input type="checkbox" id="checkAll"></th>
 			</tr>
@@ -40,6 +41,8 @@ ResultSet rs = pstmt.executeQuery();
 					<td><%= rs.getString("address") %></td>
 					<td><%= rs.getString("addressdetail") %></td>
 					<td><%= rs.getString("regdate") %></td>
+					
+					<td><img src="C:/upload/20230920_174138630.png"></td>
 					<td><button class="btn btn-danger btnDelete" data-no="<%= rs.getInt("no") %>">삭제</button></td>
 					<td scope="col"><input type="checkbox" name="check" class="check" value="<%= rs.getInt("no")%>"></td>
 				</tr>		
