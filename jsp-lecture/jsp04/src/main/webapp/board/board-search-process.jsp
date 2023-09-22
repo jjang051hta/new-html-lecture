@@ -2,12 +2,38 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="common.JDBCConnect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%
+	String searchItem = request.getParameter("searchItem");
+	String searchWord = request.getParameter("searchWord");
+	
+	System.out.println(searchItem);
+	System.out.println(searchWord);
+	
+	String sql = "";
 	JDBCConnect jdbcConn = new JDBCConnect();
-	String sql ="select * from board order by regdate desc"; 
-	PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
-	ResultSet rs = pstmt.executeQuery();
+	PreparedStatement pstmt = null;
+	if(searchItem.equals("title")) {
+		sql = "SELECT * FROM BOARD WHERE title like '%'||?||'%'";
+		pstmt = jdbcConn.conn.prepareStatement(sql);
+		pstmt.setString(1,searchWord);
+	} else if(searchItem.equals("name")) {
+		sql = "SELECT * FROM BOARD WHERE name like '%'||?||'%'";
+		pstmt = jdbcConn.conn.prepareStatement(sql);
+		pstmt.setString(1,searchWord);
+	} else if(searchItem.equals("content")) {
+		sql = "SELECT * FROM BOARD WHERE content like '%'||?||'%'";
+		pstmt = jdbcConn.conn.prepareStatement(sql);
+		pstmt.setString(1,searchWord);
+	} else {
+		sql = "SELECT * FROM BOARD WHERE content like '%'||?||'%' or name like '%'||?||'%' or title like '%'||?||'%'";
+		pstmt = jdbcConn.conn.prepareStatement(sql);
+		pstmt.setString(1,searchWord);
+		pstmt.setString(2,searchWord);
+		pstmt.setString(3,searchWord);
+	}
+	// column은 ? 처리 안됨 ?는 값만 처리... mybatis 에서는 #{}츠로 처리 가능
+	ResultSet  rs = pstmt.executeQuery();
 %>
 <%@ include file="../include/header.jsp"%>
 <div class="container">
@@ -44,8 +70,6 @@
 					<option value="title">제목</option>
 					<option value="name">글쓴이</option>
 					<option value="content">내용</option>
-					<option value="all">싹다</option>
-					
 				</select>
 				<input type="text" name="searchWord">
 				<button>검색</button>
@@ -54,6 +78,3 @@
 	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
-
-
-
