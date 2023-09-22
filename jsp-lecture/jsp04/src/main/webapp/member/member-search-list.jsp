@@ -4,16 +4,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ServletContext context = pageContext.getServletContext(); //절대경로를 얻는다
-System.out.println("context===" + context);
-String saveDirectory = "upload";
-String realFolder = context.getRealPath(saveDirectory);
+String searchItem = request.getParameter("searchItem");
+String searchWord = request.getParameter("searchWord");
+
+System.out.println(searchItem);
+System.out.println(searchWord);
+
+String sql = "";
 JDBCConnect jdbcConn = new JDBCConnect();
-String sql = "select no,rpad(substr(id,1,3),length(id),'*') as id, id as realID,"
-		+ "substr(name,1,1) || lpad('*',length(name)-2,'*')  || substr(name,length(name),1) as name,"
-		+ "rpad(substr(postcode,1,2),5,'*') as postcode,address, addressdetail, "
-		+ "to_char(regdate,'YYYY-MM-DD') as regdate from member";
-PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+PreparedStatement pstmt = null;
+if (searchItem.equals("id")) {
+	sql = "SELECT * FROM MEMBER WHERE id like '%'||?||'%'";
+	pstmt = jdbcConn.conn.prepareStatement(sql);
+	pstmt.setString(1, searchWord);
+} else if (searchItem.equals("name")) {
+	sql = "SELECT * FROM MEMBER WHERE name like '%'||?||'%'";
+	pstmt = jdbcConn.conn.prepareStatement(sql);
+	pstmt.setString(1, searchWord);
+} else if (searchItem.equals("address")) {
+	sql = "SELECT * FROM MEMBER WHERE address like '%'||?||'%'";
+	pstmt = jdbcConn.conn.prepareStatement(sql);
+	pstmt.setString(1, searchWord);
+} else {
+	sql = "SELECT * FROM MEMBER WHERE id like '%'||?||'%' or name like '%'||?||'%' or address like '%'||?||'%'";
+	pstmt = jdbcConn.conn.prepareStatement(sql);
+	pstmt.setString(1, searchWord);
+	pstmt.setString(2, searchWord);
+	pstmt.setString(3, searchWord);
+}
+// column은 ? 처리 안됨 ?는 값만 처리... mybatis 에서는 #{}츠로 처리 가능
 ResultSet rs = pstmt.executeQuery();
 %>
 <%@ include file="../include/header.jsp"%>
@@ -41,7 +60,7 @@ ResultSet rs = pstmt.executeQuery();
 				<tr>
 					<th scope="row"><%=rs.getInt("no")%></th>
 					<td><a
-						href="../member/info.jsp?userID=<%=rs.getString("realID")%>"><%=rs.getString("id")%></a></td>
+						href="../member/info.jsp?userID=<%=rs.getString("id")%>"><%=rs.getString("id")%></a></td>
 					<td><%=rs.getString("name")%></td>
 					<td><%=rs.getString("postcode")%></td>
 					<td><%=rs.getString("address")%></td>
@@ -116,8 +135,3 @@ ResultSet rs = pstmt.executeQuery();
 </script>
 
 <%@ include file="../include/footer.jsp"%>
-
-
-
-
-

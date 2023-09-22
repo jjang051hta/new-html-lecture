@@ -33,7 +33,8 @@
 			"insert into member values(seq_member.nextval,?,?,?,?,?,?,sysdate)";
 	PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 	pstmt.setString(1,userID);
-	pstmt.setString(2,BCrypt.hashpw(userPW,BCrypt.gensalt()));
+	/* pstmt.setString(2,BCrypt.hashpw(userPW,BCrypt.gensalt())); */
+	pstmt.setString(2,userPW);
 	pstmt.setString(3,userName);
 	pstmt.setInt(4,postCode);
 	pstmt.setString(5,address);
