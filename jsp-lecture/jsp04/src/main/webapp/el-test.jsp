@@ -27,8 +27,8 @@
 	<p>\${"jjang051" eq "jjang051" } : ${"jjang051" eq "jjang051" }</p>
 	<p>\${"jjang051" == "jjang051" } : ${"jjang051" == "jjang051" }</p>
 	<p>\${10!=10 } : ${10 != 10 }</p>
-	<p>\${10 ne 10 } : ${10 ne 10 }</p>
-	<p>\${"jjang051" ne "jjang051" } : ${"jjang051" ne "jjang051" }</p>
+	<%-- <p>\${10 ne 10 } : ${10 ne 10 }</p>
+	<p>\${"jjang051" ne "jjang051" } : ${"jjang051" ne "jjang051" }</p> --%>
 	<p>\${"jjang051" != "jjang051" } : ${"jjang051" != "jjang051" }</p>
 	<p>\${20>10 && 20<10  } : ${20 > 10 && 20<10 }</p>
 	<p>\${20>10 and 20<10  } : ${20 > 10 and 20<10 }</p>

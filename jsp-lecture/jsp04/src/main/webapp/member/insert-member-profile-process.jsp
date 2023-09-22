@@ -8,8 +8,8 @@
 Part part = request.getPart("profile");
 String partHeader = part.getHeader("Content-disposition");
 System.out.println(partHeader);
-//String saveDirectory = getServletContext().getRealPath("/upload");
-String saveDirectory = "C:\\upload";
+String saveDirectory = getServletContext().getRealPath("upload");
+//String saveDirectory = "C:\\upload";
 
 String[] phArr = partHeader.split("filename=");
 System.out.println("Arrays.toString(phArr)==="+Arrays.toString(phArr));

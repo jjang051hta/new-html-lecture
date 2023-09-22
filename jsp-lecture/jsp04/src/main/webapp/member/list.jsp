@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+ServletContext context = pageContext.getServletContext();		//절대경로를 얻는다
+System.out.println("context==="+context);
+String saveDirectory = "upload";
+String realFolder = context.getRealPath(saveDirectory);
 JDBCConnect jdbcConn = new JDBCConnect();
 String sql = 
 "select no,rpad(substr(id,1,3),length(id),'*') as id, id as realID,"+
@@ -42,7 +46,7 @@ ResultSet rs = pstmt.executeQuery();
 					<td><%= rs.getString("addressdetail") %></td>
 					<td><%= rs.getString("regdate") %></td>
 					
-					<td><img src="C:/upload/20230920_174138630.png"></td>
+					<td><img src="/jsp04/upload/20230921_15339765.png"></td>
 					<td><button class="btn btn-danger btnDelete" data-no="<%= rs.getInt("no") %>">삭제</button></td>
 					<td scope="col"><input type="checkbox" name="check" class="check" value="<%= rs.getInt("no")%>"></td>
 				</tr>		

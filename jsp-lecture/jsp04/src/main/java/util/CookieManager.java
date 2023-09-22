@@ -14,7 +14,6 @@ public class CookieManager {
 		cookie.setPath("/");
 		cookie.setMaxAge(time);
 		response.addCookie(cookie);
-		
 	}
 	public static void deleteCookie(HttpServletResponse response, 
 									String cookieName) {
@@ -32,6 +31,9 @@ public class CookieManager {
 		}
 		return cookieValue;
 	}
+	
+	
+	
 }
 
 
