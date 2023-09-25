@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import com.jjang051.common.JDBCConnect;
 import com.jjang051.dao.MemberDao;
 import com.jjang051.dto.Member;
+import com.jjang051.service.MemberService;
 import com.jjang051.util.ScriptWriter;
 
 
@@ -24,16 +25,14 @@ public class InsertProcess extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//여기서 회원가입 처리....
-		//PrintWriter out = response.getWriter();
-		//out.println("test");
-		JDBCConnect jdbcConn =  new JDBCConnect();
-
+		
+		MemberService memberDao = new MemberDao();
+		
 		String userID = request.getParameter("userID");
 		String userPW = request.getParameter("userPW");
 		String userName = request.getParameter("userName");
@@ -44,22 +43,19 @@ public class InsertProcess extends HttpServlet {
 		String address = request.getParameter("address");
 		String detailAddress = request.getParameter("detailAddress");
 		
-		MemberDao memberDao = new MemberDao();
-		//memberDao.insertMember(new Member());
-		
-				
-//		MemberDao memberDao = new MemberDao();
-//		memberDao.insertMember(memberDto);
-//		
-//		MemberDao memberDao = new MemberDao();
-//		memberDao.loginMember(memberDto);
-//		
-//		MemberDao memberDao = new MemberDao();
-//		memberDao.deleteMember(memberDto);
-		
-		
-		
-		
+		Member insertMember = new Member();
+		insertMember.setId(userID);
+		insertMember.setName(userName);
+		insertMember.setPassword(userPW);
+		insertMember.setAddress(address);
+		insertMember.setPostCode(postCode);
+		insertMember.setDetailAddress(detailAddress);
+		int result = memberDao.insertMember(insertMember);
+		if(result>0) {
+			ScriptWriter.alertAndNext(response, "회원가입이 되었습니다.", "../index/index");
+		} else {
+			ScriptWriter.alertAndBack(response, "서버 오류입니다. 다시 시도해주세요.");
+		}
 	}
 
 }

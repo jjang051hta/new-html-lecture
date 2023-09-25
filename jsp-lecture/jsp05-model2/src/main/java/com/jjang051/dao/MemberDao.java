@@ -5,8 +5,11 @@ import java.sql.SQLException;
 
 import com.jjang051.common.JDBCConnect;
 import com.jjang051.dto.Member;
+import com.jjang051.service.MemberService;
 
-public class MemberDao {
+public class MemberDao implements MemberService {
+
+	@Override
 	public int insertMember(Member member) {
 		int result = 0;
 		JDBCConnect jdbcConn = new JDBCConnect();
@@ -19,14 +22,16 @@ public class MemberDao {
 			pstmt.setInt(4,member.getPostCode());
 			pstmt.setString(5,member.getAddress());
 			pstmt.setString(6,member.getDetailAddress());
-			pstmt.setString(7, member.getRegDate());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			jdbcConn.close();
 		}
-		
 		return result;
 	}
 }
+
+
+
+

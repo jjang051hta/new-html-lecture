@@ -59,4 +59,14 @@
     <servlet-name>InsertProcess</servlet-name>
     <url-pattern>/member/insert-process</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IndexController</display-name>
+    <servlet-name>IndexController</servlet-name>
+    <servlet-class>com.jjang051.controller.index.IndexController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexController</servlet-name>
+    <url-pattern>/index/index</url-pattern>
+  </servlet-mapping>
 </web-app>
