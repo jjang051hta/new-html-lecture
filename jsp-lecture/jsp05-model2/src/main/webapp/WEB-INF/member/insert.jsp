@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-		<form action="insert-member-profile-process.jsp" method="post" class="" id="joinForm" name="member" enctype="multipart/form-data">
+		<%-- <h1>${pageContext.request.contextPath }</h1>--%>
+		
+		<form action="${pageContext.request.contextPath }/member/insert-process" method="post" class="" id="joinForm"
+			name="member">
 			<div class="row d-flex justify-content-center mt-5">
 				<div class="col-6">
 					<div class="mb-3">
@@ -84,15 +87,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="row d-flex justify-content-center">
-				<div class="col-6">
-					<div class="mb-3">
-						<label for="profile" class="form-label">프로필</label> 
-						<input type="file" class="form-control" id="profile" placeholder="profile" name="profile" />
-					</div>
-				</div>
-			</div>
-			
 			<div class="mt-5 mb-5 d-flex justify-content-center">
 				<div class="">
 					<button type="submit" class="btn btn-primary" id="btnSubmit">회원가입</button>
@@ -127,7 +121,22 @@
 		});
 
 		$("#btnSubmit").on("click", function(e) {
-			
+			if ($("#userID").val().trim() === "") {
+				alert("id는 필수입력 사항입니다.");
+				$("#userID").val("");
+				$("#userID").focus();
+				return false;
+			} else if ($("#userPW").val().trim() === "") {
+				alert("password는 필수입력 사항입니다.");
+				$("#userPW").val("");
+				$("#userPW").focus();
+				return false;
+			} else if ($("#userPW02").val().trim() === "") {
+				alert("password 확인");
+				$("#userPW02").val("");
+				$("#userPW02").focus();
+				return false;
+			}
 		});
 		$("#userPW02").on("keyup", function() {
 			if ($("#userPW").val() !== $("#userPW02").val()) {

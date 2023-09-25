@@ -1,4 +1,4 @@
-<%@page import="java.net.URLEncoder"%>
+<%-- <%@page import="java.net.URLEncoder"%>
 <%@page import="util.CookieManager"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -27,8 +27,8 @@
 	<p>\${"jjang051" eq "jjang051" } : ${"jjang051" eq "jjang051" }</p>
 	<p>\${"jjang051" == "jjang051" } : ${"jjang051" == "jjang051" }</p>
 	<p>\${10!=10 } : ${10 != 10 }</p>
-	<%-- <p>\${10 ne 10 } : ${10 ne 10 }</p>
-	<p>\${"jjang051" ne "jjang051" } : ${"jjang051" ne "jjang051" }</p> --%>
+	<p>\${10 ne 10 } : ${10 ne 10 }</p>
+	<p>\${"jjang051" ne "jjang051" } : ${"jjang051" ne "jjang051" }</p>
 	<p>\${"jjang051" != "jjang051" } : ${"jjang051" != "jjang051" }</p>
 	<p>\${20>10 && 20<10  } : ${20 > 10 && 20<10 }</p>
 	<p>\${20>10 and 20<10  } : ${20 > 10 and 20<10 }</p>
@@ -37,7 +37,7 @@
 	<p>\${not true} : ${not true }</p>
 	<p>\${null + 10} : ${null + 10 }</p>
 	<p>\${"10" + 10} : ${"10" + 10 }</p>
-	<%-- <p>\${"ten" + 10} : ${"ten" + 10 }</p> --%>
+	<p>\${"ten" + 10} : ${"ten" + 10 }</p>
 	<%
 		String emptyString = "";
 		String emptyNull = null;
@@ -75,3 +75,4 @@
 
 
 
+ --%>
