@@ -30,6 +30,12 @@ public class MemberDao implements MemberService {
 		}
 		return result;
 	}
+
+	@Override
+	public Member loginMember(String userID, String userPW) {
+		
+		return null;
+	}
 }
 
 
