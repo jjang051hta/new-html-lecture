@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-		<form action="insert-member-process.jsp" method="post" class="" id="joinForm"
+		<form action="../member/insert-process" method="post" class="" id="joinForm"
 			name="member">
 			<div class="row d-flex justify-content-center mt-5">
 				<div class="col-6">
@@ -96,6 +96,7 @@
 	</div>
 
 	<script>
+		let isIDCheck=false;
 		function postcode() {
 			new daum.Postcode({
 				oncomplete : function(data) {
@@ -134,6 +135,9 @@
 				$("#userPW02").val("");
 				$("#userPW02").focus();
 				return false;
+			} else if(!isIDCheck) {
+				alert("아이디 중복 체크를 해주세요.");
+				return false;
 			}
 		});
 		$("#userPW02").on("keyup", function() {
@@ -165,7 +169,7 @@
 		
 		$("#btnIDCheck").on("click", function() {
 			$.ajax({
-				url : "idCheck.jsp",
+				url : "../member/id-check",
 				data : {
 					userID : $("#userID").val(),
 				},
@@ -180,6 +184,7 @@
 						const useID = confirm("쓸 수 있는 아이디 입니다. 사용하시겠어요?");
 						if(useID) {
 							$("#userID").attr("readonly", true);
+							isIDCheck=true;
 						}
 					}
 				},

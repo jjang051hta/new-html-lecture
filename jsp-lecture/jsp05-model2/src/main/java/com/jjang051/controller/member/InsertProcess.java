@@ -32,12 +32,14 @@ public class InsertProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberService memberDao = new MemberDao();
+		System.out.print("isEmpty vs isBlank===");
+		System.out.println("   ".isEmpty()+"===="+"  ".isBlank());
 		
 		String userID = request.getParameter("userID");
 		String userPW = request.getParameter("userPW");
 		String userName = request.getParameter("userName");
 		int postCode = 0;
-		if(request.getParameter("postCode")!=null) {
+		if(request.getParameter("postCode")!=null && !request.getParameter("postCode").isEmpty()) {
 			postCode = Integer.parseInt(request.getParameter("postCode"));
 		}
 		String address = request.getParameter("address");
