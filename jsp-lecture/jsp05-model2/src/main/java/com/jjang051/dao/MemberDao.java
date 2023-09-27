@@ -14,15 +14,18 @@ public class MemberDao implements MemberService {
 	public int insertMember(Member member) {
 		int result = 0;
 		JDBCConnect jdbcConn = new JDBCConnect();
-		String sql = "insert into member values(seq_member.nextval,?,?,?,?,?,?,sysdate)";
+		String sql = "insert into member values(seq_member.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
 		try {
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 			pstmt.setString(1,member.getId());
 			pstmt.setString(2,member.getPassword());
 			pstmt.setString(3,member.getName());
-			pstmt.setInt(4,member.getPostCode());
-			pstmt.setString(5,member.getAddress());
-			pstmt.setString(6,member.getDetailAddress());
+			pstmt.setString(4,member.getEmail());
+			pstmt.setString(5,member.getTel());
+			pstmt.setInt(6,member.getPostCode());
+			pstmt.setString(7,member.getAddress());
+			pstmt.setString(8,member.getDetailAddress());
+			pstmt.setString(9,member.getProfile());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,6 +79,9 @@ public class MemberDao implements MemberService {
 				infoMember.setDetailAddress(rs.getString("addressdetail"));
 				infoMember.setPostCode(rs.getInt("postcode"));
 				infoMember.setRegDate(rs.getString("regDate"));
+				infoMember.setProfile(rs.getString("profile"));
+				infoMember.setEmail(rs.getString("email"));
+				infoMember.setTel(rs.getString("tel"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

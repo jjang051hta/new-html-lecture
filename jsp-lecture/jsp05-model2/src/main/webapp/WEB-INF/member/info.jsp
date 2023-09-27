@@ -7,9 +7,14 @@
 	<table class="table striped">
 		<tbody>
 			<tr>
+				<th scope="row">profile</th>
+				<td><img src="${pageContext.request.contextPath }/upload/${infoMember.profile}"></td>
+			</tr>
+			<tr>
 				<th scope="row">ID</th>
 				<td>${loggedID }</td>
 			</tr>
+			
 			<tr>
 				<th scope="row">password</th>
 				<td>${infoMember.password }</td>

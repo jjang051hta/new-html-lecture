@@ -9,36 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>Hello</display-name>
-    <servlet-name>Hello</servlet-name>
-    <servlet-class>Hello</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Hello</servlet-name>
-    <url-pattern>/Hello</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Hi</display-name>
-    <servlet-name>Hi</servlet-name>
-    <servlet-class>Hi</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Hi</servlet-name>
-    <url-pattern>/Hi</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Gugudan</display-name>
-    <servlet-name>Gugudan</servlet-name>
-    <servlet-class>Gugudan</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Gugudan</servlet-name>
-    <url-pattern>/Gugudan</url-pattern>
-  </servlet-mapping>
-  
-  
 </web-app>

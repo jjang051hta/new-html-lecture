@@ -19,7 +19,16 @@ public class Member {
 	private String address;
 	private String detailAddress;
 	
+	private String email;
+	private String tel;
+	private String profile;
+	
 	private String regDate;
+	
+	
+	
+	
+	
 	public int getNo() {
 		return no;
 	}
@@ -62,6 +71,24 @@ public class Member {
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getRegDate() {
 		return regDate;
 	}
@@ -85,8 +112,10 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", postCode="
-				+ postCode + ", address=" + address + ", regDate=" + regDate + "]";
+				+ postCode + ", address=" + address + ", detailAddress=" + detailAddress + ", email=" + email + ", tel="
+				+ tel + ", profile=" + profile + ", regDate=" + regDate + "]";
 	}
+	
 	
 	
 }
