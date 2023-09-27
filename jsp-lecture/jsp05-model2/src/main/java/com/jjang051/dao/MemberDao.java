@@ -102,7 +102,71 @@ public class MemberDao implements MemberService {
 		return result;
 		
 	}
+
+	@Override
+	public int deleteMember(String userID, String userPW) {
+		int result = 0;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			String sql = "delete from member where id=? and password = ?";
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userPW);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return result;
+	}
+
+	public Member modifyPasswordConfirm(String userID, String userPW) {
+		Member modifyMember = null;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			String sql = "select * from member where id = ? and password = ?";
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userPW);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				modifyMember = new Member();
+				modifyMember.setAddress(rs.getString("address"));
+				modifyMember.setDetailAddress(rs.getString("addressDetail"));
+				modifyMember.setPostCode(rs.getInt("postcode"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return modifyMember;
+	}
+
+	public int modifyMember(Member modifyMember) {
+		int result = 0;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			String sql = "update member set name=?, address=?, addressdetail=?, postcode=? where id=?";
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setString(1, modifyMember.getName());
+			pstmt.setString(2, modifyMember.getAddress());
+			pstmt.setString(3, modifyMember.getDetailAddress());
+			pstmt.setInt(4, modifyMember.getPostCode());
+			pstmt.setString(5, modifyMember.getId());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return result;
+	}
 }
+
+
+
 
 
 

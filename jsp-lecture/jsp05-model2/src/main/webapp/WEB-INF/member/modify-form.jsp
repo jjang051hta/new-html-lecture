@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-		<form action="../member/insert-process" method="post" class="" id="joinForm"
+		<form action="../member/modify-process" method="post" class="" id="joinForm"
 			name="member">
 			<div class="row d-flex justify-content-center mt-5">
 				<div class="col-6">
@@ -11,41 +11,19 @@
 							<div class="col-6">
 								<label for="userID" class="form-label">ID</label> 
 								<input type="text" class="form-control" id="userID"
-								placeholder="user id" name="userID" />
-							</div>
-							<div class="col-6  mt-3 d-flex align-items-baseline px-0">
-								<button class="btn btn-primary mt-3" id="btnIDCheck">아이디 중복 확인</button>
+								placeholder="user id" name="userID" disabled value="${loggedID }" />
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row d-flex justify-content-center">
-				<div class="col-6">
-					<div class="mb-3">
-						<label for="userPW" class="form-label">password</label> <input
-							type="password" class="form-control" id="userPW"
-							placeholder="user password" name="userPW" />
-					</div>
-				</div>
-			</div>
-			<div class="row d-flex justify-content-center">
-				<div class="col-6">
-					<div class="mb-3">
-						<label for="userPW02" class="form-label">password Confirm</label>
-						<input type="password" class="form-control" id="userPW02"
-							placeholder="user password" />
-						<div class="invalid-feedback">글자 써보기</div>
-					</div>
-				</div>
-			</div>
-
+			
 			<div class="row d-flex justify-content-center">
 				<div class="col-6">
 					<div class="mb-3">
 						<label for="userName" class="form-label">Name</label> <input
 							type="text" class="form-control" id="userName"
-							placeholder="user name" name="userName" />
+							placeholder="user name" name="userName" value="${loggedName }" />
 					</div>
 				</div>
 			</div>
@@ -56,7 +34,7 @@
 							<div class="col-6">
 								<label for="postCode" class="form-label">ZipCode</label> <input
 									type="text" class="form-control" id="postCode"
-									placeholder="post code" name="postCode" />
+									placeholder="post code" name="postCode" value="${modifyMember.postCode}" />
 							</div>
 							<div class="col-6 mt-3 align-items-baseline px-0">
 								<button class="btn btn-primary mt-3" id="btnPostcode">우편번호
@@ -71,7 +49,7 @@
 					<div class="mb-3">
 						<label for="address" class="form-label">Address</label> <input
 							type="text" class="form-control" id="address" name="address"
-							placeholder="address" />
+							placeholder="address" value="${modifyMember.address }" />
 					</div>
 				</div>
 			</div>
@@ -81,14 +59,13 @@
 						<label for="detailAddress" class="form-label">Detail
 							Address</label> <input type="text" class="form-control"
 							id="detailAddress" placeholder="detail address"
-							name="detailAddress" />
+							name="detailAddress" value="${modifyMember.detailAddress }" />
 					</div>
 				</div>
 			</div>
 			<div class="mt-5 mb-5 d-flex justify-content-center">
 				<div class="">
-					<button type="submit" class="btn btn-primary" id="btnSubmit">회원가입</button>
-					<button type="submit" class="btn btn-primary" id="btnSubmitAjax">Ajax회원가입</button>
+					<button type="submit" class="btn btn-primary" id="btnSubmit">회원정보 수정</button>
 					<button type="reset" class="btn btn-secondary">취소</button>
 				</div>
 			</div>

@@ -35,8 +35,12 @@ oldFile.renameTo(newFile);
 //변경된 파일명 반환
 System.out.println(saveDirectory+ File.separator +originalFileName);
 Gson gson = new Gson();
-Map<String,File> map =new HashMap<>();
-map.put("url",newFile);
+Map<String,Object> map =new HashMap<>();
+map.put("url",request.getContextPath()+"/upload/"+ newFileName);
+map.put("uploaded",true);
+
+System.out.println("request.getServletContext()==="+request.getContextPath());
+
 String json = gson.toJson(map);
 out.println(json);
 

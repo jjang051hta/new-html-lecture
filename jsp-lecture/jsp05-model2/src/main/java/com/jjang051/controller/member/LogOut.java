@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import com.jjang051.util.ScriptWriter;
 
-
+@WebServlet("/member/logout")
 public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

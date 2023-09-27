@@ -13,6 +13,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.jjang051.dao.MemberDao;
 
+@WebServlet("/member/id-check")
 public class IDCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

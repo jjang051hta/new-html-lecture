@@ -14,6 +14,7 @@ import com.jjang051.dto.Member;
 import com.jjang051.util.CookieManager;
 import com.jjang051.util.ScriptWriter;
 
+@WebServlet("/member/login-process")
 public class LoginProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

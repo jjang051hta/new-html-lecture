@@ -6,4 +6,8 @@ public interface MemberService {
 	Member loginMember(String userID, String userPW);
 	Member infoMember(String userID);
 	int idCheck(String userID);
+	int deleteMember(String userID, String userPW);
+	Member modifyPasswordConfirm(String userID, String userPW);
+	//int deleteMember(String userID, String userPW);
+	
 }
