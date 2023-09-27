@@ -14,7 +14,7 @@ import com.jjang051.dao.MemberDao;
 import com.jjang051.dto.Member;
 import com.jjang051.util.ScriptWriter;
 
-
+@WebServlet("/member/modify")
 public class Modify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

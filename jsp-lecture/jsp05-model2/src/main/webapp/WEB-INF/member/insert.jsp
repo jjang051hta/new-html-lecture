@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+	
 	<div class="container">
-		<form action="../member/insert-process" method="post" class="" id="joinForm"
-			name="member">
-			<div class="row d-flex justify-content-center mt-5">
+		<form action="../member/insert-process" method="post" class="" id="joinForm" name="member" enctype="multipart/form-data">
+			<!-- <div class="row d-flex justify-content-center mt-5">
 				<div class="col-6">
 					<div class="mb-3">
 						<div class="row">
@@ -52,6 +52,26 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-6">
 					<div class="mb-3">
+						<label for="email" class="form-label">email</label> <input
+							type="email" class="form-control" id="email"
+							placeholder="user name" name="email" />
+					</div>
+				</div>
+			</div>
+			<div class="row d-flex justify-content-center">
+				<div class="col-6">
+					<div class="mb-3">
+						<label for="tel" class="form-label">HP</label> <input
+							type="text" class="form-control" id="tel"
+							placeholder="user name" name="tel" />
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row d-flex justify-content-center">
+				<div class="col-6">
+					<div class="mb-3">
 						<div class="row">
 							<div class="col-6">
 								<label for="postCode" class="form-label">ZipCode</label> <input
@@ -84,7 +104,17 @@
 							name="detailAddress" />
 					</div>
 				</div>
+			</div> -->
+			<div class="row d-flex justify-content-center">
+				<div class="col-6">
+					<div class="mb-3">
+						<label for="detailAddress" class="form-label">profile</label> 
+						<input type="file" class="form-control"
+							id="profile" placeholder="png,jpg" name="profile" accept="image/gif, image/jpeg, image/png" />
+					</div>
+				</div>
 			</div>
+			
 			<div class="mt-5 mb-5 d-flex justify-content-center">
 				<div class="">
 					<button type="submit" class="btn btn-primary" id="btnSubmit">회원가입</button>
@@ -118,7 +148,8 @@
 			postcode();
 			return false;
 		});
-
+		
+		/*
 		$("#btnSubmit").on("click", function(e) {
 			if ($("#userID").val().trim() === "") {
 				alert("id는 필수입력 사항입니다.");
@@ -140,6 +171,7 @@
 				return false;
 			}
 		});
+		*/
 		$("#userPW02").on("keyup", function() {
 			if ($("#userPW").val() !== $("#userPW02").val()) {
 				$(".invalid-feedback").show();
