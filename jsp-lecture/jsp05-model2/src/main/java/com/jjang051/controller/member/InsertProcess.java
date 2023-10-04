@@ -90,8 +90,7 @@ public class InsertProcess extends HttpServlet {
 			String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
 			if (ext.equals("jpg") || ext.equals("png") || ext.equals("gif") || ext.equals("jpeg")) {
 				// 이미지만 받고 싶을때...
-			} else {
-
+				ScriptWriter.alertAndBack(response, "이미지만 올릴 수 있습니다.");
 			}
 			String firstFilename = originalFileName.substring(0, originalFileName.lastIndexOf("."));
 			System.out.println("firstFilename===" + firstFilename);
