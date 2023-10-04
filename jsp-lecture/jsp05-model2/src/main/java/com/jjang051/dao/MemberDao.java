@@ -48,11 +48,14 @@ public class MemberDao implements MemberService {
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			pstmt.setString(2, userPW);
+			
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
 				loggedMember = new Member();
 				loggedMember.setId(rs.getString("id"));
 				loggedMember.setName(rs.getString("name"));
+				loggedMember.setProfile(rs.getString("profile"));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

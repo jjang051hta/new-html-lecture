@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/form.css" />
+<link rel="stylesheet" href="../css/layout.css" />
 
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/jquery-3.7.1.min.js"></script>
@@ -33,7 +33,21 @@
 					<ul class="nav nav-pills">
 						<li class="nav-item"><a href="../index/index" class="nav-link active" aria-current="page">MyHome</a></li>
 						<li class="nav-item"><a href="../member/logout" class="nav-link">로그아웃</a></li>
-						<li class="nav-item"><a	href="../member/info?userID=${loggedID }" class="nav-link">${loggedName }</a></li>
+						<%-- <li class="nav-item"><a	href="../member/info?userID=${loggedID }" class="nav-link">${loggedName }</a></li> --%>
+						<li class="nav-item">
+						
+							<a	href="../member/info?userID=${loggedID }" class="nav-link">
+								<c:choose>
+									<c:when test="${not empty loggedMember.profile}">
+										<img src="${pageContext.request.contextPath }/upload/${loggedMember.profile}" 
+										class="profile-small">
+									</c:when>
+									<c:otherwise>
+										<img src="../images/user.png" class="profile-small">
+									</c:otherwise>
+								</c:choose>
+							</a>
+						</li>
 						<li class="nav-item"><a href="../board/list" class="nav-link">게시판</a></li>
 					</ul>
 				</c:otherwise>

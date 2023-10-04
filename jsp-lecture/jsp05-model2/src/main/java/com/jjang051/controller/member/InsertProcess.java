@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import com.jjang051.common.JDBCConnect;
 import com.jjang051.dao.MemberDao;
@@ -54,38 +55,49 @@ public class InsertProcess extends HttpServlet {
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
 
-		Part profile = request.getPart("profile");
-		String uploadDirectory = "upload";
+		//String uploadDirectory = "upload";
+		//String realUploadPath = getServletContext().getRealPath(uploadDirectory);
+		String uploadDirectory = "C:\\upload";
+		String realUploadPath = uploadDirectory;
 
+		
+		Part profile = request.getPart("profile");
+		String newFileName = "";
 		String partHeader = profile.getHeader("Content-disposition");
-		System.out.println(partHeader);
+		System.out.println("partHeader===" + partHeader);
+
 		String partHeaderArray[] = partHeader.split("filename=");
-		System.out.println(partHeaderArray[0]);
-		System.out.println(partHeaderArray[1]);
+		System.out.println("partHeaderArray[0]===" + partHeaderArray[0]);
+		System.out.println("partHeaderArray[1]===" + partHeaderArray[1]);
 		String originalFileName = partHeaderArray[1].trim().replace("\"", "");
 		System.out.println(originalFileName);
 
-		String realUploadPath = getServletContext().getRealPath(uploadDirectory);
 		System.out.println("realUploadPath===" + realUploadPath);
 
 		if (!originalFileName.isEmpty()) {
 			// 실질적인 (믈리적인) 경로
 			profile.write(realUploadPath + File.separator + originalFileName);
+
+			String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+			if (ext.equals("jpg") || ext.equals("png") || ext.equals("gif") || ext.equals("jpeg")) {
+				// 이미지만 받고 싶을때...
+			} else {
+
+			}
+			String firstFilename = originalFileName.substring(0, originalFileName.lastIndexOf("."));
+			System.out.println("firstFilename===" + firstFilename);
+
+			Date now = new Date();
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+			String strNow = simpleDateFormat.format(now);
+			System.out.println(strNow);
+			newFileName = firstFilename + strNow + ext; // 20230927132455.png
+			System.out.println(newFileName);
+
+			File oldFile = new File(realUploadPath + File.separator + originalFileName);
+			File newFile = new File(realUploadPath + File.separator + newFileName);
+			oldFile.renameTo(newFile);
 		}
-		String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-		String firstFilename = originalFileName.substring(0, originalFileName.lastIndexOf("."));
-		System.out.println("firstFilename===" + firstFilename);
-
-		Date now = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-		String strNow = simpleDateFormat.format(now);
-		System.out.println(strNow);
-		String newFileName = firstFilename + strNow + ext; // 20230927132455.png
-		System.out.println(newFileName);
-
-		File oldFile = new File(realUploadPath + File.separator + originalFileName);
-		File newFile = new File(realUploadPath + File.separator + newFileName);
-		oldFile.renameTo(newFile);
 
 		Member insertMember = new Member();
 		insertMember.setId(userID);
