@@ -55,11 +55,20 @@ public class InsertProcess extends HttpServlet {
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
 
-		//String uploadDirectory = "upload";
-		//String realUploadPath = getServletContext().getRealPath(uploadDirectory);
+		
 		String uploadDirectory = "C:\\upload";
 		String realUploadPath = uploadDirectory;
 
+		
+		//만약 폴더를 모르고 안만들었을때 폴더 만들어 주세요...
+		
+//		String uploadDirectory = "upload";
+//		String realUploadPath = getServletContext().getRealPath(uploadDirectory);
+//		File dir = new File(realUploadPath);
+//		if(!dir.exists()) {
+//			dir.mkdir();
+//		}
+		
 		
 		Part profile = request.getPart("profile");
 		String newFileName = "";
