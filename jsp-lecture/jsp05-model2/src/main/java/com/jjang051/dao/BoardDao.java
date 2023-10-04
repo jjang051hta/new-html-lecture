@@ -64,4 +64,34 @@ public class BoardDao implements BoardService {
 		return result;
 	}
 
+	@Override
+	public Board viewBoard(int no) {
+		Board board = null;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		String sql = "select * from board where no = ?";
+		ResultSet rs =null;
+		try {
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board = new Board();
+				board.setNo(rs.getInt("no"));
+				board.setId(rs.getString("id"));
+				board.setName(rs.getString("name"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setRegDate(rs.getString("regDate"));
+				board.setHit(rs.getInt("hit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		
+		return board;
+	}
+
 }

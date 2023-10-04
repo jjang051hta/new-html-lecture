@@ -25,8 +25,8 @@
 							<c:forEach items="${boardList}" var="board" varStatus="status"
 								begin="0">
 								<tr>
-									<td>${status.index }</td>
-									<td><a href="">${board.title }</a></td>
+									<td>${status.index + 1}</td>
+									<td><a href="../board/view?no=${board.no }">${board.title }</a></td>
 									<td>${board.name }</td>
 									<td>${board.regDate }</td>
 									<td>${board.hit }</td>

@@ -33,10 +33,14 @@
 <script src="../js/ckeditor.js"></script>
 <script>
 ClassicEditor
-    .create( document.querySelector( '#content' ) )
-    .catch( error => {
-        console.error( error );
-    } );
+.create( document.querySelector( "#content" ),{
+	ckfinder:{
+		uploadUrl:"../board/upload"
+	}
+} )
+.catch( error => {
+    console.error( error );
+} );
 </script>
 <%@ include file="../include/footer.jsp"%>
 

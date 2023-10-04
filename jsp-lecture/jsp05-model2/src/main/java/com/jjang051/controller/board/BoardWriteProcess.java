@@ -5,7 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import com.jjang051.dao.BoardDao;
+import com.jjang051.dto.Board;
+import com.jjang051.util.ScriptWriter;
 
 @WebServlet("/board/write-process")
 public class BoardWriteProcess extends HttpServlet {
@@ -26,7 +32,21 @@ public class BoardWriteProcess extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		System.out.println(content);
+		Board boardDto = new Board();
+		HttpSession session = request.getSession();
+		boardDto.setId((String)session.getAttribute("loggedID"));
+		boardDto.setName((String)session.getAttribute("loggedName"));
+		boardDto.setTitle(title);
+		boardDto.setContent(content);
+		boardDto.setPassword(password);
 		
+		BoardDao boardDao = new BoardDao();
+		int result = boardDao.insertBoard(boardDto);
+		if(result>0) {
+			response.sendRedirect("../board/list");
+		} else {
+			ScriptWriter.alertAndBack(response, "서버오류입니다.");
+		}
 	}
 }
 
