@@ -37,7 +37,7 @@
 				<a href="../board/list.jsp" class="btn btn-primary">목록</a> <a
 					href="../board/write.jsp" class="btn btn-primary mx-1">글쓰기</a>
 				
-				<a href="../board/delete.jsp?no="
+				<a href="../board/delete?no=${board.no }"
 					class="btn btn-danger mx-1">지우기</a> <a
 					href="../board/modify.jsp?no="
 					class="btn btn-danger mx-1">수정하기</a>
