@@ -30,19 +30,32 @@
 		</div>
 	</div>
 </div>
-<script src="../js/ckeditor.js"></script>
+<!-- <script src="../js/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 <script>
+// ajax 처리를 통해서 이미지가 업로드 되었다고 나와야 함...
 ClassicEditor
 .create( document.querySelector( "#content" ),{
 	ckfinder:{
-		uploadUrl:"../board/upload"
-	}
-} )
+		uploadUrl:"../board/upload",
+        //withCredentials: true
+	},
+})
 .catch( error => {
     console.error( error );
-} );
+});
+
+
+$.ajax({url:"../board/upload",success:function(response) {
+	console.log(response)
+}})
 </script>
 <%@ include file="../include/footer.jsp"%>
+
+
+
+
+
 
 
 

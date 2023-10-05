@@ -35,8 +35,7 @@
 		</div>
 	</div>
 </div>
-	<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 <script>
 	ClassicEditor.create(document.querySelector("#content"),{
 		ckfinder: {
@@ -45,3 +44,7 @@
 	});
 </script>
 <%@ include file="../include/footer.jsp"%>
+
+
+
+

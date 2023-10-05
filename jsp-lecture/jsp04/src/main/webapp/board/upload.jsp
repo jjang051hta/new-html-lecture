@@ -42,6 +42,7 @@ map.put("uploaded",true);
 System.out.println("request.getServletContext()==="+request.getContextPath());
 
 String json = gson.toJson(map);
+System.out.println(json);
 out.println(json);
 
 %>
