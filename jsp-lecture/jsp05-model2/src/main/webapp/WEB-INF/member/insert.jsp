@@ -3,7 +3,9 @@
 <%@ include file="../include/header.jsp" %>
 	
 	<div class="container">
-		<form action="../member/insert-process" method="post" class="" id="joinForm" name="member" enctype="multipart/form-data">
+		<!-- <form action="../member/insert-process" method="post" class="" id="joinForm" name="member" enctype="multipart/form-data"> -->
+		<form action="../member/insert-process" method="post" class="" enctype="multipart/form-data">
+		
 			<div class="row d-flex justify-content-center mt-5">
 				<div class="col-6">
 					<div class="mb-3">

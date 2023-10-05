@@ -114,6 +114,53 @@ public class BoardDao implements BoardService {
 		System.out.println("result==="+result);
 		return result;
 	}
+
+	public Board modifyBoard(int no, String password) {
+		ResultSet rs = null;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		String sql = "select * from board where no = ? and password = ?";
+		Board modifyBoard = null;
+		try {
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			pstmt.setString(2,password);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				modifyBoard = new Board();
+				modifyBoard.setId(rs.getString("id"));
+				modifyBoard.setTitle(rs.getString("title"));
+				modifyBoard.setContent(rs.getString("content"));
+				modifyBoard.setRegDate(rs.getString("regdate"));
+				modifyBoard.setHit(rs.getInt("hit"));
+				modifyBoard.setName(rs.getString("name"));
+				modifyBoard.setNo(rs.getInt("no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return modifyBoard;
+	}
+
+	public int modifyConfirmProcess(int no, String title, String content) {
+		int result = 0;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		String sql = "update board set title=?, content=? where no = ?";
+		try {
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setString(1,title);
+			pstmt.setString(2,content);
+			pstmt.setInt(3,no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		System.out.println("result==="+result);
+		return result;
+	}
 }
 
 

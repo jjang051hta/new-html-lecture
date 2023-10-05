@@ -54,7 +54,6 @@ public class InsertProcess extends HttpServlet {
 		String detailAddress = request.getParameter("detailAddress");
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
-
 		
 		String uploadDirectory = "C:\\upload";
 		String realUploadPath = uploadDirectory;

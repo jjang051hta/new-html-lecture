@@ -44,7 +44,7 @@
 					<a href="../board/delete?no=${board.no }"
 						class="btn btn-danger mx-1">지우기</a> 
 					<a
-						href="../board/modify.jsp?no="
+						href="../board/modify?no=${board.no }"
 						class="btn btn-danger mx-1">수정하기</a>
 					</c:if>
 				
