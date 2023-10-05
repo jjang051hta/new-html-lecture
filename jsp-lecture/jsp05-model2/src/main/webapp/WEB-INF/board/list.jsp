@@ -41,10 +41,11 @@
 
 
 
-
+			<c:if test="${loggedID ne null}">
 			<div class="d-flex justify-content-center mt-5">
 				<a href="../board/write" class="btn btn-primary">글쓰기</a>
 			</div>
+			</c:if>
 
 
 			<form action="../board/board-search-process.jsp">

@@ -6,8 +6,8 @@
 		<div class="col-8">
 			<h2 class="mb-5 mt-5">게시판</h2>
 			<form action="../board/write-process" method="post">
-				<input type="hidden" name="loggedID" value="${loggedID }"> <input
-					type="hidden" name="loggedName" value="${loggedName }">
+				<input type="hidden" name="loggedID" value="${loggedID }"> 
+				<input type="hidden" name="loggedName" value="${loggedName }">
 				<div class="mb-3">
 					<label for="title" class="form-label">title</label> <input
 						type="text" class="form-control" id="title" name="title"

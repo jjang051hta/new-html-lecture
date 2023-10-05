@@ -47,6 +47,7 @@ public class BoardDao implements BoardService {
 	public int insertBoard(Board board) {
 		int result = 0;
 		JDBCConnect jdbcConn = new JDBCConnect();
+		System.out.println(board.toString());
 		String sql = "insert into board values(seq_board.nextval,?,?,?,?,?,sysdate,0)";
 		try {
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
@@ -94,4 +95,27 @@ public class BoardDao implements BoardService {
 		return board;
 	}
 
+	@Override
+	public int deleteBoard(int no, String password) {
+		int result = 0;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		String sql = "delete from board where no = ? and password = ?";
+		System.out.println("no=="+no+"===password==="+password);
+		try {
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			pstmt.setString(2,password);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		System.out.println("result==="+result);
+		return result;
+	}
 }
+
+
+
+
