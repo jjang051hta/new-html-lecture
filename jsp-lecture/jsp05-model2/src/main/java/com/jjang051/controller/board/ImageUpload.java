@@ -37,7 +37,7 @@ public class ImageUpload extends HttpServlet {
 		String uploadDirectory = "C:\\upload";
 		String realUploadPath = uploadDirectory;
 		
-		Part ckupload = request.getPart("upload");
+		Part ckupload = request.getPart("upload");  // <input type="file" name="profile">
 		String newFileName = "";
 		String partHeader = ckupload.getHeader("Content-disposition");
 		System.out.println("partHeader===" + partHeader);
@@ -55,7 +55,7 @@ public class ImageUpload extends HttpServlet {
 			ckupload.write(realUploadPath + File.separator + originalFileName);
 
 			String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-			if (ext.equals("jpg") || ext.equals("png") || ext.equals("gif") || ext.equals("jpeg")) {
+			if (!(ext.equals("jpg") || ext.equals("png") || ext.equals("gif") || ext.equals("jpeg"))) {
 				// 이미지만 받고 싶을때...
 				ScriptWriter.alertAndBack(response, "이미지만 올릴 수 있습니다.");
 			}

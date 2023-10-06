@@ -38,7 +38,6 @@ ClassicEditor
 .create( document.querySelector( "#content" ),{
 	ckfinder:{
 		uploadUrl:"../board/upload",
-        //withCredentials: true
 	},
 })
 .catch( error => {
