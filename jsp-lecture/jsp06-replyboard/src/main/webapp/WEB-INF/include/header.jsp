@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +8,27 @@
 <title>Insert title here</title>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" 
+href="../css/font_bootstrap-icons.css">
+<link rel="stylesheet" 
+href="../css/layout.css">
+
 </head>
 <body>
 <header class="p-3 mb-3 border-bottom">
+	<!-- <img src="../icons/arrow-down.svg">
+	<i class="bi-arrows-collapse" style="color:#f00; font-size:100px;"></i> -->
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          <i class="bi bi-emoji-laughing"></i>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+          <li><a href="#" class="nav-link px-2 link-secondary">login</a></li>
+          <li><a href="#" class="nav-link px-2 link-body-emphasis">sign in</a></li>
+          <li><a href="../board/write" class="nav-link px-2 link-body-emphasis">board</a></li>
+          
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -42,5 +50,12 @@
       </div>
     </div>
   </header>
-  <main>
+  <main class="main">
+  
+  
+  
+  
+  
+  
+  
   

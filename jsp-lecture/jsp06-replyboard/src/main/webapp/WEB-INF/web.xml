@@ -29,4 +29,54 @@
     <servlet-name>Write</servlet-name>
     <url-pattern>/board/write</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WriteProcess</display-name>
+    <servlet-name>WriteProcess</servlet-name>
+    <servlet-class>com.jjang051.controller.board.WriteProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteProcess</servlet-name>
+    <url-pattern>/board/write-process</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardList</display-name>
+    <servlet-name>BoardList</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardList</servlet-name>
+    <url-pattern>/board/list</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>View</display-name>
+    <servlet-name>View</servlet-name>
+    <servlet-class>com.jjang051.controller.board.View</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>View</servlet-name>
+    <url-pattern>/board/view</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Reply</display-name>
+    <servlet-name>Reply</servlet-name>
+    <servlet-class>com.jjang051.controller.board.Reply</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Reply</servlet-name>
+    <url-pattern>/board/reply</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReplyProcess</display-name>
+    <servlet-name>ReplyProcess</servlet-name>
+    <servlet-class>com.jjang051.controller.board.ReplyProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReplyProcess</servlet-name>
+    <url-pattern>/board/reply-process</url-pattern>
+  </servlet-mapping>
 </web-app>
