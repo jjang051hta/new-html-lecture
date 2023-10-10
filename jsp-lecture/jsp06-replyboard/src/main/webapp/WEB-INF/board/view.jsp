@@ -36,14 +36,36 @@
 					</tr>
 				</tbody>
 			</table>
+			
+			<div>
+				<span>이전글</span>
+				<c:choose>
+					<c:when test="${prevBoard.available > 0 }">
+						<a href="../board/view?no=${prevBoard.no}&num=${prevBoard.num}">
+							${prevBoard.title}
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="../board/view?no=${prevBoard.no}&num=${prevBoard.num}">
+							삭제된 글입니다.
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div>
+				<span>다음글</span>
+				<a href="../board/view?no=${nextBoard.no}&num=${nextBoard.num}">
+					${nextBoard.title}
+				</a>
+			</div>
+			
+			
+			
 			<div class="d-flex justify-content-center mt-5">
-
 				<!-- loggedID null 이 아니고 loggedID 랑 board.id랑 같으면 -->
-
 				<a href="../board/list" class="btn btn-primary">목록</a>
 				<a href="../board/reply?regroup=${viewBoard.regroup }&relevel=${viewBoard.relevel}&restep=${viewBoard.restep}" class="btn btn-primary mx-1">답글달기</a>
-				
-
+				<a href="../board/delete?no=${viewBoard.no }" class="btn btn-danger mx-1">삭제</a>
 			</div>
 
 		</div>

@@ -8,10 +8,8 @@
 <title>Insert title here</title>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" 
-href="../css/font_bootstrap-icons.css">
-<link rel="stylesheet" 
-href="../css/layout.css">
+<link rel="stylesheet" href="../css/font_bootstrap-icons.css">
+<link rel="stylesheet" href="../css/layout.css">
 
 </head>
 <body>
@@ -27,7 +25,7 @@ href="../css/layout.css">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 link-secondary">login</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">sign in</a></li>
-          <li><a href="../board/write" class="nav-link px-2 link-body-emphasis">board</a></li>
+          <li><a href="../board/list" class="nav-link px-2 link-body-emphasis">board</a></li>
           
         </ul>
 

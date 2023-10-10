@@ -141,8 +141,8 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       
-      <Context docBase="C:\\upload" path="/jsp05-model2/upload" reloadable="true"/>
-      <Context docBase="jsp06-replyboard" path="/jsp06-replyboard" reloadable="true" source="org.eclipse.jst.jee.server:jsp06-replyboard"/></Host>
+      <Context docBase="C:\\upload" path="/juyoon/upload" reloadable="true"/>
+      <Context docBase="jsp07-mybatis" path="/jsp07-mybatis" reloadable="true" source="org.eclipse.jst.jee.server:jsp07-mybatis"/></Host>
     </Engine>
   </Service>
 </Server>

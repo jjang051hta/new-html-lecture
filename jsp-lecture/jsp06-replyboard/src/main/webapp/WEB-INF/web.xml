@@ -79,4 +79,14 @@
     <servlet-name>ReplyProcess</servlet-name>
     <url-pattern>/board/reply-process</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteProcess</display-name>
+    <servlet-name>DeleteProcess</servlet-name>
+    <servlet-class>com.jjang051.controller.board.DeleteProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteProcess</servlet-name>
+    <url-pattern>/board/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

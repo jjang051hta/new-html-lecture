@@ -80,9 +80,9 @@ public class ImageUpload extends HttpServlet {
 		Map<String, Object> map = new HashMap<>();
 		map.put("uploaded", true);
 		map.put("url", request.getContextPath()+"/upload/"+newFileName);
-	
 		String resultJson = gson.toJson(map);
 		request.setAttribute("resultJson", resultJson);
+		System.out.println(resultJson);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/board/image-uploaded.jsp");
 		dispatcher.forward(request, response);
 

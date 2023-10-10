@@ -42,12 +42,15 @@ public class BoardDao implements BoardService {
 		ResultSet rs = null;
 		JDBCConnect jdbcConn = new JDBCConnect();
 		try {
-			String sql = "select * from replyboard order by regroup desc, relevel asc ";
+			String sql = "SELECT * FROM"
+					+ "			(SELECT rownum  AS num , b.* from"
+					+ "				(SELECT * FROM REPLYBOARD ORDER BY regroup DESC, RELEVEL ASC) b)";
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			boardList = new ArrayList<BoardDto>();
 			while(rs.next()) {
 				BoardDto boardDto = new BoardDto();
+				boardDto.setNum(rs.getInt("num"));
 				boardDto.setNo(rs.getInt("no"));
 				boardDto.setUserID(rs.getString("userID"));
 				boardDto.setName(rs.getString("name"));
@@ -94,12 +97,16 @@ public class BoardDao implements BoardService {
 		ResultSet rs = null;
 		JDBCConnect jdbcConn = new JDBCConnect();
 		try {
-			String sql = "select * from replyboard where no = ?";
+			String sql = "SELECT * FROM"
+					+ "			(SELECT rownum  AS num , b.* from"
+					+ "				(SELECT * FROM REPLYBOARD ORDER BY regroup DESC, RELEVEL ASC) b)"
+					+ "where no=?";
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 			pstmt.setInt(1,no);
 			rs = pstmt.executeQuery();
 			viewBoard = new BoardDto();
 			if(rs.next()) {
+				viewBoard.setNum(rs.getInt("num"));
 				viewBoard.setNo(rs.getInt("no"));
 				viewBoard.setUserID(rs.getString("userID"));
 				viewBoard.setName(rs.getString("name"));
@@ -124,6 +131,7 @@ public class BoardDao implements BoardService {
 		int result = 0;
 		JDBCConnect jdbcConn = new JDBCConnect();
 		try {
+			// 답글쓸때 그룹은 같은 그룹
 			String sql = "update replyboard set relevel = relevel + 1 where regroup = ? and relevel > ?";
 			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
 			pstmt.setInt(1,boardDto.getRegroup());
@@ -160,4 +168,95 @@ public class BoardDao implements BoardService {
 		}
 		return result;
 	}
+
+	public int delete(int no) {
+		int result = 0;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			// 답글쓸때 그룹은 같은 그룹
+			String sql = "update replyboard set available = 0 where no = ?";
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1,no);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return result;
+	}
+	public BoardDto prevSelect(int num) {
+		BoardDto board = null; 
+		ResultSet rs = null;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			String sql = "SELECT * FROM"
+					+ "	(SELECT rownum  AS num , b.* from"
+					+ "		(SELECT * FROM REPLYBOARD ORDER BY regroup DESC, RELEVEL ASC) b)"
+					+ "	WHERE num = ? - 1";
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs = pstmt.executeQuery();
+			board = new BoardDto();
+			if(rs.next()) {
+				board.setNum(rs.getInt("num"));
+				board.setNo(rs.getInt("no"));
+				board.setUserID(rs.getString("userID"));
+				board.setName(rs.getString("name"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setRegDate(rs.getString("regDate"));
+				board.setHit(rs.getInt("hit"));
+				board.setRegroup(rs.getInt("regroup"));
+				board.setRelevel(rs.getInt("relevel"));
+				board.setRestep(rs.getInt("restep"));
+				board.setAvailable(rs.getInt("available"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return board;
+	}
+	public BoardDto nextSelect(int num) {
+		BoardDto board = null; 
+		ResultSet rs = null;
+		JDBCConnect jdbcConn = new JDBCConnect();
+		try {
+			String sql = "SELECT * FROM"
+					+ "	(SELECT rownum  AS num , b.* from"
+					+ "		(SELECT * FROM REPLYBOARD ORDER BY regroup DESC, RELEVEL ASC) b)"
+					+ "	WHERE num = ? + 1";
+			// 카톡 보내주세요... 제발...
+			PreparedStatement pstmt = jdbcConn.conn.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs = pstmt.executeQuery();
+			board = new BoardDto();
+			if(rs.next()) {
+				board.setNum(rs.getInt("num"));
+				board.setNo(rs.getInt("no"));
+				board.setUserID(rs.getString("userID"));
+				board.setName(rs.getString("name"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setRegDate(rs.getString("regDate"));
+				board.setHit(rs.getInt("hit"));
+				board.setRegroup(rs.getInt("regroup"));
+				board.setRelevel(rs.getInt("relevel"));
+				board.setRestep(rs.getInt("restep"));
+				board.setAvailable(rs.getInt("available"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdbcConn.close();
+		}
+		return board;
+	}
 }
+
+
+
+

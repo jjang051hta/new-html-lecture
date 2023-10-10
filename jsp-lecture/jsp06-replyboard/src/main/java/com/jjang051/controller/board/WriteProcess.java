@@ -36,7 +36,7 @@ public class WriteProcess extends HttpServlet {
 		insertBoardDto.setContent(content);
 		insertBoardDto.setUserID(userID);
 		insertBoardDto.setName(name);
-		
+		// regroup, relevel,restep  
 		int result = boardDao.write(insertBoardDto);
 		if(result>0) {
 			ScriptWriter.alertAndNext(response, "글이 등록되었습니다.", "../board/list");
