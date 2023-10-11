@@ -1,11 +1,13 @@
 package com.jjang051.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.jjang051.dto.BoardDto;
+import com.jjang051.dto.PageDto;
 import com.jjang051.mybatis.MybatisConnectionFactory;
 
 public class BoardDao {
@@ -17,6 +19,14 @@ public class BoardDao {
 		sqlSession.close();
 		return boardList;
 	}
+	public List<BoardDto> getAllBoard(PageDto pageDto) {
+		List<BoardDto> boardList = null;
+		// SqlSession을 하나 열어준다.
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		boardList = sqlSession.selectList("getAllReplyboard",pageDto);
+		sqlSession.close();
+		return boardList;
+	}
 	public BoardDto getOneBoard(int no) {
 		BoardDto boardDto = null;
 		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
@@ -24,4 +34,36 @@ public class BoardDao {
 		sqlSession.close();
 		return boardDto;
 	}
+	public int writeBoard(BoardDto boardDto) {
+		int result = 0;
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		result = sqlSession.insert("writeBoard", boardDto);
+		sqlSession.close();
+		return result;
+	}
+	public int deleteBoard(int no) {
+		int result = 0;
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		result = sqlSession.delete("deleteBoard", no);
+		sqlSession.close();
+		return result;
+	}
+	
+	public int updateHit(int no) {
+		int result = 0;
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updateHit", no);
+		sqlSession.close();
+		return result;
+	}
+	public int deleteAllBoard(int[] noList) {
+		int result = 0;
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		result = sqlSession.delete("deleteAllBoard", noList);
+		sqlSession.close();
+		return result;
+	}
 }
+
+
+

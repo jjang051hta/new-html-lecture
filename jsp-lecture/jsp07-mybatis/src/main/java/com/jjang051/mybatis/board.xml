@@ -4,12 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.jjang051.mybatis">
 	<select id="getAllReplyboard"
-		resultType="BoardDto" parameterType="HashMap">
+		resultType="BoardDto" parameterType="PageDto">
 	<![CDATA[
 	SELECT * FROM (
 		SELECT rownum AS num, b.* FROM 
-			(SELECT * FROM replyboard ORDER BY 
-				regroup DESC, relevel ASC) b) 
+			(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b) 
 		WHERE num >= #{start} AND num <= #{end}
 	]]>
 	</select>
@@ -17,5 +16,43 @@
 		resultType="BoardDto" parameterType="int">
 		select * from replyboard where no=#{no}
 	</select>
+	<insert id="writeBoard" parameterType="BoardDto">
+		insert into replyboard 
+			values(seq_replyboard.nextval,#{userID},#{name},#{title},
+				#{content},sysdate,0,#{regroup},#{relevel},#{restep},1)
+	</insert>
+	<delete id="deleteBoard" parameterType="int">
+		delete from replyboard where no = #{no}
+	</delete>
+	
+	<delete id="deleteAllBoard">
+		<!-- (3,4,5) -->
+		delete from replyboard where no in 
+		<foreach collection="array" item="item" index="i" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteAllBoardList" parameterType="List">
+		<!-- (3,4,5) -->
+		delete from replyboard where no in 
+		<foreach collection="list" item="item" index="i" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+	
+	
+	<update id="updateHit" parameterType="int">
+		update replyboard set hit = hit + 1 where no=#{no}
+	</update>
+	
 </mapper>
+
+
+
+
+
+
+
 

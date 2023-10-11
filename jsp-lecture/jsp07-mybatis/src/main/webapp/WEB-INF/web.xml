@@ -19,4 +19,44 @@
     <servlet-name>BoardList</servlet-name>
     <url-pattern>/board/list</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardWrite</display-name>
+    <servlet-name>BoardWrite</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardWrite</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardWrite</servlet-name>
+    <url-pattern>/board/write</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardDelete</display-name>
+    <servlet-name>BoardDelete</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardDelete</servlet-name>
+    <url-pattern>/board/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardUpdate</display-name>
+    <servlet-name>BoardUpdate</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardUpdate</servlet-name>
+    <url-pattern>/board/update</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardAllDelete</display-name>
+    <servlet-name>BoardAllDelete</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardAllDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardAllDelete</servlet-name>
+    <url-pattern>/board/all-delete</url-pattern>
+  </servlet-mapping>
 </web-app>

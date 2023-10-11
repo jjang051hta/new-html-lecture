@@ -20,6 +20,7 @@ public class MybatisConnectionFactory {
 		} 
 	}
 	public static SqlSession getSqlSession() {
-		return sqlSessionFactory.openSession();
+		//commit auto-commit
+		return sqlSessionFactory.openSession(true);
 	}
 }
