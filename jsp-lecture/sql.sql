@@ -129,19 +129,32 @@ COMMIT;
 
 --100
 
+DECLARE
+	randomNum NUMBER;
 BEGIN
+	
 	FOR i IN 1..100
 	LOOP
-		INSERT INTO BOARD VALUES 
-		(seq_board.nextval,'jjang051','1111','장성호'||i,'제목_'||i,'내용이 들어갑니다'||i,
-			sysdate,0);
+		randomNum := trunc(dbms_random.value(1,10));
+		INSERT INTO replyboard VALUES 
+		(seq_replyboard.nextval,'jjang051','장성호'||randomNum,
+		                        '제목_'||randomNum,
+		                        '내용이 들어갑니다'||randomNum,
+			sysdate,0, i+100,1,1,1);
 	END LOOP;
 END;
 
-SELECT * FROM board;
+
+COMMIT;
+
+SELECT * FROM replyboard;
 -- rownum
 
+DELETE FROM REPLYBOARD ;
+
 SELECT * FROM board ORDER BY NO desc;
+
+
 
 
 

@@ -41,12 +41,29 @@
 		</foreach>
 	</delete>
 	
-	
-	
 	<update id="updateHit" parameterType="int">
 		update replyboard set hit = hit + 1 where no=#{no}
 	</update>
-	
+
+	<select id="searchSelect" resultType="BoardDto" parameterType="HashMap">
+		SELECT * FROM replyboard WHERE  
+		<choose>
+			<when test="category=='name'">
+				name LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='title'">
+				title LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='content'">
+				content LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='all'">
+				(name    LIKE '%'||#{keyword}||'%') or
+				(title   LIKE '%'||#{keyword}||'%') or
+				(content LIKE '%'||#{keyword}||'%')
+			</when>
+		</choose> 
+	</select>
 </mapper>
 
 

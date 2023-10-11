@@ -63,6 +63,14 @@ public class BoardDao {
 		sqlSession.close();
 		return result;
 	}
+	public List<BoardDto> getSearchBoard(HashMap<String,String> seachMap) {
+		List<BoardDto> boardList = null;
+		// SqlSession을 하나 열어준다.
+		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		boardList = sqlSession.selectList("searchSelect",seachMap);
+		sqlSession.close();
+		return boardList;
+	}
 }
 
 

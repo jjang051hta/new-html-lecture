@@ -59,4 +59,24 @@
     <servlet-name>BoardAllDelete</servlet-name>
     <url-pattern>/board/all-delete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardSearch</display-name>
+    <servlet-name>BoardSearch</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardSearch</servlet-name>
+    <url-pattern>/board/search</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardSearchForm</display-name>
+    <servlet-name>BoardSearchForm</servlet-name>
+    <servlet-class>com.jjang051.controller.board.BoardSearchForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardSearchForm</servlet-name>
+    <url-pattern>/board/search-form</url-pattern>
+  </servlet-mapping>
 </web-app>
