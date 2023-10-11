@@ -40,6 +40,7 @@ public class BoardDao implements BoardService {
 	public List<BoardDto> list() {
 		List<BoardDto> boardList = null;
 		ResultSet rs = null;
+		
 		JDBCConnect jdbcConn = new JDBCConnect();
 		try {
 			String sql = "SELECT * FROM"

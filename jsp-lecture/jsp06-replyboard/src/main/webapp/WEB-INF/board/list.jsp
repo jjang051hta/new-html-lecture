@@ -7,6 +7,9 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">no</th>
+		      <th scope="col">num</th>
+		      <th scope="col">available</th>
+		      
 		      <th scope="col">title</th>
 		      <th scope="col">writer</th>
 		      <th scope="col">date</th>
@@ -21,7 +24,10 @@
 		  <tbody>
 		  	<c:forEach items="${boardList }" var="board" varStatus="status">
 		    <tr>
-		      <td>${status.index }</td>
+		      <td>${board.no }</td>
+		      <td>${board.num }</td>
+		      <td>${board.available }</td>
+		      
 		      <td>
 		      	<c:choose>
 			      	<c:when test="${board.available > 0 }">

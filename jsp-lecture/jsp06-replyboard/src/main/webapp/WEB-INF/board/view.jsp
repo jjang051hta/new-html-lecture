@@ -39,7 +39,7 @@
 			
 			<div>
 				<span>이전글</span>
-				<c:choose>
+				<%-- <c:choose>
 					<c:when test="${prevBoard.available > 0 }">
 						<a href="../board/view?no=${prevBoard.no}&num=${prevBoard.num}">
 							${prevBoard.title}
@@ -50,7 +50,10 @@
 							삭제된 글입니다.
 						</a>
 					</c:otherwise>
-				</c:choose>
+				</c:choose> --%>
+				<a href="../board/view?no=${prevBoard.no}&num=${prevBoard.num}">
+							${prevBoard.title}
+						</a>
 			</div>
 			<div>
 				<span>다음글</span>
