@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 </main>
   <div class="container">
 	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -5,7 +7,7 @@
 	      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
 	        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
 	      </a>
-	      <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+	      <span class="mb-3 mb-md-0 text-body-secondary">Â© 2023 Company, Inc</span>
 	    </div>
 	
 	    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -15,5 +17,22 @@
 	    </ul>
 	  </footer>
 	</div>
+	
+	
+	<jsp:include page="/WEB-INF/include/modal.jsp"></jsp:include>
+	
+	
+	<%-- <c:if test="${success eq 'true'}">
+		<jsp:include page="/WEB-INF/include/modal.jsp" />
+	</c:if> --%>
+
+<script>
+/* const success = ${param.success};
+const modal = new bootstrap.Modal("#modal");
+if(success === true) {
+	modal.show();
+} */
+
+</script>
 </body>
 </html>

@@ -79,6 +79,7 @@
 			<a href="../board/write" class="btn btn-primary">글쓰기</a>
 		</div>
 	</div>
+	
 <%@ include file="../include/footer.jsp" %>
 
 

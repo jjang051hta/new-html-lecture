@@ -4,8 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="BoardDto" type="com.jjang051.dto.BoardDto" />
-		<typeAlias alias="PageDto"  type="com.jjang051.dto.PageDto" />
+		<typeAlias alias="BoardDto"   type="com.jjang051.dto.BoardDto" />
+		<typeAlias alias="PageDto"    type="com.jjang051.dto.PageDto" />
+		<typeAlias alias="MemberDto"  type="com.jjang051.dto.MemberDto" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -21,5 +22,11 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/jjang051/mybatis/board.xml" />
+		<mapper resource="com/jjang051/mybatis/member.xml" />
 	</mappers>
 </configuration>
+
+
+
+
+
