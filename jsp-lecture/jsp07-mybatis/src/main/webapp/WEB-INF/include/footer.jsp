@@ -25,6 +25,16 @@
 			myModal.show();
 		</script>
 	</c:if>
+	
+	<c:if test="${modalState.state eq 'show' || param.state eq 'show'  }">
+		<jsp:include page="/WEB-INF/include/toast.jsp" />
+		<script>
+			const myToast = new bootstrap.Toast("#liveToast");
+			myToast.show();
+			myToast.
+		</script>
+	</c:if>
+	
 
 
 <!-- <script>

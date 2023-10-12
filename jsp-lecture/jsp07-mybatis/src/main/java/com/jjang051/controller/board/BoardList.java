@@ -30,13 +30,19 @@ public class BoardList extends HttpServlet {
 		//int end = Integer.parseInt(request.getParameter("end"));
 		
 		BoardDao boardDao = new BoardDao();
-		HashMap <String,Integer> pageMap = new HashMap<>();
+		HashMap <String,Object> pageMap = new HashMap<>();
+		String category = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
+		
 		pageMap.put("start", 1);
-		pageMap.put("end", 10);
+		pageMap.put("end", 30);
+		pageMap.put("category","title");
+		pageMap.put("keyword","ㄹㅇ");
+		
 		PageDto pageDto = new PageDto();
 		pageDto.setStart(1);
 		pageDto.setEnd(7);
-		List<BoardDto> boardList = boardDao.getAllBoard(pageDto);
+		List<BoardDto> boardList = boardDao.getAllBoard(pageMap);
 		//System.out.println(boardList.size());
 		request.setAttribute("boardList", boardList);
 		RequestDispatcher dispatcher = 

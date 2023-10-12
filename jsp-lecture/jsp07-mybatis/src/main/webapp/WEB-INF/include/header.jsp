@@ -29,8 +29,9 @@
           
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="../board/list">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="searchTxt">
+          <button class="btn btn-primary">검색</button>
         </form>
 
         <div class="dropdown text-end">

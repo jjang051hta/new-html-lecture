@@ -3,14 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.jjang051.mybatis">
+ <sql id="search">
+    <if test="category != null and keyword!=''">
+        <choose>
+			<when test="category=='name'">
+				where name LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='title'">
+				where title LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='content'">
+				where content LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="category=='all'">
+				where (name    LIKE '%'||#{keyword}||'%') or
+				(title   LIKE '%'||#{keyword}||'%') or
+				(content LIKE '%'||#{keyword}||'%')
+			</when>
+		</choose> 
+    </if>
+  </sql>
 	<select id="getAllReplyboard"
-		resultType="BoardDto" parameterType="PageDto">
-	<![CDATA[
+		resultType="BoardDto" parameterType="HashMap">
 	SELECT * FROM (
 		SELECT rownum AS num, b.* FROM 
-			(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b) 
-		WHERE num >= #{start} AND num <= #{end}
-	]]>
+			(SELECT * FROM replyboard <include refid="search" /> ORDER BY regroup DESC, relevel ASC) b) 
+		WHERE num <![CDATA[>=]]> #{start} AND num <![CDATA[<=]]> #{end}
 	</select>
 	<select id="getOneBoard"
 		resultType="BoardDto" parameterType="int">

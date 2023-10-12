@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-${modalState.state }
 	<div class="container">
 		<h2 class="mb-5 mt-5">WRITE</h2>
 		<table class="table list">
@@ -72,9 +71,15 @@ ${modalState.state }
 		  </tbody>
 		</table>
 		
-		<!-- <div>
-			여기다가 이전 글  다음 글 출력
-		</div> -->
+		<form action="../board/list" >
+			<input type="text" name="keyword">
+			<select name="category">
+				<option value="writer">작성자</option>
+				<option value=""></option>
+				<option value="">작성자</option>
+				
+			</select>
+		</form>
 		
 		<div class="d-flex justify-content-center mt-3 mb-3">
 			<a href="../board/write" class="btn btn-primary">글쓰기</a>

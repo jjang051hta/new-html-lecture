@@ -43,9 +43,9 @@ public class BoardWriteProcess extends HttpServlet {
 			//response.sendRedirect("../board/list?state=show&msg="+msg);
 			
 			HttpSession session = request.getSession();
+			
 			ModalState modalState = new ModalState("show","글이 등록되었습니다.");
 			session.setAttribute("modalState", modalState);
-			
 			response.sendRedirect("../board/list");
 		} else {
 			

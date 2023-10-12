@@ -11,7 +11,7 @@ import com.jjang051.dto.PageDto;
 import com.jjang051.mybatis.MybatisConnectionFactory;
 
 public class BoardDao {
-	public List<BoardDto> getAllBoard(HashMap<String,Integer> pageMap) {
+	public List<BoardDto> getAllBoard(HashMap<String,Object> pageMap) {
 		List<BoardDto> boardList = null;
 		// SqlSession을 하나 열어준다.
 		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
