@@ -27,7 +27,7 @@
 		resultType="BoardDto" parameterType="HashMap">
 	SELECT * FROM (
 		SELECT rownum AS num, b.* FROM 
-			(SELECT * FROM replyboard <include refid="search" /> ORDER BY regroup DESC, relevel ASC) b) 
+			(SELECT * FROM replyboard  ORDER BY regroup DESC, relevel ASC) b) 
 		WHERE num <![CDATA[>=]]> #{start} AND num <![CDATA[<=]]> #{end}
 	</select>
 	<select id="getOneBoard"

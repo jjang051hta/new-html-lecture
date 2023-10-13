@@ -9,7 +9,6 @@
 		      <th scope="col">no</th>
 		      <th scope="col">num</th>
 		      <th scope="col">available</th>
-		      
 		      <th scope="col">title</th>
 		      <th scope="col">writer</th>
 		      <th scope="col">date</th>
@@ -33,13 +32,16 @@
 			      	<c:when test="${board.available > 0 }">
 				      	<c:choose>
 					      	<c:when test="${board.restep > 1 }">
-					      		<a href="../board/view?no=${board.no}&num=${board.num}" class="step step${board.restep }">
+					      		<a href="../board/view?no=${board.no}&num=${board.num}" 
+					      			class="step step${board.restep }">
 					      			<c:forEach begin="1" end="${board.restep - 1}">[re]</c:forEach>
-					      			${board.title }
+					      			<c:out value="${board.title}"></c:out>
 					      		</a>
 					      	</c:when>
 					      	<c:otherwise>
-					      		<a href="../board/view?no=${board.no}&num=${board.num}" >${board.title }</a>
+					      		<a href="../board/view?no=${board.no}&num=${board.num}" >
+					      			<c:out value="${board.title}"></c:out>
+					      		</a>
 					      	</c:otherwise>
 				      	</c:choose>
 			      	</c:when>

@@ -18,7 +18,7 @@
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td colspan="3">${viewBoard.title }</td>
+						<td colspan="3"><c:out value="${viewBoard.title }"></c:out></td>
 					</tr>
 					<tr>
 						<th>글쓴이</th>

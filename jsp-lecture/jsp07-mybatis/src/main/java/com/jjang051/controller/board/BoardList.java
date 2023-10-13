@@ -35,13 +35,13 @@ public class BoardList extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		
 		pageMap.put("start", 1);
-		pageMap.put("end", 30);
-		pageMap.put("category","title");
-		pageMap.put("keyword","ㄹㅇ");
+		pageMap.put("end", 100);
+		//pageMap.put("category","title");
+		//pageMap.put("keyword","ㄹㅇ");
 		
 		PageDto pageDto = new PageDto();
-		pageDto.setStart(1);
-		pageDto.setEnd(7);
+		//pageDto.setStart(1);
+		//pageDto.setEnd(100);
 		List<BoardDto> boardList = boardDao.getAllBoard(pageMap);
 		//System.out.println(boardList.size());
 		request.setAttribute("boardList", boardList);
