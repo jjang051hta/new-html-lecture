@@ -21,6 +21,6 @@ public class MybatisConnectionFactory {
 	}
 	public static SqlSession getSqlSession() {
 		//commit auto-commit
-		return sqlSessionFactory.openSession();
+		return sqlSessionFactory.openSession(true);
 	}
 }

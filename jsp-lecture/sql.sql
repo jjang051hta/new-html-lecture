@@ -155,10 +155,23 @@ DELETE FROM REPLYBOARD ;
 SELECT * FROM board ORDER BY NO desc;
 
 
+SELECT * FROM MEMBER ;
+
+ROLLBACK;
 
 
-
-
+insert into member values(
+									seq_member.nextval,
+									'jjang051',
+									'1111',
+									'장성호',
+									'jjang051@hanmail.net',
+									'010-1111-2222',
+									11111,
+									'우리집',
+									'멀다',
+									sysdate,
+									'ㄹㅇㄴㄹㅇ');
 
 
 

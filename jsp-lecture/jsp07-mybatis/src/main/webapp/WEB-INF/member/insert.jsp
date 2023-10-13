@@ -250,7 +250,7 @@
 		             userID: $("#userID").val()
 		          },
 		          method: "get",  //없어도 get으로 처리됨
-		          
+		          /* {count:1} */
 		          success: function(data){
 		             if(data.count>0){
 		                alert("쓸 수 없는 아이디");

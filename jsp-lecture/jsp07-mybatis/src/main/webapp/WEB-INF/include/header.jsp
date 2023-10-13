@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js/jquery-3.7.1.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="../css/font_bootstrap-icons.css">
@@ -31,12 +33,11 @@
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="../board/list">
           <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="searchTxt">
-          <button class="btn btn-primary">검색</button>
         </form>
 
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="${pageContext.request.contextPath}/upload/${profile }" alt="mdo" width="64" height="64" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="#">New project...</a></li>
